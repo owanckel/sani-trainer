@@ -772,9 +772,9 @@ hr {
     gap: 10px;
     padding: 7px 16px 7px 7px;
     border-radius: 999px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
+    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    border: 1px solid var(--border-2);
+    color: var(--text);
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 0.78rem;
@@ -784,12 +784,16 @@ hr {
     flex-shrink: 0;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px -4px rgba(0,0,0,0.5);
 }
 .step-pill:hover:not(.active) {
-    color: var(--text);
-    background: rgba(255,255,255,0.05);
+    color: #FFD0D4;
+    background: linear-gradient(180deg, rgba(255,59,71,0.14) 0%, rgba(255,59,71,0.04) 100%);
+    border-color: var(--border-accent);
     transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 18px -8px var(--accent-glow);
 }
+.step-pill:active:not(.active) { transform: translateY(0); }
 .step-pill.active {
     color: #FFD0D4;
     border-color: var(--border-accent);
@@ -1111,7 +1115,7 @@ hr {
             <!-- SZENARIO -->
             <div class="tab-pane fade" id="szenario">
                 <section class="hero">
-                    <h1 class="hero-title">Ernstfall<span class="hero-dot">.</span></h1>
+                    <h1 class="hero-title">Szenario<span class="hero-dot">.</span></h1>
                     <div class="hero-ecg" aria-hidden="true"></div>
                     <div class="hero-bracket hero-bracket-tr"></div>
                     <div class="hero-bracket hero-bracket-bl"></div>
@@ -1126,7 +1130,7 @@ hr {
             <!-- ABLAUF -->
             <div class="tab-pane fade" id="ablauf">
                 <section class="hero">
-                    <h1 class="hero-title">Ablauf<span class="hero-dot">.</span></h1>
+                    <h1 class="hero-title">Beispiel Einsatzablauf<span class="hero-dot">.</span></h1>
                     <div class="hero-ecg" aria-hidden="true"></div>
                     <div class="hero-bracket hero-bracket-tr"></div>
                     <div class="hero-bracket hero-bracket-bl"></div>
@@ -1141,7 +1145,7 @@ hr {
             <!-- NORMALWERTE -->
             <div class="tab-pane fade" id="values">
                 <section class="hero">
-                    <h1 class="hero-title">Zahlen<span class="hero-dot">.</span></h1>
+                    <h1 class="hero-title">Vitalwerte<span class="hero-dot">.</span></h1>
                     <div class="hero-ecg" aria-hidden="true"></div>
                     <div class="hero-bracket hero-bracket-tr"></div>
                     <div class="hero-bracket hero-bracket-bl"></div>
@@ -1156,7 +1160,7 @@ hr {
             <!-- INFO -->
             <div class="tab-pane fade show active" id="info">
                 <section class="hero">
-                    <h1 class="hero-title">xABCDE<span class="hero-dot">.</span></h1>
+                    <h1 class="hero-title" id="info-hero-title">Nachschlagen<span class="hero-dot">.</span></h1>
                     <div class="hero-ecg" aria-hidden="true"></div>
                     <div class="hero-bracket hero-bracket-tr"></div>
                     <div class="hero-bracket hero-bracket-bl"></div>
@@ -1178,7 +1182,7 @@ hr {
             <!-- QUIZ -->
             <div class="tab-pane fade" id="quiz">
                 <section class="hero">
-                    <h1 class="hero-title">Unter Druck<span class="hero-dot">.</span></h1>
+                    <h1 class="hero-title">Quiz<span class="hero-dot">.</span></h1>
                     <div class="hero-ecg" aria-hidden="true"></div>
                     <div class="hero-bracket hero-bracket-tr"></div>
                     <div class="hero-bracket hero-bracket-bl"></div>
@@ -1233,6 +1237,9 @@ let openCategories = new Set();
 async function showInfoSection(section, btn) {
     document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
+    const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', notfaelle: 'Notfallbilder' };
+    const titleEl = document.getElementById('info-hero-title');
+    if (titleEl) titleEl.innerHTML = (titles[section] || 'Nachschlagen') + '<span class="hero-dot">.</span>';
     const c = document.getElementById('info-content');
     const dataMap = { xabcde: 'xabcde', sample: 'sample', notfaelle: 'notfallbilder' };
     const dataKey = dataMap[section];
