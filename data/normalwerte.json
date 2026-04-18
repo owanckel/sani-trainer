@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Atemfrequenz",
+    "normal": "12–20 /min",
+    "niedrig": "< 10 /min (Bradypnoe / verlangsamte Atmung)",
+    "hoch": "> 20 /min (Tachypnoe / beschleunigte Atmung)",
+    "hinweis": "30 Sekunden zählen und verdoppeln"
+  },
+  {
+    "name": "Sauerstoffsättigung (SpO₂)",
+    "normal": "95–100 %",
+    "niedrig": "< 94 % → O₂-Gabe nötig\n< 90 % → kritisch, sofort handeln",
+    "hoch": "",
+    "hinweis": "Pulsoxymeter (Sauerstoffmessgerät) am Finger. Verfälscht durch: Nagellack, Kälte, CO-Vergiftung"
+  },
+  {
+    "name": "Puls (Herzfrequenz)",
+    "normal": "60–100 /min",
+    "niedrig": "< 60 /min (Bradykardie / langsamer Herzschlag)",
+    "hoch": "> 100 /min (Tachykardie / Herzrasen)",
+    "hinweis": "Am Handgelenk (Radialispuls / Speichenarterie) tasten. Nicht tastbar → RR vermutlich < 80 mmHg"
+  },
+  {
+    "name": "Blutdruck (RR)",
+    "normal": "ca. 120/80 mmHg",
+    "niedrig": "Systolisch (oberer Wert) < 90 mmHg → Schock!",
+    "hoch": "> 140 mmHg → Hypertonie (Bluthochdruck)\n> 180 mmHg → Hypertensive Krise (Blutdruckentgleisung)",
+    "hinweis": "Systolisch = oberer Wert, Diastolisch = unterer Wert"
+  },
+  {
+    "name": "Rekapillarisierungszeit (Nagelbett-Probe)",
+    "normal": "< 2 Sekunden",
+    "niedrig": "",
+    "hoch": "> 2 Sekunden → verminderte Durchblutung / Schock",
+    "hinweis": "Fingernagel 5 Sekunden drücken, loslassen, messen bis wieder rosa"
+  },
+  {
+    "name": "Blutzucker (BZ)",
+    "normal": "70–120 mg/dl (nüchtern)",
+    "niedrig": "< 70 mg/dl → Hypoglykämie (Unterzuckerung)\nZucker geben wenn wach + schluckfähig",
+    "hoch": "> 250 mg/dl → Hyperglykämie (Überzuckerung)\nAn diabetische Entgleisung denken",
+    "hinweis": "Messung wenn Gerät vorhanden"
+  },
+  {
+    "name": "Körpertemperatur",
+    "normal": "36,5–37,5 °C",
+    "niedrig": "< 35 °C → Hypothermie (Unterkühlung)\n< 32 °C → Tremor (Zittern) hört auf, kritisch",
+    "hoch": "> 38 °C → Fieber\n> 40 °C → Hyperthermie (Überhitzung), lebensbedrohlich",
+    "hinweis": "Wärmeerhalt hat Priorität bei Trauma"
+  },
+  {
+    "name": "Pupillen",
+    "normal": "Isokor (seitengleich), rund, lichtreagibel (verengen sich bei Licht)",
+    "niedrig": "Miosis (verengte Pupillen) → Intoxikation (Vergiftung, z.B. Opiate)",
+    "hoch": "Mydriasis (weite Pupillen) → Schock, Angst, Stimulanzien\nEinseitig weit → V.a. Hirndruck\nBeidseitig weit + lichtstarr → Reanimation",
+    "hinweis": "Mit Taschenlampe prüfen, Seitenvergleich"
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "category": "Kardiovaskulär (Herz-Kreislauf)",
+    "conditions": [
+      {
+        "name": "Angina Pectoris (Brustenge / Herzenge)",
+        "symptoms": "Thoraxschmerz (Brustschmerz) bei Belastung oder Stress, Engegefühl hinter dem Brustbein, Ausstrahlung in Arm/Kiefer möglich, Dyspnoe (Atemnot). Schmerz lässt in Ruhe oder nach Nitroglyzerin-Spray (gefäßerweiterndes Notfallmedikament) nach",
+        "action": "Ruhe, Oberkörper hoch lagern, beengende Kleidung öffnen, eigenes Nitro-Spray nutzen lassen (falls vorhanden), wenn Schmerz nach 5 Minuten nicht nachlässt: wie ACS behandeln, Rettungsdienst"
+      },
+      {
+        "name": "ACS (Akutes Koronarsyndrom / akuter Herzanfall)",
+        "symptoms": "Thoraxschmerz (Brustschmerz), Engegefühl, Ausstrahlung in Arm/Kiefer/Rücken, Nausea (Übelkeit), Diaphorese (Schwitzen), Dyspnoe (Atemnot), Todesangst. Schmerz bleibt auch in Ruhe bestehen — Unterschied zur Angina Pectoris!",
+        "action": "Oberkörper hoch lagern, beengende Kleidung öffnen, Ruhe, O₂-Gabe, Rettungsdienst"
+      },
+      {
+        "name": "Hypertonie (Bluthochdruck)",
+        "symptoms": "Kopfschmerzen, Schwindel, Ohrensausen, Nasenbluten, Gesichtsrötung, innere Unruhe. Oft symptomlos! RR (Blutdruck) systolisch (oberer Wert) dauerhaft >140 mmHg",
+        "action": "Ruhe, Oberkörper hoch, beengende Kleidung öffnen, RR (Blutdruck) kontrollieren, bei Beschwerden Rettungsdienst. Eigene Medikamente NICHT zusätzlich geben"
+      },
+      {
+        "name": "Hypotonie (niedriger Blutdruck)",
+        "symptoms": "Schwindel, Schwarzwerden vor Augen, Blässe, Übelkeit, kalter Schweiß, Kollapsneigung (Ohnmachtsgefühl). RR (Blutdruck) systolisch (oberer Wert) <90 mmHg",
+        "action": "Flach lagern, Beine hoch (Schocklage), frische Luft, Flüssigkeit anbieten (wenn wach), bei anhaltenden Beschwerden oder Bewusstlosigkeit Rettungsdienst"
+      }
+    ]
+  },
+  {
+    "category": "Schock — Allgemeine Zeichen",
+    "conditions": [
+      {
+        "name": "Schock erkennen",
+        "symptoms": "Tachykardie > 100/min, Hypotonie (systolisch < 90 mmHg), Blässe, kalte feuchte Haut (Zentralisation / Blutumverteilung zu lebenswichtigen Organen — Ausnahme: septisch/neurogen = warme Haut), Rekapillarisierungszeit > 2 Sek., Tachypnoe (AF > 20/min), Unruhe bis Bewusstseinstrübung, Oligurie (verminderte Urinausscheidung)",
+        "action": "Sofort Rettungsdienst, Wärmeerhalt (Rettungsdecke), Lagerung je nach Schocktyp, engmaschig Vitalzeichen (Puls, RR, SpO₂, Bewusstsein) überwachen, O₂-Gabe bei SpO₂ < 94 %"
+      }
+    ]
+  },
+  {
+    "category": "Schocktypen",
+    "conditions": [
+      {
+        "name": "Hypovolämischer Schock",
+        "symptoms": "Ursache: Blutverlust (hämorrhagischer Schock) oder Flüssigkeitsverlust (Dehydratation, Verbrennungen, Durchfall, Erbrechen). Zeichen: klassische Schockzeichen — Blässe, kalte feuchte Haut, Tachykardie, Hypotonie, Durst",
+        "action": "Lagerung: Schocklage (Beine 20–30° hoch). Blutung stoppen (Druckverband, Tourniquet), Wärmeerhalt, O₂-Gabe, Rettungsdienst"
+      },
+      {
+        "name": "Kardiogener Schock",
+        "symptoms": "Ursache: Herzpumpenversagen (Myokardinfarkt / Herzinfarkt, Rhythmusstörung, Herzinsuffizienz / Herzschwäche). Zeichen: Dyspnoe (Atemnot), Lungenstauung bis Lungenödem (Wasser in der Lunge), Tachykardie, Hypotonie, gestaute Halsvenen",
+        "action": "Lagerung: Oberkörper hoch — KEINE Schocklage (würde Herz überlasten)! Ruhe, beengende Kleidung öffnen, O₂-Gabe, Notarzt"
+      },
+      {
+        "name": "Anaphylaktischer Schock",
+        "symptoms": "Ursache: schwere allergische Reaktion (Insektenstich, Nahrung, Medikament) → massive Vasodilatation (Gefäßerweiterung) durch Histamin. Zeichen: Urtikaria (Nesselsucht / Quaddeln), Angioödem (Schwellung), Bronchospasmus (Verkrampfung der Atemwege), Tachykardie, Hypotonie",
+        "action": "Lagerung nach Leitsymptom (Atemnot → Oberkörper hoch; Kreislauf dominant → Beine hoch). Auslöser entfernen, eigenen Adrenalin-Autoinjektor (EpiPen) anwenden lassen, O₂-Gabe, Notarzt"
+      },
+      {
+        "name": "Septischer Schock",
+        "symptoms": "Ursache: schwere Infektion (Sepsis / Blutvergiftung) → systemische Entzündungsreaktion mit Vasodilatation. Zeichen: Fieber oder Hypothermie (Unterkühlung), Tachykardie, Hypotonie, initial warme Haut trotz Schock (irreführend!), Bewusstseinstrübung",
+        "action": "Flach lagern, Wärmeerhalt, O₂-Gabe, Rettungsdienst — ursächliche Therapie (Antibiotikum, Volumengabe) nur in der Klinik möglich"
+      },
+      {
+        "name": "Neurogener / Spinaler Schock",
+        "symptoms": "Ursache: Wirbelsäulentrauma mit Ausfall des Sympathikus (vegetatives Nervensystem). Zeichen: Bradykardie (!) statt Tachykardie, Hypotonie, warme trockene Haut, Lähmung (Paralyse) unterhalb der Verletzungshöhe",
+        "action": "Flach lagern, HWS und Wirbelsäule immobilisieren (Log-Roll mit mind. 3 Helfern), Wärmeerhalt (thermoregulatorisches Versagen), Notarzt"
+      },
+      {
+        "name": "Obstruktiver Schock",
+        "symptoms": "Ursache: mechanische Behinderung des Blutflusses — Spannungspneumothorax (Luft im Pleuraspalt unter Druck), Perikardtamponade (Flüssigkeit im Herzbeutel), Lungenembolie (Gerinnsel in der Lungenarterie). Zeichen: gestaute Halsvenen, Tachykardie, Hypotonie, ggf. einseitig fehlende Atemgeräusche, keine Besserung durch Lagerung",
+        "action": "Meist Oberkörper hoch bei Atemnot. Notarzt sofort — Entlastung (z.B. Nadeldekompression / Punktion) nur durch Notarzt"
+      }
+    ]
+  }
+]

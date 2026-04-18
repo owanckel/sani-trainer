@@ -1,0 +1,123 @@
+{
+  "title": "Typischer Einsatzablauf: Eintreffen Sanitäter bis Übergabe Rettungsdienst",
+  "steps": [
+    {
+      "phase": "Eintreffen",
+      "icon": "1",
+      "title": "Anfahrt & Eintreffen",
+      "actions": [
+        "Einsatzmeldung aufnehmen: Was? Wo? Wie viele?",
+        "Eigene Schutzausrüstung (PSA) anlegen",
+        "Einsatzstelle anfahren, Zufahrt für Rettungsdienst freihalten"
+      ]
+    },
+    {
+      "phase": "Szene",
+      "icon": "2",
+      "title": "Szene sichern & Überblick",
+      "actions": [
+        "Szene, Sicherheit, Situation beurteilen — Eigenschutz geht vor!",
+        "Gefahren erkennen: Verkehr, Strom, Gas, Feuer, Gefahrstoffe",
+        "Anzahl Betroffene erfassen, ggf. Nachforderung (Rettungsdienst, Notarzt)",
+        "Ersteindruck: Patient kritisch?"
+      ]
+    },
+    {
+      "phase": "X",
+      "icon": "X",
+      "title": "Lebensbedrohliche Blutung stoppen",
+      "actions": [
+        "Starke äußere Blutung? → Sofort Druckverband oder Tourniquet (Abbindesystem)",
+        "Erst Blutung stoppen, dann weiter mit Atemweg"
+      ]
+    },
+    {
+      "phase": "Erstuntersuchung",
+      "icon": "3",
+      "title": "xABCDE durcharbeiten",
+      "actions": [
+        "A — Atemweg frei? Fremdkörper? HWS bei Trauma?",
+        "B — Atmet der Patient? Frequenz, SpO₂, Zyanose (Blaufärbung)?",
+        "C — Puls, Blutdruck, Rekapzeit, Haut, Blutungen?",
+        "D — Bewusstsein (AVPU), Orientierung, Pupillen, BZ?",
+        "E — Ganzkörper-Check, Wärmeerhalt, Wundversorgung, Ruhigstellung",
+        "Bei jedem Schritt: Problem erkannt → sofort behandeln, dann weiter"
+      ]
+    },
+    {
+      "phase": "SAMPLE",
+      "icon": "4",
+      "title": "SAMPLE-Anamnese (Befragung)",
+      "actions": [
+        "S — Symptome: Was für Beschwerden?",
+        "A — Allergien bekannt?",
+        "M — Medikamente? (Blutverdünner, Insulin, Herzmedikamente)",
+        "P — Patientengeschichte / Vorerkrankungen?",
+        "L — Letzte Mahlzeit wann?",
+        "E — Ereignis: Was ist passiert?",
+        "Wenn Patient nicht ansprechbar: Umstehende befragen, Medikamentenliste suchen"
+      ]
+    },
+    {
+      "phase": "Maßnahmen",
+      "icon": "5",
+      "title": "Laufende Betreuung & Maßnahmen",
+      "actions": [
+        "Lagerung nach Befund (Oberkörper hoch, Schocklage, stabile Seitenlage…)",
+        "Wärmeerhalt: Rettungsdecke, vor Witterung schützen",
+        "O₂-Gabe wenn verfügbar und SpO₂ < 94%",
+        "Regelmäßig Re-Evaluierung: xABCDE erneut durchgehen!",
+        "Vitalwerte dokumentieren (Uhrzeit, Werte)",
+        "Patienten beruhigen, Angehörige informieren"
+      ]
+    },
+    {
+      "phase": "Übergabe",
+      "icon": "6",
+      "title": "Übergabe an Rettungsdienst",
+      "actions": [
+        "Strukturierte Übergabe — alle Befunde geordnet weitergeben:",
+        "Einsatzgrund & Unfallmechanismus",
+        "Ergebnis xABCDE (alle Befunde mit Uhrzeiten)",
+        "SAMPLE-Anamnese (Befragungsergebnisse)",
+        "Durchgeführte Maßnahmen & Reaktion darauf",
+        "Veränderungen seit Eintreffen (besser/schlechter/gleich)",
+        "Rückfragen des Rettungsdienstes beantworten"
+      ]
+    }
+  ],
+  "uebergabe_beispiel": {
+    "title": "Beispiel-Übergabedialog",
+    "szenario": "Mann, ca. 60 Jahre, Brustschmerzen auf der Straße, Passant hat den Notruf gewählt. Sanitäter waren zuerst vor Ort.",
+    "dialog": [
+      {
+        "rolle": "Sanitäter",
+        "text": "Sanitäter Müller, Feuerwehr, 10 Minuten vor Ort. Herr Schmidt, 62, V.a. ACS."
+      },
+      {
+        "rolle": "Sanitäter",
+        "text": "X unauffällig. A unauffällig. B — Atemfrequenz 22, Sättigung 94. C — Puls 110 unregelmäßig, Druck 160/95, blass und schweißig. D unauffällig, BZ 130. E unauffällig."
+      },
+      {
+        "rolle": "Sanitäter",
+        "text": "Drückender Brustschmerz seit 20 Minuten, 8/10, Ausstrahlung linker Arm, Übelkeit, Schwitzen. Bekannte KHK, Z.n. Stent, nimmt Metoprolol und ASS. Keine Allergien."
+      },
+      {
+        "rolle": "Sanitäter",
+        "text": "Oberkörper hoch, O₂ 4 Liter, Nitro um 14:35 ohne Besserung. Stabil seit Eintreffen."
+      },
+      {
+        "rolle": "Rettungsdienst",
+        "text": "Puls bei Eintreffen?"
+      },
+      {
+        "rolle": "Sanitäter",
+        "text": "105, jetzt 110. Leicht ansteigend."
+      },
+      {
+        "rolle": "Rettungsdienst",
+        "text": "Alles klar, wir übernehmen."
+      }
+    ]
+  }
+}

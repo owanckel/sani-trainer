@@ -1,0 +1,211 @@
+[
+  {
+    "step": "Vorbeurteilung",
+    "badge": "",
+    "badgeClass": "",
+    "items": [
+      {
+        "name": "Szene, Sicherheit, Situation",
+        "detail": "Bevor du den Patienten anfasst: Ist die Einsatzstelle sicher? Gefahren für dich und dein Team ausschließen (Verkehr, Strom, Gas, Feuer, Gefahrstoffe). Überblick verschaffen: Was ist passiert? Wie viele Verletzte? Nachforderung nötig?",
+        "trauma": false
+      },
+      {
+        "name": "Ersteindruck kritisch?",
+        "detail": "Innerhalb weniger Sekunden einschätzen: Ist der Patient wach? Atmet er? Ist er offensichtlich schwer verletzt oder lebensbedrohlich erkrankt? Der Ersteindruck entscheidet, ob du sofort mit lebensrettenden Maßnahmen beginnst oder strukturiert weiter untersuchst.",
+        "trauma": false
+      },
+      {
+        "name": "Reanimation?",
+        "detail": "Ist der Patient bewusstlos und atmet nicht normal? Dann sofort mit der Reanimation beginnen (30:2), AED (automatisierter externer Defibrillator) anfordern. Reanimation hat Vorrang vor dem weiteren xABCDE-Schema.",
+        "trauma": false
+      }
+    ]
+  },
+  {
+    "step": "X — Exsanguination (lebensbedrohliche Blutung)",
+    "badge": "X",
+    "badgeClass": "step-x",
+    "items": [
+      {
+        "name": "Starke Blutung?",
+        "detail": "Lebensbedrohliche äußere Blutungen müssen sofort gestoppt werden — noch vor der Atemwegssicherung. Maßnahmen: Direkter Druck auf die Wunde, Druckverband anlegen, bei Extremitäten (Gliedmaßen) ggf. Tourniquet (Abbindesystem). Starke Blutungen sind die häufigste vermeidbare Todesursache bei Trauma (Verletzung).",
+        "trauma": true
+      }
+    ]
+  },
+  {
+    "step": "A — Airway (Atemweg)",
+    "badge": "A",
+    "badgeClass": "step-a",
+    "items": [
+      {
+        "name": "Frei?",
+        "detail": "Sind die Atemwege frei durchgängig? Patient ansprechen — wer antwortet, hat freie Atemwege. Bei Bewusstlosen: Mund öffnen und inspizieren (untersuchen). Schnarchende oder gurgelnde Geräusche deuten auf verlegte Atemwege hin.",
+        "trauma": false
+      },
+      {
+        "name": "Fremdkörper?",
+        "detail": "Mundhöhlenkontrolle: Sichtbare Fremdkörper (Zahnprothesen, Erbrochenes, Speisereste) manuell (von Hand) oder durch Absaugen entfernen. Bei kompletter Verlegung: Heimlich-Handgriff (ruckartige Oberbauchkompression) bzw. Schläge zwischen die Schulterblätter.",
+        "trauma": false
+      },
+      {
+        "name": "Schwellung/Blutung?",
+        "detail": "Schwellungen im Mund-/Rachenraum (z.B. allergische Reaktion, Insektenstich, Verbrennung) oder Blutungen können die Atemwege verlegen. Frühzeitig erkennen und Rettungsdienst informieren, da sich der Zustand schnell verschlechtern kann.",
+        "trauma": false
+      }
+    ]
+  },
+  {
+    "step": "B — Breathing (Atmung)",
+    "badge": "B",
+    "badgeClass": "step-b",
+    "items": [
+      {
+        "name": "Seitengleich?",
+        "detail": "Hebt sich der Thorax (Brustkorb) beidseitig gleichmäßig? Einseitige Bewegung kann auf einen Pneumothorax (Luft im Pleuraspalt / Raum zwischen Lunge und Brustwand), Hämatothorax (Blut im Pleuraspalt / Raum zwischen Lunge und Brustwand) oder Rippenserienfraktur (mehrfacher Rippenbruch) hindeuten. Vergleich durch Beobachtung und Auflegen der Hände auf den Brustkorb.",
+        "trauma": false
+      },
+      {
+        "name": "Atemfrequenz?",
+        "detail": "Normale Atemfrequenz Erwachsener: 12–20/min. Zu schnell (Tachypnoe >20, beschleunigte Atmung): Atemnot, Schock, Schmerz. Zu langsam (Bradypnoe <10, verlangsamte Atmung): Erschöpfung, Intoxikation (Vergiftung), SHT (Schädel-Hirn-Trauma). 30 Sekunden zählen und verdoppeln.",
+        "trauma": false
+      },
+      {
+        "name": "Sauerstoffsättigung (SpO₂)?",
+        "detail": "Messung mit Pulsoxymeter (Sauerstoffmessgerät) am Finger. Normalwert: 95–100%. Unter 94%: Sauerstoffgabe nötig. Unter 90%: Kritisch — sofort handeln. Einschränkungen: Nagellack, kalte Finger, Kohlenmonoxidvergiftung (falsch hohe Werte).",
+        "trauma": false
+      },
+      {
+        "name": "Zyanose (Blaufärbung)?",
+        "detail": "Blauverfärbung von Lippen, Fingerspitzen oder Ohrläppchen als Zeichen von Sauerstoffmangel. Zentrale Zyanose (Lippen/Zunge) ist bedrohlicher als periphere (Finger). Bei Zyanose sofort Sauerstoff geben und Ursache suchen.",
+        "trauma": false
+      }
+    ]
+  },
+  {
+    "step": "C — Circulation (Kreislauf)",
+    "badge": "C",
+    "badgeClass": "step-c",
+    "items": [
+      {
+        "name": "Haut trocken/feucht?",
+        "detail": "Feuchte, kalte, blasse Haut ist ein klassisches Schockzeichen (Zentralisation / Blut wird zu lebenswichtigen Organen umverteilt). Warme, trockene Haut spricht für eine normale Durchblutung (Perfusion). Auch Hautfarbe beachten: blass, marmoriert oder gerötet?",
+        "trauma": false
+      },
+      {
+        "name": "Rekapillarisierungszeit (Nagelbett-Probe)?",
+        "detail": "Fingernagel für 5 Sekunden drücken und loslassen. Normalerweise wird der Nagel innerhalb von 2 Sekunden wieder rosa. Länger als 2 Sekunden: Hinweis auf verminderte periphere Durchblutung (Minderdurchblutung der Körperenden) / Schock.",
+        "trauma": false
+      },
+      {
+        "name": "Blutdruck?",
+        "detail": "Wenn Messgerät vorhanden: Blutdruck messen. Normwert ca. 120/80 mmHg. Systolisch (oberer Wert) unter 90 mmHg: Schock! Über 180 mmHg systolisch: Hypertensive Krise (Blutdruckentgleisung). Immer im Zusammenhang mit anderen Befunden bewerten.",
+        "trauma": false
+      },
+      {
+        "name": "Puls?",
+        "detail": "Am Handgelenk (Radialispuls / Speichenarterie) tasten. Normwert: 60–100/min. Tachykardie (Herzrasen, >100): Schock, Angst, Schmerz, Fieber. Bradykardie (langsamer Herzschlag, <60): Medikamente, Unterkühlung, SHT. Wenn Radialispuls nicht tastbar: systolischer RR vermutlich unter 80 mmHg — kritisch!",
+        "trauma": false
+      },
+      {
+        "name": "Abdomen/Becken (Bauch/Becken)",
+        "detail": "Abdomen (Bauch) vorsichtig abtasten: Hart? Druckschmerz? Abwehrspannung / Défense musculaire (unwillkürliche Anspannung der Bauchdecke)? Kann auf innere Blutungen oder Organverletzungen hindeuten. Becken nur EINMAL vorsichtig prüfen (seitlicher Druck) — instabiles Becken = Lebensgefahr durch innere Blutung. Beckenschlinge anlegen!",
+        "trauma": true
+      },
+      {
+        "name": "Femur (Oberschenkel)",
+        "detail": "Femurfrakturen (Oberschenkelbrüche) können zu erheblichem Blutverlust führen (bis zu 2 Liter pro Seite!). Auf Schwellung, Fehlstellung, Schmerzen achten. Extremität (Gliedmaße) ruhigstellen und auf Schockzeichen achten.",
+        "trauma": true
+      }
+    ]
+  },
+  {
+    "step": "D — Disability (Neurologische Defizite)",
+    "badge": "D",
+    "badgeClass": "step-d",
+    "items": [
+      {
+        "name": "Bewusstseinslage?",
+        "detail": "Schnelle Einschätzung mit AVPU: Alert (wach), Voice (reagiert auf Ansprache), Pain (reagiert nur auf Schmerzreiz), Unresponsive (keine Reaktion). Jede Verschlechterung der Bewusstseinslage ist ein Alarmzeichen!",
+        "trauma": false
+      },
+      {
+        "name": "Örtlich orientiert?",
+        "detail": "Frage: Wo befinden Sie sich gerade? Patient sollte den Ort oder zumindest die Umgebung benennen können. Desorientiertheit kann auf SHT (Schädel-Hirn-Trauma), Apoplex (Schlaganfall), Hypoglykämie (Unterzuckerung) oder Intoxikation (Vergiftung) hindeuten.",
+        "trauma": false
+      },
+      {
+        "name": "Zeitlich orientiert?",
+        "detail": "Frage: Welcher Tag ist heute? / Welches Jahr haben wir? Zeitliche Desorientiertheit tritt oft früher auf als örtliche und ist ein sensitiver Marker (empfindliches Zeichen) für Bewusstseinseinschränkung.",
+        "trauma": false
+      },
+      {
+        "name": "Zur Person orientiert?",
+        "detail": "Frage: Wie heißen Sie? Wann sind Sie geboren? Wenn der Patient seinen eigenen Namen nicht weiß, liegt eine schwere Bewusstseinseinschränkung vor.",
+        "trauma": false
+      },
+      {
+        "name": "Zur Situation orientiert?",
+        "detail": "Frage: Wissen Sie, was passiert ist? Warum sind wir hier? Situative Desorientiertheit kann auf eine Amnesie (Gedächtnisverlust) nach SHT (Schädel-Hirn-Trauma) oder Krampfanfall hindeuten.",
+        "trauma": false
+      },
+      {
+        "name": "Blutzucker (BZ)?",
+        "detail": "Wenn Messgerät vorhanden: BZ messen. Normalwert: 70–120 mg/dl (nüchtern). Unter 70 mg/dl: Hypoglykämie (Unterzuckerung) — Zucker geben (oral wenn wach, sonst Rettungsdienst). Über 250 mg/dl: Hyperglykämie (Überzuckerung) — an diabetische Entgleisung denken.",
+        "trauma": false
+      },
+      {
+        "name": "Pupillen (Größe, Lichtreaktion)?",
+        "detail": "Beide Pupillen mit Taschenlampe prüfen. Normal: Isokor (seitengleich), rund, reagieren auf Licht (verengen sich). Einseitig weit + keine Lichtreaktion: Dringender V.a. Hirndruck (z.B. intrakranielle Blutung / Blutung im Schädel). Beidseitig weit + lichtstarr: Reanimationssituation.",
+        "trauma": false
+      },
+      {
+        "name": "BE-FAST (Schlaganfall-Schnelltest)?",
+        "detail": "Balance (Gleichgewichtsstörung?), Eyes (Sehstörung?), Face (Gesicht hängt einseitig? / Fazialisparese), Arms (Arm sinkt ab beim Vorhalten?), Speech (Sprache verwaschen? / Dysarthrie), Time (Zeitpunkt des Symptombeginns dokumentieren!). Bei positivem Test: Sofort Rettungsdienst — Time is Brain!",
+        "trauma": false
+      },
+      {
+        "name": "Durchblutung (Perfusion)?",
+        "detail": "Periphere Durchblutung (Durchblutung der Körperenden) der Extremitäten (Gliedmaßen) prüfen: Sind Hände/Füße warm? Ist der Puls an Handgelenk (A. radialis) / Fußrücken (A. dorsalis pedis) tastbar? Hautfarbe normal? Wichtig besonders bei Extremitätenverletzungen und Frakturen (Knochenbrüchen).",
+        "trauma": false
+      },
+      {
+        "name": "Motorik (Bewegungsfähigkeit)?",
+        "detail": "Kann der Patient alle Extremitäten (Gliedmaßen) bewegen? Seitenvergleich! Einseitige Lähmung (Hemiparese) deutet auf Apoplex (Schlaganfall), Wirbelsäulenverletzung oder periphere Nervenschädigung hin. Patient bitten: Drücken Sie meine Hände / Drücken Sie mit den Füßen gegen meine Hand.",
+        "trauma": false
+      },
+      {
+        "name": "Sensibilität (Gefühlsempfindung)?",
+        "detail": "Kann der Patient Berührungen spüren? Seitenvergleich! Gefühlsstörungen (Hypästhesie / Taubheit, Parästhesie / Kribbeln) können auf Wirbelsäulenverletzungen oder Apoplex (Schlaganfall) hindeuten. Besonders wichtig bei Trauma: Sensibilität distal (körperfern) der Verletzung prüfen.",
+        "trauma": false
+      }
+    ]
+  },
+  {
+    "step": "E — Exposure (Erweiterte Untersuchung)",
+    "badge": "E",
+    "badgeClass": "step-e",
+    "items": [
+      {
+        "name": "Untersuchen/Entkleiden",
+        "detail": "Den Patienten vollständig untersuchen. Kleidung entfernen soweit nötig, um verdeckte Verletzungen zu finden. Rücken nicht vergessen (Log-Roll (seitliches Drehen des Patienten am Stück) mit mind. 3 Helfern). Intimsphäre wahren! Nur so viel entkleiden wie nötig.",
+        "trauma": false
+      },
+      {
+        "name": "Temperatur/Wärmeerhalt",
+        "detail": "Hypothermie (Unterkühlung) verschlechtert die Prognose (Heilungsaussicht) massiv (Koagulopathie / Gerinnungsstörung, Arrhythmie / Herzrhythmusstörung). Rettungsdecke (Silberseite zum Körper), vor Wind und Nässe schützen, nassen Boden isolieren. Auch im Sommer an Wärmeerhalt denken! Bei Hyperthermie (Überhitzung): Kühlen.",
+        "trauma": false
+      },
+      {
+        "name": "Wundversorgung",
+        "detail": "Alle gefundenen Wunden versorgen: Reinigen, sterile Abdeckung, Verbände. Nicht-lebensbedrohliche Blutungen werden erst hier unter E versorgt (lebensbedrohliche unter X!). Fremdkörper in Wunden belassen und umpolstern (nicht entfernen).",
+        "trauma": false
+      },
+      {
+        "name": "Immobilisation (Ruhigstellung)",
+        "detail": "Frakturen (Knochenbrüche) und Luxationen (Gelenkverrenkungen) ruhigstellen (Schienen, Vakuummatratze (formbare Ganzkörperschiene), Sam-Splint (biegbare Universalschiene)). Grundsatz: Gelenk proximal (körpernah) und distal (körperfern) der Fraktur ruhigstellen. Nach Immobilisation: DMS-Kontrolle (Durchblutung, Motorik, Sensibilität) distal prüfen.",
+        "trauma": false
+      }
+    ]
+  }
+]

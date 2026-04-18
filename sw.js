@@ -1,9 +1,15 @@
-const CACHE = 'sani-trainer-v1';
+const CACHE = 'sani-trainer-v2';
 const PRECACHE = [
   './',
   './index.html',
   './manifest.webmanifest',
   './icon.svg',
+  './data/xabcde.json',
+  './data/sample.json',
+  './data/notfallbilder.json',
+  './data/normalwerte.json',
+  './data/ablauf.json',
+  './data/szenarien.json',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'
 ];

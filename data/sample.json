@@ -1,0 +1,32 @@
+[
+  {
+    "letter": "S",
+    "name": "Symptome",
+    "detail": "Was für Beschwerden haben Sie? Seit wann? Wo genau? Wie stark (Skala 1–10)? Charakter (stechend, drückend, brennend)? Ausstrahlung (Radiation)? Veränderung seit Beginn? Die Symptome sind der wichtigste Hinweis auf die Ursache — lass den Patienten mit eigenen Worten beschreiben."
+  },
+  {
+    "letter": "A",
+    "name": "Allergien",
+    "detail": "Haben Sie bekannte Allergien? Insbesondere: Medikamentenallergien (Penicillin, Aspirin / ASS, Ibuprofen), Nahrungsmittel, Insektenstiche, Latex. Wichtig für den Rettungsdienst und das Krankenhaus bei der Medikamentenwahl."
+  },
+  {
+    "letter": "M",
+    "name": "Medikamente",
+    "detail": "Nehmen Sie regelmäßig Medikamente ein? Welche? Wichtig: Blutverdünner wie Marcumar, Eliquis (Antikoagulantien) oder Aspirin / ASS (Thrombozytenaggregationshemmer) — erhöhen Blutungsrisiko! Insulin/Antidiabetika (Diabetesmedikamente), Kardiaka (Herzmedikamente), Antihypertensiva (Blutdrucksenker). Wenn möglich: Medikamentenliste mitnehmen."
+  },
+  {
+    "letter": "P",
+    "name": "Patientengeschichte (Vorerkrankungen)",
+    "detail": "Haben Sie Vorerkrankungen? Kardiovaskulär (Herz-Kreislauf): KHK (Verengung der Herzkranzgefäße), Myokardinfarkt (Herzinfarkt), Hypertonie (Bluthochdruck). Pulmonal (Lunge): Asthma bronchiale, COPD (chronisch obstruktive Lungenerkrankung). Diabetes mellitus (Zuckerkrankheit), Apoplex (Schlaganfall), Epilepsie, Koagulopathie (Gerinnungsstörung)? Frühere Operationen?"
+  },
+  {
+    "letter": "L",
+    "name": "Letzte Mahlzeit",
+    "detail": "Wann haben Sie zuletzt gegessen oder getrunken? Wichtig für eine mögliche Narkose (Aspirationsgefahr / Erstickungsgefahr durch Mageninhalt bei vollem Magen). Auch relevant bei Diabetikern (Hypoglykämie / Unterzuckerung) und bei abdominellen Beschwerden (Bauchschmerzen)."
+  },
+  {
+    "letter": "E",
+    "name": "Ereignis",
+    "detail": "Was genau ist passiert? Unfallmechanismus bei Trauma (Verletzung): Aufprallgeschwindigkeit, Fallhöhe, eingeklemmt? Bei internistischen Notfällen (innere Erkrankungen): Was hat der Patient gemacht, als die Beschwerden begannen? Gab es einen Trigger (Auslöser)? Schon mal so ähnlich gehabt (Rezidiv / Wiederauftreten)?"
+  }
+]
