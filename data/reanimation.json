@@ -1,0 +1,152 @@
+[
+  {
+    "step": "1 — Prüfen",
+    "badge": "1",
+    "badgeClass": "step-r",
+    "items": [
+      {
+        "name": "Eigensicherung & Situation",
+        "detail": "Vor Patientenkontakt: Ist die Einsatzstelle sicher? Verkehr, Strom, Gas, Feuer, Gefahrstoffe ausschließen. Keine Reanimation unter Gefährdung des Helfers — erst Sicherheit, dann Patient."
+      },
+      {
+        "name": "Bewusstsein prüfen",
+        "detail": "Laut ansprechen, an den Schultern rütteln (\"Hallo, hören Sie mich?\"). Keine Reaktion = bewusstlos. Bei Reaktion: stabile Seitenlage bzw. xABCDE fortsetzen."
+      },
+      {
+        "name": "Atemwege freimachen",
+        "detail": "Kopf vorsichtig überstrecken, Kinn anheben (Head-Tilt-Chin-Lift). Bei V.a. HWS-Trauma: Esmarch-Handgriff (Unterkiefer nach vorne schieben ohne Kopfbewegung). Mund inspizieren, sichtbare Fremdkörper entfernen."
+      },
+      {
+        "name": "Atmung prüfen — max. 10 Sek.",
+        "detail": "Sehen (Brustkorb), Hören (Atemgeräusch am Mund), Fühlen (Luftstrom an der Wange). Schnappatmung (agonale Atmung, vereinzelte tiefe Atemzüge) zählt NICHT als normale Atmung — sofort mit Reanimation beginnen!"
+      }
+    ]
+  },
+  {
+    "step": "2 — Rufen",
+    "badge": "2",
+    "badgeClass": "step-r",
+    "items": [
+      {
+        "name": "Notruf 112",
+        "detail": "Bei Bewusstlosigkeit und fehlender / nicht normaler Atmung: sofort 112 alarmieren. Lautsprecher einschalten, damit Hände frei sind. Standort, Auffindesituation und \"Reanimation\" durchgeben — Leitstelle bleibt am Telefon."
+      },
+      {
+        "name": "AED anfordern",
+        "detail": "AED (automatisierter externer Defibrillator) so früh wie möglich holen lassen — idealerweise durch zweiten Helfer, damit die Reanimation nicht unterbrochen wird. Alleine: erst Notruf + HLW, AED nur holen, wenn in unmittelbarer Nähe."
+      },
+      {
+        "name": "Helfer organisieren",
+        "detail": "Umstehende konkret ansprechen (\"Sie in der blauen Jacke — holen Sie den AED aus dem Eingang\"). Platz schaffen, Einweiser für Rettungsdienst bestimmen, ggf. Helferwechsel vorbereiten."
+      }
+    ]
+  },
+  {
+    "step": "3 — Drücken",
+    "badge": "3",
+    "badgeClass": "step-r",
+    "items": [
+      {
+        "name": "Druckpunkt",
+        "detail": "Mitte des Brustkorbs auf die untere Hälfte des Sternums (Brustbein). Handballen eines Handballens aufsetzen, zweite Hand darüber, Finger verschränken, Arme gestreckt, Schultern senkrecht über dem Druckpunkt."
+      },
+      {
+        "name": "Drucktiefe 5–6 cm",
+        "detail": "Beim Erwachsenen mindestens 5 cm, höchstens 6 cm tief drücken. Zu flach = kein Auswurf; zu tief = Rippenfrakturen / Organverletzungen. Auf harter Unterlage (Boden, Reanimationsbrett) arbeiten."
+      },
+      {
+        "name": "Frequenz 100–120/min",
+        "detail": "100 bis 120 Kompressionen pro Minute. Merkhilfe: Takt von \"Stayin' Alive\" (Bee Gees) oder \"Atemlos\" (Helene Fischer). Ein Metronom am Telefon hilft."
+      },
+      {
+        "name": "Vollständige Entlastung",
+        "detail": "Nach jeder Kompression den Brustkorb komplett entlasten (nicht auf dem Brustkorb aufliegen), damit das Herz sich wieder füllen kann. Gleicher Druck- und Entlastungsanteil."
+      },
+      {
+        "name": "Unterbrechungen minimieren",
+        "detail": "Pausen in der Thoraxkompression so kurz wie möglich halten (Ziel <10 Sek). Jede Pause reduziert den Blutdruck sofort — auch Beatmung und AED-Analyse möglichst schnell durchführen."
+      }
+    ]
+  },
+  {
+    "step": "4 — Beatmen",
+    "badge": "4",
+    "badgeClass": "step-r",
+    "items": [
+      {
+        "name": "Verhältnis 30:2",
+        "detail": "Beim Erwachsenen: 30 Thoraxkompressionen, dann 2 Beatmungen — unabhängig ob Laie oder Profi. Bei Unsicherheit / Ekel / fehlender Ausrüstung: Hands-only-CPR (durchgehend drücken ohne Beatmung) ist besser als gar nichts."
+        },
+      {
+        "name": "Beatmungstechnik",
+        "detail": "Kopf überstrecken, Kinn anheben, Nase zuhalten. Normal einatmen, Lippen dicht um den Mund des Patienten abschließen, ca. 1 Sekunde lang gleichmäßig beatmen bis sich der Brustkorb sichtbar hebt. Zwei Beatmungen zusammen max. 10 Sekunden."
+      },
+      {
+        "name": "Hilfsmittel",
+        "detail": "Beatmungstuch / Taschenmaske (Pocket Mask) reduziert Infektionsrisiko. Bei vorhandenem Beutel (Ambu-Beutel) mit Maske: dicht aufsetzen, langsam komprimieren. Mit Sauerstoff anschließen (10–15 l/min über Reservoir)."
+      },
+      {
+        "name": "Wenn Beatmung nicht geht",
+        "detail": "Hebt sich der Brustkorb nicht: Kopf nachjustieren (überstrecken), Mund erneut auf Fremdkörper kontrollieren, Abdichtung prüfen. Maximal 2 Versuche pro Zyklus — dann sofort weiter mit Kompressionen, um Zeitverlust zu vermeiden."
+      }
+    ]
+  },
+  {
+    "step": "5 — AED",
+    "badge": "5",
+    "badgeClass": "step-r",
+    "items": [
+      {
+        "name": "Gerät einschalten",
+        "detail": "Sobald der AED eintrifft: einschalten und den Sprachanweisungen folgen. HLW läuft parallel weiter — Partner drückt, während du die Elektroden vorbereitest."
+      },
+      {
+        "name": "Elektroden kleben",
+        "detail": "Brust freimachen (ggf. Kleidung durchschneiden), Haut trocknen, sehr starke Körperbehaarung rasieren. Elektroden gemäß Aufdruck: eine rechts oberhalb der Brustwarze unter dem Schlüsselbein, die zweite links unterhalb der Achsel (anterior-lateral)."
+      },
+      {
+        "name": "Analyse — niemand berührt!",
+        "detail": "Während der AED den Rhythmus analysiert, darf niemand den Patienten berühren (\"Weg vom Patienten!\"). Laut und sichtbar kommunizieren. HLW wird nur für diese wenigen Sekunden unterbrochen."
+      },
+      {
+        "name": "Schock abgeben",
+        "detail": "Wenn empfohlen: erneut \"Alle weg!\" laut rufen, Patient optisch kontrollieren, Schock-Taste drücken (vollautomatische AEDs schocken selbst). Keine Metallkontakte (Trage, Nässe, Pfützen)."
+      },
+      {
+        "name": "Sofort weiter mit HLW",
+        "detail": "Unmittelbar nach Schock ODER \"Kein Schock empfohlen\": sofort wieder 30:2. KEINE Puls- oder Atemkontrolle. Elektroden bleiben kleben — AED analysiert automatisch erneut (meist alle 2 Minuten)."
+      }
+    ]
+  },
+  {
+    "step": "6 — Besonderheiten",
+    "badge": "6",
+    "badgeClass": "step-r",
+    "items": [
+      {
+        "name": "Kinder (1 Jahr – Pubertät)",
+        "detail": "Laien: 30:2 wie beim Erwachsenen. Profi / geschult: 5 initiale Beatmungen, dann 15:2. Drucktiefe ca. 1/3 des Brustkorbs (≈ 5 cm). Druckpunkt: untere Hälfte Sternum, eine oder zwei Hände je nach Größe."
+      },
+      {
+        "name": "Säuglinge (< 1 Jahr)",
+        "detail": "5 initiale Beatmungen, dann 15:2 (Profi) bzw. 30:2 (Laie). Zwei-Finger-Technik mittig auf dem Sternum (ein Helfer) oder umgreifende Zwei-Daumen-Technik (zwei Helfer). Drucktiefe ≈ 4 cm (1/3 Brustkorb). Kopf nur neutral lagern, nicht überstrecken."
+      },
+      {
+        "name": "Helferwechsel alle 2 Min.",
+        "detail": "Thoraxkompressionen ermüden schnell — die Qualität sinkt nach ca. 1–2 Minuten unbemerkt. Wechsel bei jeder AED-Analyse oder spätestens alle 2 Minuten, Übergang in unter 5 Sekunden."
+      },
+      {
+        "name": "Wann abbrechen?",
+        "detail": "Reanimation fortsetzen bis: (1) Rettungsdienst übernimmt, (2) Patient zeigt Lebenszeichen (normale Atmung, Bewegung), (3) Helfer völlig erschöpft und kein Ersatz da, (4) ärztlich festgestellte sichere Todeszeichen (Totenflecke, Leichenstarre, nicht mit Leben vereinbare Verletzungen)."
+      },
+      {
+        "name": "Nach erfolgreicher Reanimation (ROSC)",
+        "detail": "ROSC (Return of Spontaneous Circulation / Wiedereinsetzender Spontankreislauf): stabile Seitenlage bei eigener normaler Atmung, Atmung und Puls engmaschig kontrollieren, Wärmeerhalt, AED-Elektroden belassen. Jederzeit Rückfallmöglichkeit — neu bereithalten."
+      },
+      {
+        "name": "Besondere Situationen",
+        "detail": "Schwangere (>20. SSW): Beckenseite links hochlagern / Uterus manuell nach links verschieben (Aortokavales Kompressionssyndrom). Ertrunkene: 5 initiale Beatmungen vor Kompressionen. Unterkühlte: länger reanimieren (\"nobody is dead until warm and dead\")."
+      }
+    ]
+  }
+]

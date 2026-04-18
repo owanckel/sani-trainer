@@ -410,6 +410,8 @@ em { font-style: normal; color: var(--text); }
 .step-e::after { background: #94A3B8; }
 .step-s { background: linear-gradient(135deg, #22D3EE 0%, #67E8F9 100%); }
 .step-s::after { background: #22D3EE; }
+.step-r { background: linear-gradient(135deg, #FF3B47 0%, #E11D48 100%); }
+.step-r::after { background: #FF3B47; }
 
 /* ===== Trauma Badge ===== */
 .trauma-badge {
@@ -1214,6 +1216,7 @@ hr {
                             <div class="btn-group btn-group-sm" role="group">
                                 <button class="btn btn-outline-danger active" onclick="showInfoSection('xabcde', this)">xABCDE</button>
                                 <button class="btn btn-outline-danger" onclick="showInfoSection('sample', this)">SAMPLE</button>
+                                <button class="btn btn-outline-danger" onclick="showInfoSection('reanimation', this)">Reanimation</button>
                                 <button class="btn btn-outline-danger" onclick="showInfoSection('notfaelle', this)">Notfallbilder</button>
                             </div>
                         </div>
@@ -1251,7 +1254,7 @@ hr {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-let xabcdeData = [], sampleData = [], notfallbilder = [], normalwerteData = [], ablaufData = {}, szenarienData = [];
+let xabcdeData = [], sampleData = [], notfallbilder = [], normalwerteData = [], ablaufData = {}, szenarienData = [], reanimationData = [];
 
 const DATA_CACHE = {};
 async function loadData(name) {
@@ -1267,6 +1270,7 @@ async function loadData(name) {
         else if (name === 'normalwerte') normalwerteData = data;
         else if (name === 'ablauf') ablaufData = data;
         else if (name === 'szenarien') { szenarienData = data; szenarien = data; }
+        else if (name === 'reanimation') reanimationData = data;
         return data;
     } catch (e) {
         console.error('loadData', name, e);
@@ -1275,16 +1279,17 @@ async function loadData(name) {
 }
 // ===================== INFO MODE =====================
 let currentXabcdeStep = 0;
+let currentReanimationStep = 0;
 let openCategories = new Set();
 
 async function showInfoSection(section, btn) {
     document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
-    const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', notfaelle: 'Notfallbilder' };
+    const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', reanimation: 'Reanimation', notfaelle: 'Notfallbilder' };
     const titleEl = document.getElementById('info-hero-title');
     if (titleEl) titleEl.innerHTML = (titles[section] || 'Nachschlagen') + '<span class="hero-dot">.</span>';
     const c = document.getElementById('info-content');
-    const dataMap = { xabcde: 'xabcde', sample: 'sample', notfaelle: 'notfallbilder' };
+    const dataMap = { xabcde: 'xabcde', sample: 'sample', reanimation: 'reanimation', notfaelle: 'notfallbilder' };
     const dataKey = dataMap[section];
     if (dataKey && !DATA_CACHE[dataKey]) {
         c.innerHTML = '<div class="loading-placeholder"></div><div class="loading-placeholder"></div><div class="loading-placeholder"></div>';
@@ -1304,6 +1309,8 @@ async function showInfoSection(section, btn) {
                 </div>
             `).join('')}
         `;
+    } else if (section === 'reanimation') {
+        renderReanimationStepper();
     } else if (section === 'notfaelle') {
         renderNotfaelle();
     }
@@ -1353,6 +1360,57 @@ function renderXabcdeStep() {
             <div class="card info-card mb-2">
                 <div class="card-body py-2 px-3">
                     <h6>${i.name} ${i.trauma ? '<span class="trauma-badge">Trauma</span>' : ''}</h6>
+                    <p class="mb-0 small text-muted">${i.detail}</p>
+                </div>
+            </div>
+        `).join('')}
+    `;
+}
+
+function renderReanimationStepper() {
+    const c = document.getElementById('info-content');
+    const stepper = reanimationData.map((g, i) => {
+        const titleOnly = g.step.split(' — ')[1] || g.step;
+        return `
+            <button class="step-pill ${i === currentReanimationStep ? 'active' : ''}" onclick="selectReanimationStep(${i})">
+                ${g.badge
+                    ? `<span class="step-badge ${g.badgeClass}">${g.badge}</span>`
+                    : `<span class="step-pill-dot">●</span>`}
+                <span class="step-pill-label">${titleOnly}</span>
+            </button>
+        `;
+    }).join('');
+    c.innerHTML = `
+        <div class="step-nav">${stepper}</div>
+        <div id="reanimation-detail"></div>
+    `;
+    renderReanimationStep();
+}
+
+function selectReanimationStep(i) {
+    currentReanimationStep = i;
+    document.querySelectorAll('#info-content .step-pill').forEach((el, idx) => {
+        el.classList.toggle('active', idx === i);
+    });
+    const active = document.querySelector('#info-content .step-pill.active');
+    if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    renderReanimationStep();
+}
+
+function renderReanimationStep() {
+    const g = reanimationData[currentReanimationStep];
+    if (!g) return;
+    const detail = document.getElementById('reanimation-detail');
+    if (!detail) return;
+    detail.innerHTML = `
+        <h5 class="d-flex align-items-center mb-3">
+            ${g.badge ? `<span class="step-badge ${g.badgeClass}">${g.badge}</span>` : ''}
+            <span>${g.step}</span>
+        </h5>
+        ${g.items.map(i => `
+            <div class="card info-card mb-2">
+                <div class="card-body py-2 px-3">
+                    <h6>${i.name}</h6>
                     <p class="mb-0 small text-muted">${i.detail}</p>
                 </div>
             </div>
@@ -1482,12 +1540,48 @@ function buildQuizQuestions(category) {
         });
     }
 
+    if ((category === 'reanimation' || category === 'alle') && reanimationData && reanimationData.length >= 2) {
+        const allItems = reanimationData.flatMap(g => g.items.map(i => i.name));
+        reanimationData.forEach(g => {
+            g.items.forEach(item => {
+                const w = pickWrong(allItems, item.name, 3);
+                if (w.length > 0) qs.push({ question: `Welcher Punkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
+            });
+        });
+        reanimationData.forEach(g => {
+            const otherSteps = reanimationData.filter(x => x.step !== g.step).map(x => x.step);
+            g.items.forEach(item => {
+                const w = shuffleArr(otherSteps).slice(0, 3);
+                if (w.length > 0) qs.push({ question: `Zu welcher Phase gehört <strong>${item.name}</strong>?`, correct: g.step, options: shuffleArr([g.step, ...w]), detail: item.detail });
+            });
+        });
+        const reaniFacts = [
+            { question: 'Wie tief wird beim Erwachsenen gedrückt?', correct: '5–6 cm', options: ['3–4 cm', '5–6 cm', '7–8 cm', 'so tief wie möglich'], detail: 'Mindestens 5 cm, höchstens 6 cm — auf harter Unterlage.' },
+            { question: 'Welche Kompressionsfrequenz ist beim Erwachsenen korrekt?', correct: '100–120/min', options: ['60–80/min', '80–100/min', '100–120/min', '140–160/min'], detail: 'Merkhilfe: Takt von "Stayin\' Alive" (Bee Gees).' },
+            { question: 'Welches Kompressions-/Beatmungsverhältnis gilt für Erwachsene?', correct: '30:2', options: ['15:2', '30:2', '5:1', '15:1'], detail: '30 Kompressionen, dann 2 Beatmungen — unabhängig ob Laie oder Profi.' },
+            { question: 'Wie lange darf die Atemkontrolle maximal dauern?', correct: 'max. 10 Sekunden', options: ['max. 5 Sekunden', 'max. 10 Sekunden', 'max. 30 Sekunden', 'max. 60 Sekunden'], detail: 'Sehen, Hören, Fühlen — insgesamt nicht länger als 10 Sekunden.' },
+            { question: 'Wie oft sollten die Helfer bei der Thoraxkompression wechseln?', correct: 'alle ca. 2 Minuten', options: ['alle 30 Sekunden', 'alle ca. 2 Minuten', 'alle 5 Minuten', 'nur bei Erschöpfung'], detail: 'Qualität der Kompression sinkt nach 1–2 Minuten unbemerkt — Wechsel unter 5 Sekunden.' },
+            { question: 'Wo sitzt der Druckpunkt bei der HLW?', correct: 'Mitte Brustkorb, untere Hälfte Sternum', options: ['Über dem Herzen links', 'Mitte Brustkorb, untere Hälfte Sternum', 'Oberes Drittel Sternum', 'Unterhalb des Rippenbogens'], detail: 'Handballen auf der unteren Sternumhälfte, zweite Hand darüber, Arme gestreckt.' },
+            { question: 'Was ist Schnappatmung?', correct: 'Keine normale Atmung — sofort Reanimation', options: ['Eine normale Atemform', 'Keine normale Atmung — sofort Reanimation', 'Erstes Zeichen der Erholung', 'Nur relevant bei Kindern'], detail: 'Agonale Atmung zählt nicht als normale Atmung. Bewusstlos + Schnappatmung = Reanimation starten.' },
+            { question: 'Was gilt beim AED während der Rhythmusanalyse?', correct: 'Niemand berührt den Patienten', options: ['HLW fortsetzen', 'Puls tasten', 'Niemand berührt den Patienten', 'Patient beatmen'], detail: 'Laut "Weg vom Patienten!" rufen — während Analyse und Schockabgabe keine Berührung.' },
+            { question: 'Was tun unmittelbar nach einem AED-Schock?', correct: 'Sofort weiter mit 30:2', options: ['Puls tasten', 'Atmung kontrollieren', 'Sofort weiter mit 30:2', '2 Minuten warten'], detail: 'Keine Puls-/Atemkontrolle — direkt weiter mit Thoraxkompression.' },
+            { question: 'Wie ist das Verhältnis bei Kindern (Laienhelfer)?', correct: '30:2 wie beim Erwachsenen', options: ['15:2', '30:2 wie beim Erwachsenen', '5:1', '10:2'], detail: 'Profi/Geschult: 5 initiale Beatmungen, dann 15:2. Laien: 30:2.' },
+            { question: 'Drucktiefe beim Säugling (<1 Jahr)?', correct: 'ca. 4 cm (1/3 Thorax)', options: ['ca. 2 cm', 'ca. 4 cm (1/3 Thorax)', '5–6 cm wie Erwachsener', 'so tief wie möglich'], detail: 'Zwei-Finger- oder Zwei-Daumen-Technik, Kopf nur neutral, nicht überstrecken.' },
+            { question: 'Wann wird die Reanimation abgebrochen?', correct: 'Rettungsdienst übernimmt oder Patient erwacht', options: ['Nach 10 Minuten erfolglos', 'Rettungsdienst übernimmt oder Patient erwacht', 'Nach 3 AED-Schocks', 'Wenn keine Besserung sichtbar'], detail: 'Weiter bis: Übernahme RD, Lebenszeichen, Erschöpfung ohne Ersatz oder sichere Todeszeichen.' },
+            { question: 'Welche Nummer wird in Deutschland für den Notruf gewählt?', correct: '112', options: ['110', '112', '113', '911'], detail: '112 ist der europaweite Notruf für Rettungsdienst und Feuerwehr.' },
+            { question: 'Was ist ROSC?', correct: 'Wiedereinsetzender Spontankreislauf', options: ['Schocktyp', 'Wiedereinsetzender Spontankreislauf', 'Reanimations-Medikament', 'AED-Herstellername'], detail: 'Return of Spontaneous Circulation — danach stabile Seitenlage bei normaler Atmung, engmaschig kontrollieren.' },
+            { question: 'Wie werden die AED-Elektroden beim Erwachsenen platziert?', correct: 'Rechts unterhalb Schlüsselbein + links unterhalb Achsel', options: ['Beide über dem Herzen', 'Rechts unterhalb Schlüsselbein + links unterhalb Achsel', 'Rechts und links auf dem Rücken', 'Oben und unten am Brustbein'], detail: 'Anterior-laterale Position — gemäß Aufdruck auf den Elektroden.' }
+        ];
+        reaniFacts.forEach(f => qs.push({ ...f, options: shuffleArr([...f.options]) }));
+    }
+
     return shuffleArr(qs).slice(0, QUIZ_BLOCK_SIZE);
 }
 
 const QUIZ_CATS = [
     { id: 'xabcde', title: 'xABCDE', desc: 'Prüfpunkte & Zuordnung' },
     { id: 'sample', title: 'SAMPLE', desc: 'Anamnese-Buchstaben' },
+    { id: 'reanimation', title: 'Reanimation', desc: 'BLS-Algorithmus & AED' },
     { id: 'notfaelle', title: 'Notfallbilder', desc: 'Symptome → Krankheitsbild' },
     { id: 'schock', title: 'Schock', desc: 'Schocktypen & Zeichen' },
     { id: 'normalwerte', title: 'Normalwerte', desc: 'Vitalparameter & Grenzwerte' },
@@ -1580,6 +1674,7 @@ async function startQuizCategory(cat) {
     if (cat === 'sample' || cat === 'alle') needs.push('sample');
     if (cat === 'notfaelle' || cat === 'schock' || cat === 'alle') needs.push('notfallbilder');
     if (cat === 'normalwerte' || cat === 'alle') needs.push('normalwerte');
+    if (cat === 'reanimation' || cat === 'alle') needs.push('reanimation');
     const toLoad = needs.filter(n => !DATA_CACHE[n]);
     if (toLoad.length) {
         document.getElementById('quiz-menu').innerHTML = '<div class="loading-placeholder"></div><div class="loading-placeholder"></div>';
