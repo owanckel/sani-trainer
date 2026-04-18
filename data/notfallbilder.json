@@ -25,18 +25,13 @@
     ]
   },
   {
-    "category": "Schock — Allgemeine Zeichen",
+    "category": "Schock",
     "conditions": [
       {
-        "name": "Schock erkennen",
+        "name": "Allgemeine Schockzeichen",
         "symptoms": "Tachykardie > 100/min, Hypotonie (systolisch < 90 mmHg), Blässe, kalte feuchte Haut (Zentralisation / Blutumverteilung zu lebenswichtigen Organen — Ausnahme: septisch/neurogen = warme Haut), Rekapillarisierungszeit > 2 Sek., Tachypnoe (AF > 20/min), Unruhe bis Bewusstseinstrübung, Oligurie (verminderte Urinausscheidung)",
         "action": "Sofort Rettungsdienst, Wärmeerhalt (Rettungsdecke), Lagerung je nach Schocktyp, engmaschig Vitalzeichen (Puls, RR, SpO₂, Bewusstsein) überwachen, O₂-Gabe bei SpO₂ < 94 %"
-      }
-    ]
-  },
-  {
-    "category": "Schocktypen",
-    "conditions": [
+      },
       {
         "name": "Hypovolämischer Schock",
         "symptoms": "Ursache: Blutverlust (hämorrhagischer Schock) oder Flüssigkeitsverlust (Dehydratation, Verbrennungen, Durchfall, Erbrechen). Zeichen: klassische Schockzeichen — Blässe, kalte feuchte Haut, Tachykardie, Hypotonie, Durst",
