@@ -1445,10 +1445,15 @@ function renderNotfaelle() {
 }
 
 function toggleCat(idx, btn) {
-    if (openCategories.has(idx)) openCategories.delete(idx);
-    else openCategories.add(idx);
-    btn.classList.toggle('open');
-    btn.nextElementSibling.classList.toggle('open');
+    const wasOpen = openCategories.has(idx);
+    openCategories.clear();
+    document.querySelectorAll('#info-content .accordion-head.open, #info-content .accordion-body.open')
+        .forEach(el => el.classList.remove('open'));
+    if (!wasOpen) {
+        openCategories.add(idx);
+        btn.classList.add('open');
+        btn.nextElementSibling.classList.add('open');
+    }
 }
 
 // ===================== QUIZ =====================
