@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#dc3545">
+    <title>Sani-Trainer — xABCDE &amp; SAMPLE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>/* === Base === */
+body {
+    background: #f8f9fa;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+}
+
+/* === Nav Pills === */
+.nav-pills .nav-link.active { background-color: #dc3545; }
+.nav-pills .nav-link { color: #dc3545; font-size: .9rem; }
+
+/* === Step Badges === */
+.step-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    margin-right: .4rem;
+    flex-shrink: 0;
+}
+.step-x { background: #dc3545; }
+.step-a { background: #fd7e14; }
+.step-b { background: #0d6efd; }
+.step-c { background: #6f42c1; }
+.step-d { background: #20c997; }
+.step-e { background: #6c757d; }
+.step-s { background: #0dcaf0; }
+
+/* === Trauma Badge === */
+.trauma-badge {
+    font-size: .65rem;
+    background: #fff3cd;
+    color: #664d03;
+    border: 1px solid #ffecb5;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: .3rem;
+    white-space: nowrap;
+}
+
+/* === Info Cards === */
+.info-card {
+    border-left: 4px solid #dc3545;
+}
+.info-card h6 { margin-bottom: .2rem; font-size: .9rem; }
+.info-card p { font-size: .82rem; }
+
+/* === Flashcards === */
+.flashcard {
+    min-height: 200px;
+    cursor: pointer;
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.flashcard:active { transform: scale(0.98); }
+.flashcard .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.flashcard-hint {
+    font-size: .8rem;
+    color: #6c757d;
+    margin-top: .8rem;
+}
+
+/* === Quiz === */
+.quiz-option {
+    cursor: pointer;
+    transition: background .15s;
+    font-size: .9rem;
+}
+.quiz-option:active { background: #e9ecef; }
+.quiz-correct { background: #d1e7dd !important; border-color: #badbcc !important; }
+.quiz-wrong { background: #f8d7da !important; border-color: #f5c2c7 !important; }
+
+/* === Progress === */
+.progress-bar { transition: width .3s; }
+
+/* === Training === */
+.train-item {
+    border: 1px solid #dee2e6;
+    border-radius: .5rem;
+    padding: .6rem .8rem;
+    margin-bottom: .4rem;
+    cursor: pointer;
+    transition: all .15s;
+}
+.train-item:active { background: #f0f0f0; }
+.train-item.revealed { background: #fff; cursor: default; }
+.train-item .item-name { font-weight: 600; font-size: .9rem; }
+.train-item .item-detail {
+    display: none;
+    margin-top: .4rem;
+    font-size: .82rem;
+    color: #495057;
+    line-height: 1.5;
+}
+.train-item.revealed .item-detail { display: block; }
+.train-check { width: 1.1em; height: 1.1em; margin-right: .4rem; }
+.train-input {
+    border: 2px dashed #dee2e6;
+    border-radius: .5rem;
+    padding: .8rem;
+    min-height: 70px;
+    margin-bottom: .8rem;
+    font-size: .9rem;
+}
+.train-input:focus { outline: none; border-color: #dc3545; }
+
+/* === Score colors === */
+.train-score-good { color: #198754; }
+.train-score-ok { color: #fd7e14; }
+.train-score-bad { color: #dc3545; }
+
+/* === Mobile optimizations === */
+@media (max-width: 576px) {
+    .step-badge { width: 28px; height: 28px; font-size: .85rem; }
+    .nav-pills .nav-link { font-size: .8rem; padding: .4rem .6rem; }
+    .info-card h6 { font-size: .85rem; }
+    .info-card p { font-size: .78rem; }
+    .flashcard { min-height: 180px; }
+    h5 { font-size: 1.1rem; }
+    .btn-group-sm .btn { font-size: .75rem; padding: .3rem .5rem; }
+}
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-danger sticky-top">
+        <div class="container-fluid px-3">
+            <span class="navbar-brand fw-bold mb-0">Sani-Trainer</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-2 px-sm-3 py-3">
+        <ul class="nav nav-pills justify-content-center gap-1 mb-3" role="tablist">
+            <li class="nav-item"><button class="nav-link active px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#info" type="button">Nachschlagen</button></li>
+            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#values" type="button">Vitalwerte</button></li>
+            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#quiz" type="button">Quiz</button></li>
+            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#szenario" type="button">Szenario</button></li>
+            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#ablauf" type="button">Beispiel Einsatzablauf</button></li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- SZENARIO -->
+            <div class="tab-pane fade" id="szenario">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div id="szenario-area"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABLAUF -->
+            <div class="tab-pane fade" id="ablauf">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div id="ablauf-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NORMALWERTE -->
+            <div class="tab-pane fade" id="values">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div id="values-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFO -->
+            <div class="tab-pane fade show active" id="info">
+                <div class="mb-3 text-center">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button class="btn btn-outline-danger active" onclick="showInfoSection('xabcde', this)">xABCDE</button>
+                        <button class="btn btn-outline-danger" onclick="showInfoSection('sample', this)">SAMPLE</button>
+                        <button class="btn btn-outline-danger" onclick="showInfoSection('notfaelle', this)">Notfallbilder</button>
+                    </div>
+                </div>
+                <div id="info-content"></div>
+            </div>
+
+            <!-- QUIZ -->
+            <div class="tab-pane fade" id="quiz">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div id="quiz-menu">
+                            <h5 class="mb-3">Quiz — Bereich wählen</h5>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-danger py-3" onclick="startQuizCategory('xabcde')">
+                                    <strong>xABCDE</strong><br><small class="text-muted">Prüfpunkte &amp; Zuordnung</small>
+                                </button>
+                                <button class="btn btn-outline-danger py-3" onclick="startQuizCategory('alle')">
+                                    <strong>Alles gemischt</strong><br><small class="text-muted">xABCDE + SAMPLE + Notfallbilder + Normalwerte</small>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="quiz-active" class="d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span id="quiz-label" class="fw-bold small"></span>
+                                <button class="btn btn-sm btn-outline-danger" onclick="showQuizMenu()">Zurück</button>
+                            </div>
+                            <div class="progress mb-3" style="height:4px;">
+                                <div id="quiz-progress" class="progress-bar bg-danger" style="width:0%"></div>
+                            </div>
+                            <div id="quiz-area"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>let xabcdeData=[{"step":"Vorbeurteilung","badge":"","badgeClass":"","items":[{"name":"Szene, Sicherheit, Situation","detail":"Bevor du den Patienten anfasst: Ist die Einsatzstelle sicher? Gefahren für dich und dein Team ausschließen (Verkehr, Strom, Gas, Feuer, Gefahrstoffe). Überblick verschaffen: Was ist passiert? Wie viele Verletzte? Nachforderung nötig?","trauma":false},{"name":"Ersteindruck kritisch?","detail":"Innerhalb weniger Sekunden einschätzen: Ist der Patient wach? Atmet er? Ist er offensichtlich schwer verletzt oder lebensbedrohlich erkrankt? Der Ersteindruck entscheidet, ob du sofort mit lebensrettenden Maßnahmen beginnst oder strukturiert weiter untersuchst.","trauma":false},{"name":"Reanimation?","detail":"Ist der Patient bewusstlos und atmet nicht normal? Dann sofort mit der Reanimation beginnen (30:2), AED (automatisierter externer Defibrillator) anfordern. Reanimation hat Vorrang vor dem weiteren xABCDE-Schema.","trauma":false}]},{"step":"X — Exsanguination (lebensbedrohliche Blutung)","badge":"X","badgeClass":"step-x","items":[{"name":"Starke Blutung?","detail":"Lebensbedrohliche äußere Blutungen müssen sofort gestoppt werden — noch vor der Atemwegssicherung. Maßnahmen: Direkter Druck auf die Wunde, Druckverband anlegen, bei Extremitäten (Gliedmaßen) ggf. Tourniquet (Abbindesystem). Starke Blutungen sind die häufigste vermeidbare Todesursache bei Trauma (Verletzung).","trauma":true}]},{"step":"A — Airway (Atemweg)","badge":"A","badgeClass":"step-a","items":[{"name":"Frei?","detail":"Sind die Atemwege frei durchgängig? Patient ansprechen — wer antwortet, hat freie Atemwege. Bei Bewusstlosen: Mund öffnen und inspizieren (untersuchen). Schnarchende oder gurgelnde Geräusche deuten auf verlegte Atemwege hin.","trauma":false},{"name":"Fremdkörper?","detail":"Mundhöhlenkontrolle: Sichtbare Fremdkörper (Zahnprothesen, Erbrochenes, Speisereste) manuell (von Hand) oder durch Absaugen entfernen. Bei kompletter Verlegung: Heimlich-Handgriff (ruckartige Oberbauchkompression) bzw. Schläge zwischen die Schulterblätter.","trauma":false},{"name":"Schwellung/Blutung?","detail":"Schwellungen im Mund-/Rachenraum (z.B. allergische Reaktion, Insektenstich, Verbrennung) oder Blutungen können die Atemwege verlegen. Frühzeitig erkennen und Rettungsdienst informieren, da sich der Zustand schnell verschlechtern kann.","trauma":false}]},{"step":"B — Breathing (Atmung)","badge":"B","badgeClass":"step-b","items":[{"name":"Seitengleich?","detail":"Hebt sich der Thorax (Brustkorb) beidseitig gleichmäßig? Einseitige Bewegung kann auf einen Pneumothorax (Luft im Pleuraspalt / Raum zwischen Lunge und Brustwand), Hämatothorax (Blut im Pleuraspalt / Raum zwischen Lunge und Brustwand) oder Rippenserienfraktur (mehrfacher Rippenbruch) hindeuten. Vergleich durch Beobachtung und Auflegen der Hände auf den Brustkorb.","trauma":false},{"name":"Atemfrequenz?","detail":"Normale Atemfrequenz Erwachsener: 12–20/min. Zu schnell (Tachypnoe >20, beschleunigte Atmung): Atemnot, Schock, Schmerz. Zu langsam (Bradypnoe <10, verlangsamte Atmung): Erschöpfung, Intoxikation (Vergiftung), SHT (Schädel-Hirn-Trauma). 30 Sekunden zählen und verdoppeln.","trauma":false},{"name":"Sauerstoffsättigung (SpO₂)?","detail":"Messung mit Pulsoxymeter (Sauerstoffmessgerät) am Finger. Normalwert: 95–100%. Unter 94%: Sauerstoffgabe nötig. Unter 90%: Kritisch — sofort handeln. Einschränkungen: Nagellack, kalte Finger, Kohlenmonoxidvergiftung (falsch hohe Werte).","trauma":false},{"name":"Zyanose (Blaufärbung)?","detail":"Blauverfärbung von Lippen, Fingerspitzen oder Ohrläppchen als Zeichen von Sauerstoffmangel. Zentrale Zyanose (Lippen/Zunge) ist bedrohlicher als periphere (Finger). Bei Zyanose sofort Sauerstoff geben und Ursache suchen.","trauma":false}]},{"step":"C — Circulation (Kreislauf)","badge":"C","badgeClass":"step-c","items":[{"name":"Haut trocken/feucht?","detail":"Feuchte, kalte, blasse Haut ist ein klassisches Schockzeichen (Zentralisation / Blut wird zu lebenswichtigen Organen umverteilt). Warme, trockene Haut spricht für eine normale Durchblutung (Perfusion). Auch Hautfarbe beachten: blass, marmoriert oder gerötet?","trauma":false},{"name":"Rekapillarisierungszeit (Nagelbett-Probe)?","detail":"Fingernagel für 5 Sekunden drücken und loslassen. Normalerweise wird der Nagel innerhalb von 2 Sekunden wieder rosa. Länger als 2 Sekunden: Hinweis auf verminderte periphere Durchblutung (Minderdurchblutung der Körperenden) / Schock.","trauma":false},{"name":"Blutdruck?","detail":"Wenn Messgerät vorhanden: Blutdruck messen. Normwert ca. 120/80 mmHg. Systolisch (oberer Wert) unter 90 mmHg: Schock! Über 180 mmHg systolisch: Hypertensive Krise (Blutdruckentgleisung). Immer im Zusammenhang mit anderen Befunden bewerten.","trauma":false},{"name":"Puls?","detail":"Am Handgelenk (Radialispuls / Speichenarterie) tasten. Normwert: 60–100/min. Tachykardie (Herzrasen, >100): Schock, Angst, Schmerz, Fieber. Bradykardie (langsamer Herzschlag, <60): Medikamente, Unterkühlung, SHT. Wenn Radialispuls nicht tastbar: systolischer RR vermutlich unter 80 mmHg — kritisch!","trauma":false},{"name":"Abdomen/Becken (Bauch/Becken)","detail":"Abdomen (Bauch) vorsichtig abtasten: Hart? Druckschmerz? Abwehrspannung / Défense musculaire (unwillkürliche Anspannung der Bauchdecke)? Kann auf innere Blutungen oder Organverletzungen hindeuten. Becken nur EINMAL vorsichtig prüfen (seitlicher Druck) — instabiles Becken = Lebensgefahr durch innere Blutung. Beckenschlinge anlegen!","trauma":true},{"name":"Femur (Oberschenkel)","detail":"Femurfrakturen (Oberschenkelbrüche) können zu erheblichem Blutverlust führen (bis zu 2 Liter pro Seite!). Auf Schwellung, Fehlstellung, Schmerzen achten. Extremität (Gliedmaße) ruhigstellen und auf Schockzeichen achten.","trauma":true}]},{"step":"D — Disability (Neurologische Defizite)","badge":"D","badgeClass":"step-d","items":[{"name":"Bewusstseinslage?","detail":"Schnelle Einschätzung mit AVPU: Alert (wach), Voice (reagiert auf Ansprache), Pain (reagiert nur auf Schmerzreiz), Unresponsive (keine Reaktion). Jede Verschlechterung der Bewusstseinslage ist ein Alarmzeichen!","trauma":false},{"name":"Örtlich orientiert?","detail":"Frage: Wo befinden Sie sich gerade? Patient sollte den Ort oder zumindest die Umgebung benennen können. Desorientiertheit kann auf SHT (Schädel-Hirn-Trauma), Apoplex (Schlaganfall), Hypoglykämie (Unterzuckerung) oder Intoxikation (Vergiftung) hindeuten.","trauma":false},{"name":"Zeitlich orientiert?","detail":"Frage: Welcher Tag ist heute? / Welches Jahr haben wir? Zeitliche Desorientiertheit tritt oft früher auf als örtliche und ist ein sensitiver Marker (empfindliches Zeichen) für Bewusstseinseinschränkung.","trauma":false},{"name":"Zur Person orientiert?","detail":"Frage: Wie heißen Sie? Wann sind Sie geboren? Wenn der Patient seinen eigenen Namen nicht weiß, liegt eine schwere Bewusstseinseinschränkung vor.","trauma":false},{"name":"Zur Situation orientiert?","detail":"Frage: Wissen Sie, was passiert ist? Warum sind wir hier? Situative Desorientiertheit kann auf eine Amnesie (Gedächtnisverlust) nach SHT (Schädel-Hirn-Trauma) oder Krampfanfall hindeuten.","trauma":false},{"name":"Blutzucker (BZ)?","detail":"Wenn Messgerät vorhanden: BZ messen. Normalwert: 70–120 mg/dl (nüchtern). Unter 70 mg/dl: Hypoglykämie (Unterzuckerung) — Zucker geben (oral wenn wach, sonst Rettungsdienst). Über 250 mg/dl: Hyperglykämie (Überzuckerung) — an diabetische Entgleisung denken.","trauma":false},{"name":"Pupillen (Größe, Lichtreaktion)?","detail":"Beide Pupillen mit Taschenlampe prüfen. Normal: Isokor (seitengleich), rund, reagieren auf Licht (verengen sich). Einseitig weit + keine Lichtreaktion: Dringender V.a. Hirndruck (z.B. intrakranielle Blutung / Blutung im Schädel). Beidseitig weit + lichtstarr: Reanimationssituation.","trauma":false},{"name":"BE-FAST (Schlaganfall-Schnelltest)?","detail":"Balance (Gleichgewichtsstörung?), Eyes (Sehstörung?), Face (Gesicht hängt einseitig? / Fazialisparese), Arms (Arm sinkt ab beim Vorhalten?), Speech (Sprache verwaschen? / Dysarthrie), Time (Zeitpunkt des Symptombeginns dokumentieren!). Bei positivem Test: Sofort Rettungsdienst — Time is Brain!","trauma":false},{"name":"Durchblutung (Perfusion)?","detail":"Periphere Durchblutung (Durchblutung der Körperenden) der Extremitäten (Gliedmaßen) prüfen: Sind Hände/Füße warm? Ist der Puls an Handgelenk (A. radialis) / Fußrücken (A. dorsalis pedis) tastbar? Hautfarbe normal? Wichtig besonders bei Extremitätenverletzungen und Frakturen (Knochenbrüchen).","trauma":false},{"name":"Motorik (Bewegungsfähigkeit)?","detail":"Kann der Patient alle Extremitäten (Gliedmaßen) bewegen? Seitenvergleich! Einseitige Lähmung (Hemiparese) deutet auf Apoplex (Schlaganfall), Wirbelsäulenverletzung oder periphere Nervenschädigung hin. Patient bitten: Drücken Sie meine Hände / Drücken Sie mit den Füßen gegen meine Hand.","trauma":false},{"name":"Sensibilität (Gefühlsempfindung)?","detail":"Kann der Patient Berührungen spüren? Seitenvergleich! Gefühlsstörungen (Hypästhesie / Taubheit, Parästhesie / Kribbeln) können auf Wirbelsäulenverletzungen oder Apoplex (Schlaganfall) hindeuten. Besonders wichtig bei Trauma: Sensibilität distal (körperfern) der Verletzung prüfen.","trauma":false}]},{"step":"E — Exposure (Erweiterte Untersuchung)","badge":"E","badgeClass":"step-e","items":[{"name":"Untersuchen/Entkleiden","detail":"Den Patienten vollständig untersuchen. Kleidung entfernen soweit nötig, um verdeckte Verletzungen zu finden. Rücken nicht vergessen (Log-Roll (seitliches Drehen des Patienten am Stück) mit mind. 3 Helfern). Intimsphäre wahren! Nur so viel entkleiden wie nötig.","trauma":false},{"name":"Temperatur/Wärmeerhalt","detail":"Hypothermie (Unterkühlung) verschlechtert die Prognose (Heilungsaussicht) massiv (Koagulopathie / Gerinnungsstörung, Arrhythmie / Herzrhythmusstörung). Rettungsdecke (Silberseite zum Körper), vor Wind und Nässe schützen, nassen Boden isolieren. Auch im Sommer an Wärmeerhalt denken! Bei Hyperthermie (Überhitzung): Kühlen.","trauma":false},{"name":"Wundversorgung","detail":"Alle gefundenen Wunden versorgen: Reinigen, sterile Abdeckung, Verbände. Nicht-lebensbedrohliche Blutungen werden erst hier unter E versorgt (lebensbedrohliche unter X!). Fremdkörper in Wunden belassen und umpolstern (nicht entfernen).","trauma":false},{"name":"Immobilisation (Ruhigstellung)","detail":"Frakturen (Knochenbrüche) und Luxationen (Gelenkverrenkungen) ruhigstellen (Schienen, Vakuummatratze (formbare Ganzkörperschiene), Sam-Splint (biegbare Universalschiene)). Grundsatz: Gelenk proximal (körpernah) und distal (körperfern) der Fraktur ruhigstellen. Nach Immobilisation: DMS-Kontrolle (Durchblutung, Motorik, Sensibilität) distal prüfen.","trauma":false}]}];
+let sampleData=[{"letter":"S","name":"Symptome","detail":"Was für Beschwerden haben Sie? Seit wann? Wo genau? Wie stark (Skala 1–10)? Charakter (stechend, drückend, brennend)? Ausstrahlung (Radiation)? Veränderung seit Beginn? Die Symptome sind der wichtigste Hinweis auf die Ursache — lass den Patienten mit eigenen Worten beschreiben."},{"letter":"A","name":"Allergien","detail":"Haben Sie bekannte Allergien? Insbesondere: Medikamentenallergien (Penicillin, Aspirin / ASS, Ibuprofen), Nahrungsmittel, Insektenstiche, Latex. Wichtig für den Rettungsdienst und das Krankenhaus bei der Medikamentenwahl."},{"letter":"M","name":"Medikamente","detail":"Nehmen Sie regelmäßig Medikamente ein? Welche? Wichtig: Blutverdünner wie Marcumar, Eliquis (Antikoagulantien) oder Aspirin / ASS (Thrombozytenaggregationshemmer) — erhöhen Blutungsrisiko! Insulin/Antidiabetika (Diabetesmedikamente), Kardiaka (Herzmedikamente), Antihypertensiva (Blutdrucksenker). Wenn möglich: Medikamentenliste mitnehmen."},{"letter":"P","name":"Patientengeschichte (Vorerkrankungen)","detail":"Haben Sie Vorerkrankungen? Kardiovaskulär (Herz-Kreislauf): KHK (Verengung der Herzkranzgefäße), Myokardinfarkt (Herzinfarkt), Hypertonie (Bluthochdruck). Pulmonal (Lunge): Asthma bronchiale, COPD (chronisch obstruktive Lungenerkrankung). Diabetes mellitus (Zuckerkrankheit), Apoplex (Schlaganfall), Epilepsie, Koagulopathie (Gerinnungsstörung)? Frühere Operationen?"},{"letter":"L","name":"Letzte Mahlzeit","detail":"Wann haben Sie zuletzt gegessen oder getrunken? Wichtig für eine mögliche Narkose (Aspirationsgefahr / Erstickungsgefahr durch Mageninhalt bei vollem Magen). Auch relevant bei Diabetikern (Hypoglykämie / Unterzuckerung) und bei abdominellen Beschwerden (Bauchschmerzen)."},{"letter":"E","name":"Ereignis","detail":"Was genau ist passiert? Unfallmechanismus bei Trauma (Verletzung): Aufprallgeschwindigkeit, Fallhöhe, eingeklemmt? Bei internistischen Notfällen (innere Erkrankungen): Was hat der Patient gemacht, als die Beschwerden begannen? Gab es einen Trigger (Auslöser)? Schon mal so ähnlich gehabt (Rezidiv / Wiederauftreten)?"}];
+let notfallbilder=[{"category":"Kardiovaskulär (Herz-Kreislauf)","conditions":[{"name":"Angina Pectoris (Brustenge / Herzenge)","symptoms":"Thoraxschmerz (Brustschmerz) bei Belastung oder Stress, Engegefühl hinter dem Brustbein, Ausstrahlung in Arm/Kiefer möglich, Dyspnoe (Atemnot). Schmerz lässt in Ruhe oder nach Nitroglyzerin-Spray (gefäßerweiterndes Notfallmedikament) nach","action":"Ruhe, Oberkörper hoch lagern, beengende Kleidung öffnen, eigenes Nitro-Spray nutzen lassen (falls vorhanden), wenn Schmerz nach 5 Minuten nicht nachlässt: wie ACS behandeln, Rettungsdienst"},{"name":"ACS (Akutes Koronarsyndrom / akuter Herzanfall)","symptoms":"Thoraxschmerz (Brustschmerz), Engegefühl, Ausstrahlung in Arm/Kiefer/Rücken, Nausea (Übelkeit), Diaphorese (Schwitzen), Dyspnoe (Atemnot), Todesangst. Schmerz bleibt auch in Ruhe bestehen — Unterschied zur Angina Pectoris!","action":"Oberkörper hoch lagern, beengende Kleidung öffnen, Ruhe, O₂-Gabe, Rettungsdienst"},{"name":"Hypertonie (Bluthochdruck)","symptoms":"Kopfschmerzen, Schwindel, Ohrensausen, Nasenbluten, Gesichtsrötung, innere Unruhe. Oft symptomlos! RR (Blutdruck) systolisch (oberer Wert) dauerhaft >140 mmHg","action":"Ruhe, Oberkörper hoch, beengende Kleidung öffnen, RR (Blutdruck) kontrollieren, bei Beschwerden Rettungsdienst. Eigene Medikamente NICHT zusätzlich geben"},{"name":"Hypotonie (niedriger Blutdruck)","symptoms":"Schwindel, Schwarzwerden vor Augen, Blässe, Übelkeit, kalter Schweiß, Kollapsneigung (Ohnmachtsgefühl). RR (Blutdruck) systolisch (oberer Wert) <90 mmHg","action":"Flach lagern, Beine hoch (Schocklage), frische Luft, Flüssigkeit anbieten (wenn wach), bei anhaltenden Beschwerden oder Bewusstlosigkeit Rettungsdienst"}]},{"category":"Schock — Allgemeine Zeichen","conditions":[{"name":"Schock erkennen","symptoms":"Tachykardie > 100/min, Hypotonie (systolisch < 90 mmHg), Blässe, kalte feuchte Haut (Zentralisation / Blutumverteilung zu lebenswichtigen Organen — Ausnahme: septisch/neurogen = warme Haut), Rekapillarisierungszeit > 2 Sek., Tachypnoe (AF > 20/min), Unruhe bis Bewusstseinstrübung, Oligurie (verminderte Urinausscheidung)","action":"Sofort Rettungsdienst, Wärmeerhalt (Rettungsdecke), Lagerung je nach Schocktyp, engmaschig Vitalzeichen (Puls, RR, SpO₂, Bewusstsein) überwachen, O₂-Gabe bei SpO₂ < 94 %"}]},{"category":"Schocktypen","conditions":[{"name":"Hypovolämischer Schock","symptoms":"Ursache: Blutverlust (hämorrhagischer Schock) oder Flüssigkeitsverlust (Dehydratation, Verbrennungen, Durchfall, Erbrechen). Zeichen: klassische Schockzeichen — Blässe, kalte feuchte Haut, Tachykardie, Hypotonie, Durst","action":"Lagerung: Schocklage (Beine 20–30° hoch). Blutung stoppen (Druckverband, Tourniquet), Wärmeerhalt, O₂-Gabe, Rettungsdienst"},{"name":"Kardiogener Schock","symptoms":"Ursache: Herzpumpenversagen (Myokardinfarkt / Herzinfarkt, Rhythmusstörung, Herzinsuffizienz / Herzschwäche). Zeichen: Dyspnoe (Atemnot), Lungenstauung bis Lungenödem (Wasser in der Lunge), Tachykardie, Hypotonie, gestaute Halsvenen","action":"Lagerung: Oberkörper hoch — KEINE Schocklage (würde Herz überlasten)! Ruhe, beengende Kleidung öffnen, O₂-Gabe, Notarzt"},{"name":"Anaphylaktischer Schock","symptoms":"Ursache: schwere allergische Reaktion (Insektenstich, Nahrung, Medikament) → massive Vasodilatation (Gefäßerweiterung) durch Histamin. Zeichen: Urtikaria (Nesselsucht / Quaddeln), Angioödem (Schwellung), Bronchospasmus (Verkrampfung der Atemwege), Tachykardie, Hypotonie","action":"Lagerung nach Leitsymptom (Atemnot → Oberkörper hoch; Kreislauf dominant → Beine hoch). Auslöser entfernen, eigenen Adrenalin-Autoinjektor (EpiPen) anwenden lassen, O₂-Gabe, Notarzt"},{"name":"Septischer Schock","symptoms":"Ursache: schwere Infektion (Sepsis / Blutvergiftung) → systemische Entzündungsreaktion mit Vasodilatation. Zeichen: Fieber oder Hypothermie (Unterkühlung), Tachykardie, Hypotonie, initial warme Haut trotz Schock (irreführend!), Bewusstseinstrübung","action":"Flach lagern, Wärmeerhalt, O₂-Gabe, Rettungsdienst — ursächliche Therapie (Antibiotikum, Volumengabe) nur in der Klinik möglich"},{"name":"Neurogener / Spinaler Schock","symptoms":"Ursache: Wirbelsäulentrauma mit Ausfall des Sympathikus (vegetatives Nervensystem). Zeichen: Bradykardie (!) statt Tachykardie, Hypotonie, warme trockene Haut, Lähmung (Paralyse) unterhalb der Verletzungshöhe","action":"Flach lagern, HWS und Wirbelsäule immobilisieren (Log-Roll mit mind. 3 Helfern), Wärmeerhalt (thermoregulatorisches Versagen), Notarzt"},{"name":"Obstruktiver Schock","symptoms":"Ursache: mechanische Behinderung des Blutflusses — Spannungspneumothorax (Luft im Pleuraspalt unter Druck), Perikardtamponade (Flüssigkeit im Herzbeutel), Lungenembolie (Gerinnsel in der Lungenarterie). Zeichen: gestaute Halsvenen, Tachykardie, Hypotonie, ggf. einseitig fehlende Atemgeräusche, keine Besserung durch Lagerung","action":"Meist Oberkörper hoch bei Atemnot. Notarzt sofort — Entlastung (z.B. Nadeldekompression / Punktion) nur durch Notarzt"}]}];
+let normalwerteData=[{"name":"Atemfrequenz","normal":"12–20 /min","niedrig":"< 10 /min (Bradypnoe / verlangsamte Atmung)","hoch":"> 20 /min (Tachypnoe / beschleunigte Atmung)","hinweis":"30 Sekunden zählen und verdoppeln"},{"name":"Sauerstoffsättigung (SpO₂)","normal":"95–100 %","niedrig":"< 94 % → O₂-Gabe nötig\n< 90 % → kritisch, sofort handeln","hoch":"","hinweis":"Pulsoxymeter (Sauerstoffmessgerät) am Finger. Verfälscht durch: Nagellack, Kälte, CO-Vergiftung"},{"name":"Puls (Herzfrequenz)","normal":"60–100 /min","niedrig":"< 60 /min (Bradykardie / langsamer Herzschlag)","hoch":"> 100 /min (Tachykardie / Herzrasen)","hinweis":"Am Handgelenk (Radialispuls / Speichenarterie) tasten. Nicht tastbar → RR vermutlich < 80 mmHg"},{"name":"Blutdruck (RR)","normal":"ca. 120/80 mmHg","niedrig":"Systolisch (oberer Wert) < 90 mmHg → Schock!","hoch":"> 140 mmHg → Hypertonie (Bluthochdruck)\n> 180 mmHg → Hypertensive Krise (Blutdruckentgleisung)","hinweis":"Systolisch = oberer Wert, Diastolisch = unterer Wert"},{"name":"Rekapillarisierungszeit (Nagelbett-Probe)","normal":"< 2 Sekunden","niedrig":"","hoch":"> 2 Sekunden → verminderte Durchblutung / Schock","hinweis":"Fingernagel 5 Sekunden drücken, loslassen, messen bis wieder rosa"},{"name":"Blutzucker (BZ)","normal":"70–120 mg/dl (nüchtern)","niedrig":"< 70 mg/dl → Hypoglykämie (Unterzuckerung)\nZucker geben wenn wach + schluckfähig","hoch":"> 250 mg/dl → Hyperglykämie (Überzuckerung)\nAn diabetische Entgleisung denken","hinweis":"Messung wenn Gerät vorhanden"},{"name":"Körpertemperatur","normal":"36,5–37,5 °C","niedrig":"< 35 °C → Hypothermie (Unterkühlung)\n< 32 °C → Tremor (Zittern) hört auf, kritisch","hoch":"> 38 °C → Fieber\n> 40 °C → Hyperthermie (Überhitzung), lebensbedrohlich","hinweis":"Wärmeerhalt hat Priorität bei Trauma"},{"name":"Pupillen","normal":"Isokor (seitengleich), rund, lichtreagibel (verengen sich bei Licht)","niedrig":"Miosis (verengte Pupillen) → Intoxikation (Vergiftung, z.B. Opiate)","hoch":"Mydriasis (weite Pupillen) → Schock, Angst, Stimulanzien\nEinseitig weit → V.a. Hirndruck\nBeidseitig weit + lichtstarr → Reanimation","hinweis":"Mit Taschenlampe prüfen, Seitenvergleich"}];
+let ablaufData={"title":"Typischer Einsatzablauf: Eintreffen Sanitäter bis Übergabe Rettungsdienst","steps":[{"phase":"Eintreffen","icon":"1","title":"Anfahrt & Eintreffen","actions":["Einsatzmeldung aufnehmen: Was? Wo? Wie viele?","Eigene Schutzausrüstung (PSA) anlegen","Einsatzstelle anfahren, Zufahrt für Rettungsdienst freihalten"]},{"phase":"Szene","icon":"2","title":"Szene sichern & Überblick","actions":["Szene, Sicherheit, Situation beurteilen — Eigenschutz geht vor!","Gefahren erkennen: Verkehr, Strom, Gas, Feuer, Gefahrstoffe","Anzahl Betroffene erfassen, ggf. Nachforderung (Rettungsdienst, Notarzt)","Ersteindruck: Patient kritisch?"]},{"phase":"X","icon":"X","title":"Lebensbedrohliche Blutung stoppen","actions":["Starke äußere Blutung? → Sofort Druckverband oder Tourniquet (Abbindesystem)","Erst Blutung stoppen, dann weiter mit Atemweg"]},{"phase":"Erstuntersuchung","icon":"3","title":"xABCDE durcharbeiten","actions":["A — Atemweg frei? Fremdkörper? HWS bei Trauma?","B — Atmet der Patient? Frequenz, SpO₂, Zyanose (Blaufärbung)?","C — Puls, Blutdruck, Rekapzeit, Haut, Blutungen?","D — Bewusstsein (AVPU), Orientierung, Pupillen, BZ?","E — Ganzkörper-Check, Wärmeerhalt, Wundversorgung, Ruhigstellung","Bei jedem Schritt: Problem erkannt → sofort behandeln, dann weiter"]},{"phase":"SAMPLE","icon":"4","title":"SAMPLE-Anamnese (Befragung)","actions":["S — Symptome: Was für Beschwerden?","A — Allergien bekannt?","M — Medikamente? (Blutverdünner, Insulin, Herzmedikamente)","P — Patientengeschichte / Vorerkrankungen?","L — Letzte Mahlzeit wann?","E — Ereignis: Was ist passiert?","Wenn Patient nicht ansprechbar: Umstehende befragen, Medikamentenliste suchen"]},{"phase":"Maßnahmen","icon":"5","title":"Laufende Betreuung & Maßnahmen","actions":["Lagerung nach Befund (Oberkörper hoch, Schocklage, stabile Seitenlage…)","Wärmeerhalt: Rettungsdecke, vor Witterung schützen","O₂-Gabe wenn verfügbar und SpO₂ < 94%","Regelmäßig Re-Evaluierung: xABCDE erneut durchgehen!","Vitalwerte dokumentieren (Uhrzeit, Werte)","Patienten beruhigen, Angehörige informieren"]},{"phase":"Übergabe","icon":"6","title":"Übergabe an Rettungsdienst","actions":["Strukturierte Übergabe — alle Befunde geordnet weitergeben:","Einsatzgrund & Unfallmechanismus","Ergebnis xABCDE (alle Befunde mit Uhrzeiten)","SAMPLE-Anamnese (Befragungsergebnisse)","Durchgeführte Maßnahmen & Reaktion darauf","Veränderungen seit Eintreffen (besser/schlechter/gleich)","Rückfragen des Rettungsdienstes beantworten"]}],"uebergabe_beispiel":{"title":"Beispiel-Übergabedialog","szenario":"Mann, ca. 60 Jahre, Brustschmerzen auf der Straße, Passant hat den Notruf gewählt. Sanitäter waren zuerst vor Ort.","dialog":[{"rolle":"Sanitäter","text":"Sanitäter Müller, Feuerwehr, 10 Minuten vor Ort. Herr Schmidt, 62, V.a. ACS."},{"rolle":"Sanitäter","text":"X unauffällig. A unauffällig. B — Atemfrequenz 22, Sättigung 94. C — Puls 110 unregelmäßig, Druck 160/95, blass und schweißig. D unauffällig, BZ 130. E unauffällig."},{"rolle":"Sanitäter","text":"Drückender Brustschmerz seit 20 Minuten, 8/10, Ausstrahlung linker Arm, Übelkeit, Schwitzen. Bekannte KHK, Z.n. Stent, nimmt Metoprolol und ASS. Keine Allergien."},{"rolle":"Sanitäter","text":"Oberkörper hoch, O₂ 4 Liter, Nitro um 14:35 ohne Besserung. Stabil seit Eintreffen."},{"rolle":"Rettungsdienst","text":"Puls bei Eintreffen?"},{"rolle":"Sanitäter","text":"105, jetzt 110. Leicht ansteigend."},{"rolle":"Rettungsdienst","text":"Alles klar, wir übernehmen."}]}};
+let szenarienData=[{"title":"Bewusstlose Person auf dem Gehweg","beschreibung":"Du wirst zu einer Person gerufen, die reglos auf dem Gehweg liegt. Umstehende sind aufgeregt.","schritte":[{"situation":"Du erreichst die Einsatzstelle. Eine Person liegt auf dem Rücken, Augen geschlossen, reagiert nicht auf Zuruf der Umstehenden.","frage":"Was tust du zuerst?","optionen":["Sofort Puls fühlen","Szene sichern, Eigenschutz, Überblick","Patient in stabile Seitenlage bringen","Mund-zu-Mund-Beatmung beginnen"],"korrekt":1,"erklaerung":"Immer zuerst: Szene, Sicherheit, Situation! Eigenschutz geht vor. Erst dann zum Patienten."},{"situation":"Die Szene ist sicher, keine Gefahren erkennbar. Du kniest neben dem Patienten.","frage":"Wie prüfst du die Bewusstseinslage?","optionen":["Pupillen mit Taschenlampe prüfen","Laut ansprechen und an den Schultern rütteln","Blutdruck messen","Schmerzreiz am Nagelbett setzen"],"korrekt":1,"erklaerung":"Ansprechen und Anfassen — laut und deutlich: 'Hallo, können Sie mich hören?' + vorsichtiges Rütteln an beiden Schultern."},{"situation":"Der Patient reagiert nicht auf Ansprache und Rütteln.","frage":"Was ist dein nächster Schritt?","optionen":["Rettungsdienst rufen","Atemwege freimachen und Atmung prüfen","Stabile Seitenlage","Blutzucker messen"],"korrekt":1,"erklaerung":"A — Atemweg: Kopf überstrecken (wenn kein Trauma), Kinn anheben, Atmung prüfen (Sehen, Hören, Fühlen — max. 10 Sekunden)."},{"situation":"Du überstreckst den Kopf und prüfst die Atmung: Keine Brustkorbbewegung, kein Atemgeräusch, kein Luftzug spürbar.","frage":"Was tust du jetzt?","optionen":["Stabile Seitenlage und warten","Notruf absetzen und mit Reanimation beginnen (30:2)","Oberkörper hochlagern und O₂ geben","SAMPLE-Anamnese bei Umstehenden erheben"],"korrekt":1,"erklaerung":"Keine normale Atmung = Reanimation! Notruf/Nachforderung, AED anfordern, sofort 30 Kompressionen : 2 Beatmungen."},{"situation":"Du reanimierst. Dein Kollege bringt den AED. Der AED analysiert: 'Schock empfohlen'.","frage":"Was tust du?","optionen":["Weiter drücken, AED ignorieren","Schock auslösen und danach sofort weiter reanimieren","Erst Puls prüfen, dann entscheiden","Schock auslösen und abwarten ob Patient aufwacht"],"korrekt":1,"erklaerung":"Schock auslösen (alle weg vom Patienten!), dann sofort weiter Reanimation — 2 Minuten, bis der AED erneut analysiert. Nicht auf Reaktion warten."}]},{"title":"Brustschmerzen beim Stadtfest","beschreibung":"Am Sanitätszelt meldet sich ein älterer Mann mit Brustschmerzen. Er ist wach und ansprechbar.","schritte":[{"situation":"Ein Mann, ca. 65 Jahre, kommt zum Sanitätszelt. Er fasst sich an die Brust und sagt: 'Mir ist so eng hier.'","frage":"Was ist dein erster Schritt?","optionen":["Sofort Rettungsdienst rufen","X prüfen — starke Blutung?","Patient hinsetzen, Ersteindruck: kritisch?","Blutdruck messen"],"korrekt":2,"erklaerung":"Ersteindruck: Patient ist wach, spricht, steht — nicht unmittelbar lebensbedrohlich. Erst hinsetzen lassen, dann systematisch weiter."},{"situation":"Der Patient sitzt, ist bei Bewusstsein, keine äußeren Verletzungen. Du arbeitest xABCDE ab. A und B sind unauffällig, Atemfrequenz 20, SpO₂ 95%.","frage":"Du bist bei C — was prüfst du?","optionen":["Pupillen und Orientierung","Puls, Blutdruck, Haut, Rekapzeit","Temperatur und Wärmeerhalt","BE-FAST Schlaganfalltest"],"korrekt":1,"erklaerung":"C = Circulation: Puls tasten (Frequenz, Rhythmus), Blutdruck messen, Hautfarbe/-temperatur/-feuchtigkeit, Rekapillarisierungszeit."},{"situation":"Puls 108, unregelmäßig. RR 155/90. Haut blass, schweißig. Der Patient sagt: 'Der Schmerz strahlt in den linken Arm aus.'","frage":"Welches Notfallbild vermutest du?","optionen":["Hypotonie (niedriger Blutdruck)","Angina Pectoris oder ACS (Akutes Koronarsyndrom)","Hypertonie (Bluthochdruck)","Hypoglykämie (Unterzuckerung)"],"korrekt":1,"erklaerung":"Brustschmerz + Ausstrahlung + Schwitzen + Tachykardie = klassisches ACS. Der erhöhte Blutdruck ist Stressreaktion, nicht die Ursache."},{"situation":"Du vermutest ACS. Der Patient hat ein Nitro-Spray in der Tasche.","frage":"Welche Maßnahmen ergreifst du?","optionen":["Flach lagern, Beine hoch, Schocklage","Oberkörper hoch, beengende Kleidung öffnen, O₂, Nitro nutzen lassen, Rettungsdienst","Stabile Seitenlage, Wärmeerhalt","Nur Rettungsdienst rufen und abwarten"],"korrekt":1,"erklaerung":"ACS: Oberkörper hoch (entlastet das Herz), Ruhe, O₂ geben, eigenes Nitro-Spray nutzen lassen (im Sitzen!), Rettungsdienst nachalarmieren."},{"situation":"Der Rettungsdienst trifft ein. Du übergibst.","frage":"Wie strukturierst du die Übergabe?","optionen":["Nur sagen: 'Der hat Brustschmerzen'","SAMPLE zuerst, dann xABCDE","Vorstellung, V.a. Diagnose, dann xABCDE-Befunde, SAMPLE, Maßnahmen, Verlauf","Dem Rettungsdienst den Patienten zeigen und gehen"],"korrekt":2,"erklaerung":"Strukturierte Übergabe: Wer bin ich, wie lange vor Ort, V.a. Diagnose, xABCDE-Befunde (auffällig/unauffällig), SAMPLE, durchgeführte Maßnahmen, Verlauf."}]},{"title":"Fahrradunfall mit Beinverletzung","beschreibung":"Eine Radfahrerin ist gestürzt und liegt am Straßenrand. Sie schreit vor Schmerzen und hält sich das Bein.","schritte":[{"situation":"Du erreichst die Unfallstelle. Die Radfahrerin, ca. 40 Jahre, liegt am Straßenrand auf einer belebten Straße. Sie schreit.","frage":"Was zuerst?","optionen":["Bein untersuchen","Szene sichern — Verkehr!","Rettungsdienst rufen","Patientin beruhigen"],"korrekt":1,"erklaerung":"Belebte Straße = Gefahr! Erst Szene sichern (Warndreieck, Helfer zur Verkehrsabsicherung), dann zum Patienten."},{"situation":"Szene ist gesichert. Die Patientin ist wach, schreit vor Schmerzen. Du siehst keine starke Blutung (X unauffällig). Sie spricht in ganzen Sätzen (A frei).","frage":"Woran denkst du bei diesem Unfallmechanismus besonders?","optionen":["Nur an das Bein — da hat sie Schmerzen","An Begleitverletzungen: Kopf, HWS, Becken, innere Verletzungen","Nur an Unterkühlung","An Blutzucker"],"korrekt":1,"erklaerung":"Fahrradsturz kann mehr verletzen als man sieht! Immer an Kopf (Helm?), HWS, Becken und innere Verletzungen denken — nicht nur die offensichtliche Verletzung."},{"situation":"B und C sind unauffällig. Puls 95, RR 130/85. Am rechten Unterschenkel siehst du eine deutliche Fehlstellung und Schwellung.","frage":"Welche Maßnahme hat jetzt Priorität?","optionen":["Bein gerade ziehen","Bein in vorgefundener Position ruhigstellen, DMS-Kontrolle","Sofort Schocklage","Kühlen mit Eis"],"korrekt":1,"erklaerung":"Fraktur (Knochenbruch): In vorgefundener Stellung ruhigstellen (Schiene, Polsterung). NICHT richten! DMS-Kontrolle (Durchblutung, Motorik, Sensibilität) distal der Verletzung prüfen."},{"situation":"Du hast das Bein ruhiggestellt. Die Patientin wird ruhiger, klagt aber über zunehmende Schmerzen.","frage":"Was machst du bis der Rettungsdienst kommt?","optionen":["Nichts, abwarten","Wärmeerhalt, regelmäßig xABCDE wiederholen, Vitalwerte dokumentieren, SAMPLE erheben","Verband am Bein wechseln","Patientin zum Gehen auffordern"],"korrekt":1,"erklaerung":"Laufende Betreuung: Wärmeerhalt (Rettungsdecke), regelmäßig Vitalzeichen prüfen (Re-Evaluation), SAMPLE-Anamnese erheben, alles dokumentieren, Patientin beruhigen."}]},{"title":"Unterzuckerung im Büro","beschreibung":"Ein Kollege verhält sich plötzlich seltsam — verwirrt, aggressiv, schwitzt stark.","schritte":[{"situation":"Im Büro fällt ein Kollege (bekannter Diabetiker, 45 Jahre) auf: Er redet wirr, ist aggressiv und schwitzt stark.","frage":"Woran denkst du sofort?","optionen":["Schlaganfall","Hypoglykämie (Unterzuckerung)","Panikattacke","Herzinfarkt"],"korrekt":1,"erklaerung":"Bekannter Diabetiker + Verwirrtheit + Schwitzen + Aggressivität = klassische Hypoglykämie (Unterzuckerung). Immer zuerst daran denken!"},{"situation":"Der Kollege ist noch wach, aber zunehmend verwirrt. Du hast ein BZ-Messgerät im Erste-Hilfe-Kasten.","frage":"Was misst du? Und ab welchem Wert handelst du?","optionen":["Blutdruck — unter 90 ist kritisch","Blutzucker — unter 70 mg/dl ist Hypoglykämie","Temperatur — über 38 ist Fieber","SpO₂ — unter 94% ist kritisch"],"korrekt":1,"erklaerung":"BZ messen! Unter 70 mg/dl = Hypoglykämie. Sofort Zucker geben wenn Patient wach und schluckfähig."},{"situation":"BZ ist 48 mg/dl. Der Kollege ist noch wach, kann schlucken.","frage":"Was gibst du ihm?","optionen":["Wasser","Traubenzucker, Saft oder Cola","Insulin","Nichts — auf den Rettungsdienst warten"],"korrekt":1,"erklaerung":"Wach + schluckfähig → sofort schnellen Zucker geben: Traubenzucker, Saft, Cola, Gummibärchen. KEIN Insulin — das würde den BZ weiter senken!"},{"situation":"Nach 5 Minuten geht es dem Kollegen deutlich besser. BZ jetzt 85 mg/dl.","frage":"Was tust du jetzt?","optionen":["Erledigt, alles gut","Weiter beobachten, langsame Kohlenhydrate nachgeben (Brot), Rettungsdienst bei Unsicherheit","Sofort Reanimation","Stabile Seitenlage"],"korrekt":1,"erklaerung":"Nach schnellem Zucker: langsame Kohlenhydrate nachgeben (Brot, Müsliriegel), damit der BZ stabil bleibt. Weiter beobachten. Bei Unsicherheit oder Wiederauftreten → Rettungsdienst."}]},{"title":"Allergische Reaktion beim Grillfest","beschreibung":"Ein Gast klagt über Juckreiz und Atemnot, nachdem er etwas gegessen hat.","schritte":[{"situation":"Beim Grillfest sagt ein Gast (30 Jahre): 'Mir wird komisch, alles juckt.' Du siehst rote Quaddeln im Gesicht und am Hals.","frage":"Was vermutest du?","optionen":["Sonnenstich","Allergische Reaktion","Hypotonie (niedriger Blutdruck)","ACS (Herzanfall)"],"korrekt":1,"erklaerung":"Juckreiz + Quaddeln (Urtikaria) nach Nahrungsaufnahme = allergische Reaktion. Kann sich schnell zu einer Anaphylaxie entwickeln!"},{"situation":"Der Gast bekommt zunehmend Atemnot, die Lippen schwellen an. Puls 120, RR 90/60.","frage":"Das ist jetzt eine...","optionen":["Leichte Allergie — abwarten","Anaphylaxie (schwere allergische Reaktion) — lebensbedrohlich!","Panikattacke","Angina Pectoris"],"korrekt":1,"erklaerung":"Atemnot + Schwellung + Tachykardie + Blutdruckabfall = Anaphylaxie! Lebensbedrohlich, sofort handeln!"},{"situation":"Du erkennst die Anaphylaxie. Der Rettungsdienst ist alarmiert.","frage":"Wie lagerst du den Patienten?","optionen":["Oberkörper hoch wegen der Atemnot","Flach mit Beinen hoch wegen des niedrigen Blutdrucks","Es kommt drauf an: bei Atemnot Oberkörper hoch, bei Schock ohne Atemnot Beine hoch","Stabile Seitenlage"],"korrekt":2,"erklaerung":"Bei Anaphylaxie: Lagerung nach Leitsymptom! Atemnot dominant → Oberkörper hoch. Kreislauf dominant (Schock) → Beine hoch. Beides gleichzeitig → Oberkörper leicht erhöht als Kompromiss."},{"situation":"Der Patient hat einen Adrenalin-Autoinjektor (EpiPen) in seiner Tasche.","frage":"Was tust du damit?","optionen":["Nicht anfassen — nur der Rettungsdienst darf Medikamente geben","Den Patienten sein eigenes Medikament selbst anwenden lassen","In den Arm spritzen","Für den Rettungsdienst bereithalten und nicht verwenden"],"korrekt":1,"erklaerung":"Eigenes Notfallmedikament darf der Patient selbst anwenden! Du darfst ihm dabei helfen. Der EpiPen wird in den seitlichen Oberschenkel gedrückt — auch durch die Kleidung."}]},{"title":"Treppensturz mit Kopfverletzung","beschreibung":"Eine ältere Dame ist die Treppe hinuntergefallen. Sie liegt unten, blutet am Kopf, ist benommen.","schritte":[{"situation":"Du findest eine Frau (ca. 75 Jahre) am Fuß einer Treppe. Sie blutet an der Stirn, die Augen sind halb offen, sie stöhnt.","frage":"Was ist dein erster Schritt?","optionen":["Kopfwunde verbinden","Szene sicher? Dann Bewusstsein prüfen — Ansprechen","Stabile Seitenlage","Sofort Blutdruck messen"],"korrekt":1,"erklaerung":"Szene sichern (Treppe, weitere Sturzgefahr?), dann Bewusstsein prüfen: Laut ansprechen. Sie stöhnt — reagiert also, aber eingeschränkt."},{"situation":"Die Patientin reagiert auf lautes Ansprechen mit Stöhnen, öffnet aber nicht die Augen. X — Die Kopfwunde blutet, ist aber nicht lebensbedrohlich.","frage":"Wie bewertest du die Bewusstseinslage nach AVPU?","optionen":["A — Alert (wach)","V — Voice (reagiert auf Ansprache)","P — Pain (reagiert nur auf Schmerz)","U — Unresponsive (keine Reaktion)"],"korrekt":1,"erklaerung":"Sie reagiert auf Ansprache (Stöhnen) = V (Voice). Das ist bereits eine relevante Bewusstseinseinschränkung — engmaschig überwachen!"},{"situation":"A frei (sie stöhnt, also Atemweg offen). B — AF 16, SpO₂ 96%. C — Puls 68, RR 150/85. Du prüfst die Pupillen.","frage":"Die linke Pupille ist deutlich größer als die rechte und reagiert nicht auf Licht. Was bedeutet das?","optionen":["Normal bei älteren Menschen","Verdacht auf Hirndruck — sofort Rettungsdienst mit Notarzt!","Zeichen für Unterzuckerung","Harmlos, kommt vom Sturz"],"korrekt":1,"erklaerung":"Anisokorie (unterschiedlich große Pupillen) + einseitig keine Lichtreaktion = dringender Verdacht auf Hirndruck (z.B. durch Hirnblutung nach Sturz). Lebensbedrohlich — sofort Notarzt nachfordern!"},{"situation":"Rettungsdienst mit Notarzt ist nachgefordert. Wie lagerst du die Patientin bis dahin?","frage":"Welche Lagerung ist richtig?","optionen":["Flach auf dem Rücken, Beine hoch","Oberkörper 30° erhöht, Kopf gerade, HWS schonen","Stabile Seitenlage auf die linke Seite","Aufsetzen"],"korrekt":1,"erklaerung":"V.a. SHT mit Hirndruck: Oberkörper 30° erhöht (senkt den Hirndruck), Kopf gerade in Mittelstellung (venöser Abfluss), HWS schonen (Sturzmechanismus!). Engmaschig Bewusstsein und Pupillen kontrollieren."}]},{"title":"Schlaganfall beim Abendessen","beschreibung":"Ein Mann sackt beim Essen plötzlich zur Seite, spricht undeutlich, ein Mundwinkel hängt.","schritte":[{"situation":"Beim Abendessen in der Kantine sackt ein Mann (58 Jahre) plötzlich auf seinem Stuhl zur Seite. Seine Frau ruft: 'Er redet so komisch!'","frage":"Woran denkst du sofort?","optionen":["Verschluckt","Herzinfarkt","Schlaganfall (Apoplex)","Unterzuckerung"],"korrekt":2,"erklaerung":"Plötzliches Auftreten + neurologische Ausfälle (Sprache, Motorik) = V.a. Schlaganfall. Jetzt zählt jede Minute — Time is Brain!"},{"situation":"Du bist beim Patienten. Er ist wach, aber verwirrt. Er nuschelt und kann den rechten Arm nicht heben.","frage":"Welchen Schnelltest führst du durch?","optionen":["SAMPLE-Anamnese","BE-FAST","Blutzucker messen","Blutdruck messen"],"korrekt":1,"erklaerung":"BE-FAST: Balance (Gleichgewicht?), Eyes (Sehstörung?), Face (Gesicht symmetrisch?), Arms (Arm heben?), Speech (Sprache klar?), Time (Uhrzeit des Beginns!). Hier: Face positiv (Mundwinkel), Arms positiv (rechter Arm), Speech positiv (nuschelt)."},{"situation":"BE-FAST ist eindeutig positiv. Du hast den Rettungsdienst alarmiert.","frage":"Welche Information ist für den Rettungsdienst am wichtigsten?","optionen":["Was der Patient gegessen hat","Wann genau die Symptome begonnen haben","Ob der Patient Allergien hat","Der Blutdruck"],"korrekt":1,"erklaerung":"TIME! Der genaue Zeitpunkt des Symptombeginns ist entscheidend — davon hängt ab, ob im Krankenhaus eine Lysetherapie (medikamentöse Auflösung des Blutgerinnsels) möglich ist. Zeitfenster: ca. 4,5 Stunden."},{"situation":"Symptombeginn war vor 20 Minuten. Der Patient ist wach, BE-FAST positiv.","frage":"Wie lagerst du ihn und was beachtest du?","optionen":["Flach lagern, Beine hoch","Oberkörper leicht erhöht, nichts essen oder trinken lassen, engmaschig überwachen","Stabile Seitenlage","Hinsetzen und Wasser geben"],"korrekt":1,"erklaerung":"Oberkörper leicht erhöht (ca. 30°). NICHTS oral geben — Schluckstörung (Dysphagie) ist häufig bei Schlaganfall, Aspirationsgefahr! Bewusstsein engmaschig überwachen — kann sich schnell verschlechtern."}]},{"title":"Bewusstlose Person — aber sie atmet","beschreibung":"Eine Person wird bewusstlos aufgefunden, atmet aber normal. Abgrenzung zur Reanimation.","schritte":[{"situation":"Du wirst zu einer bewusstlosen Person in einem Park gerufen. Sie liegt auf dem Rücken, reagiert nicht auf Ansprache und Rütteln.","frage":"Was prüfst du jetzt?","optionen":["Blutdruck messen","Sofort stabile Seitenlage","Atemwege freimachen und Atmung prüfen","Pupillen kontrollieren"],"korrekt":2,"erklaerung":"A — Atemweg: Kopf überstrecken, Kinn anheben. Dann Atmung prüfen: Sehen (hebt sich der Brustkorb?), Hören (Atemgeräusche?), Fühlen (Luftstrom an der Wange?). Max. 10 Sekunden."},{"situation":"Du überstreckst den Kopf. Der Brustkorb hebt sich regelmäßig, du spürst Atemluft. Die Person atmet normal.","frage":"Was ist der entscheidende Unterschied zur Reanimationssituation?","optionen":["Es gibt keinen Unterschied","Normale Atmung vorhanden → KEINE Reanimation, sondern stabile Seitenlage","Man muss trotzdem reanimieren","Erst 2 Minuten warten und dann entscheiden"],"korrekt":1,"erklaerung":"Bewusstlos + normale Atmung = stabile Seitenlage + Notruf. Bewusstlos + KEINE normale Atmung = Reanimation. Dieser Unterschied ist lebenswichtig!"},{"situation":"Du bringst die Person in die stabile Seitenlage. Der Rettungsdienst ist alarmiert.","frage":"Was ist jetzt deine wichtigste Aufgabe?","optionen":["SAMPLE-Anamnese bei Umstehenden","Regelmäßig Atmung kontrollieren — kann jederzeit aufhören!","Blutdruck messen","Wundversorgung"],"korrekt":1,"erklaerung":"Die Atmung kann jederzeit aufhören! Alle 1–2 Minuten prüfen: Atmet die Person noch? Wenn die Atmung aufhört → sofort Reanimation beginnen. Parallel SAMPLE bei Umstehenden erheben wenn möglich."},{"situation":"Du überwachst die Atmung. Ein Umstehender sagt: 'Die hat vorher einen Krampfanfall gehabt.'","frage":"Was denkst du jetzt?","optionen":["Irrelevant, ist ja jetzt bewusstlos","Postiktale Phase (Nachschlafphase nach Krampfanfall) — erklärt die Bewusstlosigkeit, weiter überwachen","Sofort Reanimation beginnen","Zucker geben"],"korrekt":1,"erklaerung":"Nach einem Krampfanfall folgt oft eine postiktale Phase (Nachschlafphase): Patient ist bewusstlos aber atmet. Wichtig: Weiter Atmung überwachen, stabile Seitenlage beibehalten. Rettungsdienst über den Krampfanfall informieren (Dauer? Erstmalig?)."}]},{"title":"Starke Blutung nach Arbeitsunfall","beschreibung":"Ein Arbeiter hat sich mit einer Kreissäge tief in den Unterarm geschnitten. Es blutet stark.","schritte":[{"situation":"In einer Werkstatt hat sich ein Arbeiter (35 Jahre) mit der Kreissäge tief in den linken Unterarm geschnitten. Blut spritzt pulsierend aus der Wunde.","frage":"Pulsierende, hellrote Blutung — was bedeutet das?","optionen":["Venöse Blutung — nicht so schlimm","Arterielle Blutung — lebensbedrohlich! Sofort handeln","Kapillare Blutung — normaler Kratzer","Innere Blutung"],"korrekt":1,"erklaerung":"Pulsierend + hellrot = arterielle Blutung (aus einer Schlagader). Lebensbedrohlich! Das ist der X-Step — hat Vorrang vor allem anderen."},{"situation":"Du erkennst eine lebensbedrohliche Blutung. Der Arbeiter steht unter Schock und hält den Arm.","frage":"Was ist die erste Maßnahme?","optionen":["Stabile Seitenlage","Direkten Druck auf die Wunde — mit allem was verfügbar ist","Erst Handschuhe suchen, dann versorgen","Arm hochhalten reicht"],"korrekt":1,"erklaerung":"Sofort direkten Druck auf die Wunde! Hand, Tuch, Verbandszeug — was am schnellsten greifbar ist. Eigenschutz beachten (Handschuhe wenn sofort greifbar), aber bei lebensbedrohlicher Blutung nicht minutenlang suchen."},{"situation":"Du drückst auf die Wunde, aber das Blut sickert weiter durch. Der Druckverband hält nicht.","frage":"Was ist der nächste Schritt?","optionen":["Mehr Verbandmaterial draufpacken und weiter drücken","Tourniquet (Abbindesystem) proximal (körpernah) der Verletzung anlegen","Arm ins kalte Wasser halten","Abwarten bis der Rettungsdienst kommt"],"korrekt":1,"erklaerung":"Wenn Druckverband nicht reicht → Tourniquet! Proximal (körpernah, also Richtung Herz) der Blutung anlegen, fest zuziehen bis Blutung steht. Uhrzeit notieren! Tourniquet nicht wieder lösen."},{"situation":"Tourniquet sitzt, Blutung steht. Der Arbeiter ist blass, zittert, Puls 120, RR 95/60.","frage":"Der Patient zeigt Schockzeichen. Wie behandelst du den Schock?","optionen":["Oberkörper hoch lagern","Flach lagern, Beine hoch (Schocklage), Wärmeerhalt mit Rettungsdecke","Hinsetzen und Wasser trinken lassen","Kühlen"],"korrekt":1,"erklaerung":"Volumenmangel-Schock durch Blutverlust: Schocklage (Beine hoch, ca. 20–30°), Wärmeerhalt (Rettungsdecke), Patienten beruhigen, engmaschig Vitalzeichen überwachen. Rettungsdienst ist hoffentlich bereits alarmiert!"}]},{"title":"Krampfanfall auf dem Marktplatz","beschreibung":"Eine Person fällt plötzlich zu Boden und krampft am ganzen Körper.","schritte":[{"situation":"Auf dem Marktplatz fällt ein Mann (ca. 40 Jahre) plötzlich zu Boden. Sein ganzer Körper verkrampft sich rhythmisch, er ist nicht ansprechbar.","frage":"Was ist das?","optionen":["Herzinfarkt","Tonisch-klonischer Krampfanfall","Schlaganfall","Ohnmacht"],"korrekt":1,"erklaerung":"Plötzlicher Sturz + rhythmische Muskelzuckungen am ganzen Körper + Bewusstlosigkeit = tonisch-klonischer (generalisierter) Krampfanfall."},{"situation":"Der Mann krampft seit ca. 30 Sekunden. Umstehende wollen helfen und einen Keil in den Mund schieben.","frage":"Was tust du?","optionen":["Keil in den Mund, damit er sich nicht auf die Zunge beißt","Festhalten damit er aufhört zu krampfen","NICHTS in den Mund! Nicht festhalten! Umgebung sichern und Verletzungen verhindern","Sofort Reanimation beginnen"],"korrekt":2,"erklaerung":"NICHTS in den Mund stecken (Zahn- und Kieferbruch-Gefahr)! NICHT festhalten (Verletzungsgefahr)! Stattdessen: Umgebung sichern (Gegenstände wegräumen), Kopf polstern (Jacke unter den Kopf), Dauer dokumentieren, Rettungsdienst rufen."},{"situation":"Nach ca. 2 Minuten hört der Krampf auf. Der Patient liegt still da, atmet, ist aber bewusstlos und reagiert nicht.","frage":"Was tust du jetzt?","optionen":["Reanimation — er ist bewusstlos!","Stabile Seitenlage, Atmung überwachen — das ist die postiktale Phase (Nachschlafphase)","Aufsetzen und Wasser geben","Sofort wegtransportieren"],"korrekt":1,"erklaerung":"Nach dem Anfall: postiktale Phase (Nachschlafphase). Patient ist bewusstlos aber atmet → stabile Seitenlage! Atmung überwachen. Erbrechen ist häufig — deshalb Seitenlage wichtig. KEINE Reanimation wenn normale Atmung vorhanden."},{"situation":"Der Patient kommt langsam zu sich, ist verwirrt und weiß nicht was passiert ist.","frage":"Was fragst du bzw. die Umstehenden?","optionen":["Nur Name und Adresse","Erstmaliger Anfall? Bekannte Epilepsie? Medikamente? Wie lange hat der Anfall gedauert?","Blutgruppe","Ob er heute schon gegessen hat"],"korrekt":1,"erklaerung":"Wichtige Infos für den Rettungsdienst: Erstmaliger Anfall (dann immer Klinik!)? Bekannte Epilepsie + Medikamente? Dauer des Anfalls? Was war vorher (Auslöser)? Hat der Patient sich verletzt (Kopf, Zunge)?"}]},{"title":"Schwere Atemnot — Asthmaanfall","beschreibung":"Eine Frau ringt nach Luft, pfeift beim Atmen, kann kaum sprechen.","schritte":[{"situation":"Eine Frau (28 Jahre) sitzt auf einer Bank, stützt sich mit den Armen ab, ringt nach Luft. Du hörst ein pfeifendes Geräusch beim Ausatmen.","frage":"Welches Notfallbild erkennst du?","optionen":["Hyperventilation","Asthmaanfall","Herzinfarkt","Verschlucken"],"korrekt":1,"erklaerung":"Pfeifendes Atemgeräusch beim Ausatmen (Giemen) + Atemnot + Einsatz der Atemhilfsmuskulatur (stützt sich auf) = typischer Asthmaanfall. Die Atemwege sind verengt."},{"situation":"Die Patientin kann nur einzelne Worte sprechen. Sie sagt: 'Asthma... Spray... Tasche...'","frage":"Was ist die beste Lagerung?","optionen":["Flach auf den Rücken legen","Kutschersitz: sitzend, Arme auf den Knien abgestützt","Stabile Seitenlage","Beine hoch, Schocklage"],"korrekt":1,"erklaerung":"Kutschersitz (sitzend, nach vorne gebeugt, Arme auf Knien oder Tisch abgestützt). Diese Haltung entlastet die Atemhilfsmuskulatur und erleichtert das Atmen."},{"situation":"Du setzt sie in den Kutschersitz. Ihr Spray ist ein Notfall-Inhalator (Salbutamol).","frage":"Was machst du mit dem Spray?","optionen":["Nicht anfassen — nur der Arzt darf das","Die Patientin ihr eigenes Spray selbst benutzen lassen","Ihr das Spray wegnehmen","Spray in die Nase sprühen"],"korrekt":1,"erklaerung":"Eigenes Notfallmedikament darf die Patientin selbst anwenden! Du hilfst dabei: Spray schütteln, tief ausatmen lassen, beim Einatmen Sprühstoß auslösen, dann Luft anhalten."},{"situation":"Sie hat 2 Hübe genommen, die Atemnot bessert sich etwas. SpO₂ ist 91%.","frage":"SpO₂ 91% — was tust du zusätzlich?","optionen":["Nichts, wird schon","O₂-Gabe und Lippenbremse anleiten","Reanimation","Beutel-Maske-Beatmung"],"korrekt":1,"erklaerung":"SpO₂ unter 94% → Sauerstoff geben! Dazu Lippenbremse anleiten (langsam gegen locker geschlossene Lippen ausatmen) — verhindert das Zusammenfallen der Atemwege. Rettungsdienst ist alarmiert, weiter überwachen."}]},{"title":"Volumenmangelschock nach Verkehrsunfall","beschreibung":"Ein Radfahrer wurde von einem Auto erfasst. Er blutet stark am Oberschenkel und wird zunehmend blass.","schritte":[{"situation":"Ein Radfahrer (35 Jahre) liegt nach Zusammenstoß mit einem Auto auf der Fahrbahn. Aus dem linken Oberschenkel spritzt pulsierend Blut. Er ist wach, aber sehr blass.","frage":"Was hat jetzt absolute Priorität?","optionen":["Schocklage anlegen","Blutung sofort stoppen (X vor A!)","SAMPLE-Anamnese erheben","Blutdruck messen"],"korrekt":1,"erklaerung":"Lebensbedrohliche äußere Blutung (arteriell, pulsierend) kommt VOR allem anderen — das ist der X-Step. Direkter Druck, Druckverband, wenn nötig Tourniquet (Abbindesystem) proximal (körpernah) der Blutung."},{"situation":"Blutung gestoppt mit Tourniquet. Du arbeitest xABCDE weiter. A und B unauffällig. Bei C: Haut kalt und feucht, Puls 125, RR 90/60, Rekapillarisierungszeit 4 Sekunden.","frage":"Was beschreiben diese Zeichen?","optionen":["Normaler Zustand nach Schreck","Hypertensive Krise (Blutdruckentgleisung)","Klassische Schockzeichen","Hypoglykämie (Unterzuckerung)"],"korrekt":2,"erklaerung":"Kalte feuchte Haut, Tachykardie > 100, Hypotonie grenzwertig, verlängerte Rekapzeit > 2 Sek = klassische Schockzeichen. Der Körper zentralisiert (Blut wird zu lebenswichtigen Organen umverteilt)."},{"situation":"Du erkennst den Schock. Der Patient hat etwa einen Liter Blut verloren.","frage":"Welcher Schocktyp liegt vor?","optionen":["Kardiogener Schock","Anaphylaktischer Schock","Hypovolämischer (hämorrhagischer) Schock","Neurogener Schock"],"korrekt":2,"erklaerung":"Blutverlust → hypovolämischer (hämorrhagischer) Schock. Häufigste Schockform bei Trauma (Verletzung). Lebensbedrohlich ab etwa 30 % Blutverlust (ca. 1,5 Liter bei Erwachsenen)."},{"situation":"Jetzt geht es um die Lagerung.","frage":"Welche Lagerung ist korrekt?","optionen":["Oberkörper hoch","Flach, Beine 20–30° hoch (Schocklage)","Stabile Seitenlage","Sitzend, nach vorne gebeugt"],"korrekt":1,"erklaerung":"Hypovolämischer Schock → Schocklage: flach, Beine 20–30° hoch. Damit wird Blut aus den Beinen in den zentralen Kreislauf verlagert (Autotransfusion). Dazu IMMER Wärmeerhalt mit Rettungsdecke!"},{"situation":"Patient in Schocklage, Rettungsdecke drauf, Tourniquet sitzt.","frage":"Was ist bis zum Eintreffen des Rettungsdienstes am wichtigsten?","optionen":["Patient zum Trinken animieren","Engmaschig Vitalzeichen kontrollieren, Wärmeerhalt, beruhigen","Tourniquet zur Kontrolle kurz öffnen","Patient aufsetzen lassen"],"korrekt":1,"erklaerung":"Re-Evaluierung alle 2–3 Minuten: Puls, RR, Atmung, Bewusstsein. Wärmeerhalt ist kritisch — Hypothermie (Unterkühlung) verstärkt den Schock massiv durch Gerinnungsstörung. Tourniquet NICHT öffnen. NICHTS oral geben (Aspirationsgefahr, mögliche Narkose)."}]},{"title":"Kardiogener Schock bei Herzinfarkt","beschreibung":"Ein älterer Mann klagt über starke Brustschmerzen und wird zunehmend schwächer und kurzatmig.","schritte":[{"situation":"Ein Mann (70 Jahre) sitzt schwer atmend auf einer Parkbank. Drückender Brustschmerz seit 30 Minuten, Ausstrahlung in den linken Arm, kaltschweißig, graues Hautkolorit.","frage":"Welches Notfallbild vermutest du?","optionen":["Panikattacke","Akutes Koronarsyndrom (ACS / Herzinfarkt)","Asthmaanfall","Schlaganfall"],"korrekt":1,"erklaerung":"Drückender Brustschmerz + Ausstrahlung + Schwitzen + Dauer > 20 Min = klassisches ACS. Sofort Rettungsdienst mit Notarzt alarmieren — Time is Muscle!"},{"situation":"Du misst: RR 85/55, Puls 115 unregelmäßig, SpO₂ 90 %. Die Atemnot nimmt zu, du hörst rasselnde Atemgeräusche beim Einatmen.","frage":"Was entwickelt sich gerade?","optionen":["Hyperventilation","Kardiogener Schock mit beginnendem Lungenödem","Anaphylaxie","Hypoglykämie"],"korrekt":1,"erklaerung":"Hypotonie + Tachykardie + Dyspnoe (Atemnot) + Rasselgeräusche (Stauung der Lunge) nach Herzinfarkt = kardiogener Schock mit Lungenödem (Wasser in der Lunge). Das Herz versagt als Pumpe."},{"situation":"Kardiogener Schock erkannt. Ein Kollege schlägt vor, den Patienten in die Schocklage zu bringen.","frage":"Was ist richtig?","optionen":["Ja, Schocklage — Beine hoch wie bei jedem Schock","NEIN — Oberkörper hoch! Schocklage würde das Herz überlasten","Stabile Seitenlage","Flach auf den Rücken"],"korrekt":1,"erklaerung":"KEINE Schocklage beim kardiogenen Schock! Beine hoch würden zusätzliches Blut zum ohnehin überlasteten Herzen schieben → Lungenödem verschlimmert sich. Stattdessen: Oberkörper hoch (entlastet Herz, erleichtert Atmung)."},{"situation":"Der Patient sitzt mit erhöhtem Oberkörper.","frage":"Welche weiteren Maßnahmen ergreifst du?","optionen":["Patient zum Gehen animieren","Absolute Ruhe, beengende Kleidung öffnen, O₂-Gabe, Notarzt","Schocklage, Wasser anbieten","Oberkörper flach, Beine hoch"],"korrekt":1,"erklaerung":"Absolute Ruhe (jede Belastung = höherer O₂-Bedarf des Herzens), beengende Kleidung öffnen (Krawatte, Gürtel), O₂ bei SpO₂ < 94 %, Notarzt. Patient beruhigen. KEINE körperliche Anstrengung zulassen!"}]},{"title":"Neurogener Schock nach Sturz aus Höhe","beschreibung":"Ein Arbeiter ist vom Baugerüst aus 4 Metern auf den Rücken gefallen. Er kann seine Beine nicht mehr bewegen.","schritte":[{"situation":"Bauarbeiter (40 Jahre), Sturz vom Gerüst auf den Rücken. Er ist wach, klagt über starke Rückenschmerzen und sagt: 'Ich spüre meine Beine nicht mehr!'","frage":"Woran denkst du sofort?","optionen":["Panikreaktion","Wirbelsäulenverletzung mit möglicher Querschnittssymptomatik","Apoplex (Schlaganfall)","Hypoglykämie (Unterzuckerung)"],"korrekt":1,"erklaerung":"Sturz aus Höhe + Lähmung (Paralyse) der Beine = dringender Verdacht auf Wirbelsäulenverletzung mit Querschnitt. Sofort HWS und Wirbelsäule immobilisieren — KEINE unnötigen Bewegungen!"},{"situation":"Du misst die Vitalwerte: RR 80/50, Puls 55/min, Haut warm und trocken.","frage":"Was ist hier auffällig und ungewöhnlich?","optionen":["Alles normal","Der Puls müsste bei diesem niedrigen RR eigentlich hoch sein — stattdessen Bradykardie!","Die Haut müsste feucht sein","Der RR ist normal"],"korrekt":1,"erklaerung":"Normalerweise kompensiert der Körper Hypotonie mit Tachykardie. Hier: Bradykardie trotz Hypotonie + warme trockene Haut → typisch für neurogenen Schock durch Ausfall des Sympathikus (Teil des vegetativen Nervensystems)."},{"situation":"Bradykardie + Hypotonie + warme Haut + Wirbelsäulentrauma.","frage":"Welcher Schocktyp liegt vor?","optionen":["Hypovolämisch","Kardiogen","Neurogener (spinaler) Schock","Septisch"],"korrekt":2,"erklaerung":"Neurogener Schock: Durch Unterbrechung der Sympathikusfasern im Rückenmark fallen Herzfrequenz- und Gefäßtonussteuerung aus. Typisch: Bradykardie statt Tachykardie, warme Haut statt kalt-feucht."},{"situation":"Wie lagerst und versorgst du den Patienten?","frage":"Welche Maßnahmen sind korrekt?","optionen":["Schocklage (Beine hoch)","Sitzend, Oberkörper hoch","Flach lagern, HWS und Wirbelsäule immobilisieren, Wärmeerhalt, Notarzt","Stabile Seitenlage"],"korrekt":2,"erklaerung":"Flach lagern (keine Rotation/Hebung der Wirbelsäule), HWS-Immobilisation, Log-Roll (seitliches Drehen am Stück) nur wenn unverzichtbar mit mind. 3 Helfern. Wärmeerhalt besonders wichtig — der Körper kann die Temperatur nicht mehr regulieren (thermoregulatorisches Versagen)."}]},{"title":"Septischer Schock bei Infektion","beschreibung":"Eine ältere Dame wird zunehmend verwirrt. Angehörige berichten von einem Harnwegsinfekt seit mehreren Tagen.","schritte":[{"situation":"Frau (78 Jahre). Tochter ruft dich, weil die Mutter plötzlich verwirrt ist, wirres Zeug redet und sich heiß anfühlt. Seit 3 Tagen bekannter Harnwegsinfekt ohne Antibiotikum.","frage":"Woran musst du bei neu aufgetretener Verwirrtheit im Kontext einer Infektion denken?","optionen":["Demenz","Sepsis (Blutvergiftung) mit beginnendem septischem Schock","Apoplex (Schlaganfall)","Reine Austrocknung"],"korrekt":1,"erklaerung":"Neu aufgetretene Verwirrtheit + Infektion = Alarmsignal für Sepsis! Bei älteren Menschen ist Verwirrtheit oft das erste Sepsiszeichen. Infektion → systemische Entzündungsreaktion → Vasodilatation → Schock."},{"situation":"Du misst: Temperatur 39,2 °C, RR 85/50, Puls 120, AF 26, SpO₂ 94 %. Du fasst die Hand an — sie ist warm und trocken.","frage":"Warme Haut trotz Schockzeichen — passt das zusammen?","optionen":["Nein, ein Widerspruch — kann kein Schock sein","Ja, typisch für distributive Schockformen (septisch): initial warme Haut durch Vasodilatation","Die Messwerte müssen falsch sein","Es ist nur Fieber, kein Schock"],"korrekt":1,"erklaerung":"Septischer Schock zeigt <u>initial</u> warme, gut durchblutete Haut (warmer Schock) durch Vasodilatation. Irreführend — Tachykardie und Hypotonie verraten den Schock trotzdem. Später kippt es oft in einen kalten Schock."},{"situation":"Du erkennst den septischen Schock.","frage":"Welche Maßnahmen kannst du als Sanitäter durchführen?","optionen":["Antibiotika verabreichen","Flach lagern, Wärmeerhalt (trotz Fieber gegen Auskühlung), O₂ bei SpO₂ < 94 %, engmaschig überwachen, Rettungsdienst","Volumen intravenös geben","Nichts — nur warten"],"korrekt":1,"erklaerung":"Ursächliche Therapie (Antibiotikum, Volumengabe) nur in der Klinik möglich. Deine Rolle: Sepsis erkennen, stabilisieren (Lagerung, Wärmeerhalt, O₂), schnell ins Krankenhaus. Zeit ist kritisch — 'Time is Tissue' bei Sepsis."},{"situation":"Der Rettungsdienst trifft ein. Du übergibst.","frage":"Welche Information ist besonders wichtig?","optionen":["Nur die aktuellen Vitalwerte","Bekannter Infektfokus (Harnwegsinfekt seit 3 Tagen), neu aufgetretene Verwirrtheit, alle Vitalwerte mit Uhrzeiten","Nur das Fieber","Nur der niedrige Blutdruck"],"korrekt":1,"erklaerung":"Bei Sepsis zählen Infektionsfokus (Quelle) und Verlauf: Seit wann Infekt? Seit wann Verwirrtheit? Vitalwerte mit Zeitstempeln. Das hilft Rettungsdienst und Klinik, qSOFA/SOFA-Kriterien (Sepsis-Scores) einzuschätzen und schnell zu behandeln."}]}];
+function initDataSync(){return Promise.resolve();}
+// ===================== INFO MODE =====================
+function showInfoSection(section, btn) {
+    document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const c = document.getElementById('info-content');
+
+    if (section === 'xabcde') {
+        c.innerHTML = xabcdeData.map(g => `
+            <div class="mb-4">
+                <h5 class="d-flex align-items-center mb-3">
+                    ${g.badge ? `<span class="step-badge ${g.badgeClass}">${g.badge}</span>` : ''}
+                    ${g.step}
+                </h5>
+                ${g.items.map(i => `
+                    <div class="card info-card mb-2">
+                        <div class="card-body py-2 px-3">
+                            <h6>${i.name} ${i.trauma ? '<span class="trauma-badge">Trauma</span>' : ''}</h6>
+                            <p class="mb-0 small text-muted">${i.detail}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `).join('');
+    } else if (section === 'sample') {
+        c.innerHTML = `
+            <h5 class="mb-3"><span class="step-badge step-s">S</span> SAMPLE — Anamnese (Befragung)</h5>
+            ${sampleData.map(s => `
+                <div class="card info-card mb-2">
+                    <div class="card-body py-2 px-3">
+                        <h6><strong>${s.letter}</strong> — ${s.name}</h6>
+                        <p class="mb-0 small text-muted">${s.detail}</p>
+                    </div>
+                </div>
+            `).join('')}
+        `;
+    } else if (section === 'notfaelle') {
+        c.innerHTML = notfallbilder.map(cat => `
+            <div class="mb-4">
+                <h5 class="mb-3">${cat.category}</h5>
+                ${cat.conditions.map(co => `
+                    <div class="card info-card mb-2">
+                        <div class="card-body py-2 px-3">
+                            <h6 class="fw-bold">${co.name}</h6>
+                            <p class="mb-1 small"><strong>Symptome:</strong> ${co.symptoms}</p>
+                            <p class="mb-0 small text-muted"><strong>Maßnahmen:</strong> ${co.action}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `).join('');
+    }
+}
+
+// ===================== QUIZ =====================
+let quizQuestions = [], currentQuestion = 0, quizScore = 0, quizAnswered = false, quizCategory = 'alle';
+
+function shuffleArr(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function pickWrong(pool, correct, count) {
+    const wrong = shuffleArr(pool.filter(x => x !== correct));
+    return wrong.slice(0, Math.min(count, wrong.length));
+}
+
+function buildQuizQuestions(category) {
+    const qs = [];
+    const allItems = xabcdeData.flatMap(g => g.items.map(i => i.name));
+
+    // xABCDE: Welcher Prüfpunkt gehört zu [Step]?
+    if (category === 'xabcde' || category === 'alle') {
+        xabcdeData.forEach(g => {
+            if (!g.badge) return;
+            g.items.forEach(item => {
+                const w = pickWrong(allItems, item.name, 3);
+                if (w.length > 0) qs.push({ question: `Welcher Prüfpunkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
+            });
+        });
+
+        // xABCDE: Zu welchem Schritt gehört [Prüfpunkt]?
+        xabcdeData.forEach(g => {
+            if (!g.badge) return;
+            const otherSteps = xabcdeData.filter(x => x.badge && x.badge !== g.badge).map(x => x.step);
+            g.items.forEach(item => {
+                const w = shuffleArr(otherSteps).slice(0, 3);
+                if (w.length > 0) qs.push({ question: `Zu welchem Schritt gehört <strong>${item.name}</strong>?`, correct: g.step, options: shuffleArr([g.step, ...w]), detail: item.detail });
+            });
+        });
+    }
+
+    // SAMPLE
+    if (category === 'alle') {
+        sampleData.forEach(s => {
+            const w = pickWrong(sampleData.map(x => x.name), s.name, 3);
+            if (w.length > 0) qs.push({ question: `Wofür steht <strong>${s.letter}</strong> in SAMPLE?`, correct: s.name, options: shuffleArr([s.name, ...w]), detail: s.detail });
+        });
+    }
+
+    // Notfallbilder
+    if (category === 'alle') {
+        const allC = notfallbilder.flatMap(c => c.conditions);
+        if (allC.length >= 2) {
+            allC.forEach(c => {
+                const w = pickWrong(allC.map(x => x.name), c.name, 3);
+                if (w.length > 0) qs.push({ question: `Welches Notfallbild passt?\n\n<em>${c.symptoms}</em>`, correct: c.name, options: shuffleArr([c.name, ...w]), detail: 'Maßnahmen: ' + c.action });
+            });
+        }
+    }
+
+    // Normalwerte
+    if (category === 'alle' && normalwerteData && normalwerteData.length >= 2) {
+        normalwerteData.forEach(v => {
+            const w = pickWrong(normalwerteData.map(x => x.normal), v.normal, 3);
+            if (w.length > 0) qs.push({ question: `Was ist der Normalwert für <strong>${v.name}</strong>?`, correct: v.normal, options: shuffleArr([v.normal, ...w]), detail: v.hinweis || '' });
+        });
+    }
+
+    return shuffleArr(qs);
+}
+
+function showQuizMenu() {
+    document.getElementById('quiz-menu').classList.remove('d-none');
+    document.getElementById('quiz-active').classList.add('d-none');
+}
+
+function startQuizCategory(cat) {
+    quizCategory = cat;
+    quizQuestions = buildQuizQuestions(cat);
+    currentQuestion = 0; quizScore = 0; quizAnswered = false;
+    document.getElementById('quiz-menu').classList.add('d-none');
+    document.getElementById('quiz-active').classList.remove('d-none');
+    renderQuiz();
+}
+
+function renderQuiz() {
+    const area = document.getElementById('quiz-area');
+    const total = quizQuestions.length;
+
+    if (currentQuestion >= total) {
+        const pct = total > 0 ? Math.round((quizScore / total) * 100) : 0;
+        const sc = pct >= 80 ? 'train-score-good' : pct >= 50 ? 'train-score-ok' : 'train-score-bad';
+        area.innerHTML = `
+            <div class="card shadow-sm"><div class="card-body text-center p-3">
+                <h5>Quiz beendet!</h5>
+                <p class="display-5 fw-bold ${sc}">${pct}%</p>
+                <p class="text-muted small">${quizScore} von ${total} richtig</p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="showQuizMenu()">Andere Kategorie</button>
+                    <button class="btn btn-danger btn-sm" onclick="startQuizCategory('${quizCategory}')">Nochmal</button>
+                </div>
+            </div></div>`;
+        document.getElementById('quiz-label').textContent = 'Ergebnis';
+        document.getElementById('quiz-progress').style.width = '100%';
+        return;
+    }
+
+    const q = quizQuestions[currentQuestion];
+    document.getElementById('quiz-label').textContent = `Frage ${currentQuestion + 1} / ${total}`;
+    document.getElementById('quiz-progress').style.width = `${(currentQuestion / total) * 100}%`;
+
+    area.innerHTML = `
+        <div class="card shadow-sm"><div class="card-body p-3">
+            <p class="small mb-3">${q.question}</p>
+            <div class="d-grid gap-2">
+                ${q.options.map((o, i) => `<button class="btn btn-outline-secondary text-start quiz-option py-2 px-3" id="opt-${i}" onclick="answerQuiz(${i})">${o}</button>`).join('')}
+            </div>
+            <div id="quiz-feedback" class="mt-3 d-none"></div>
+            <div id="quiz-next" class="mt-3 d-none text-end">
+                <button class="btn btn-danger btn-sm" onclick="nextQuestion()">Weiter</button>
+            </div>
+        </div></div>`;
+}
+
+function answerQuiz(i) {
+    if (quizAnswered) return; quizAnswered = true;
+    const q = quizQuestions[currentQuestion], ok = q.options[i] === q.correct;
+    if (ok) quizScore++;
+    q.options.forEach((o, j) => {
+        const el = document.getElementById(`opt-${j}`);
+        if (o === q.correct) el.classList.add('quiz-correct');
+        if (j === i && !ok) el.classList.add('quiz-wrong');
+        el.disabled = true;
+    });
+    const fb = document.getElementById('quiz-feedback'); fb.classList.remove('d-none');
+    let html = ok ? '<span class="text-success fw-bold small">Richtig!</span>' : `<span class="text-danger fw-bold small">Falsch.</span> <span class="text-muted small">Richtig: ${q.correct}</span>`;
+    if (q.detail) html += `<p class="text-muted small mt-2 mb-0">${q.detail}</p>`;
+    fb.innerHTML = html;
+    document.getElementById('quiz-next').classList.remove('d-none');
+}
+
+function nextQuestion() { currentQuestion++; quizAnswered = false; renderQuiz(); }
+
+// ===================== NORMALWERTE =====================
+function renderValues() {
+    const c = document.getElementById('values-content');
+    if (!normalwerteData || !normalwerteData.length) {
+        c.innerHTML = '<p class="text-muted">Keine Normalwerte vorhanden.</p>';
+        return;
+    }
+    c.innerHTML = `
+        <h5 class="mb-3">Normalwerte &amp; Grenzwerte</h5>
+        ${normalwerteData.map(v => `
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body p-3">
+                    <h6 class="fw-bold mb-2">${v.name}</h6>
+                    <table class="table table-sm table-borderless mb-1" style="font-size:.85rem">
+                        <tr>
+                            <td class="text-success fw-bold" style="width:30%">Normal</td>
+                            <td>${v.normal}</td>
+                        </tr>
+                        ${v.niedrig ? `<tr>
+                            <td class="text-primary fw-bold">Zu niedrig</td>
+                            <td>${v.niedrig.replace(/\n/g, '<br>')}</td>
+                        </tr>` : ''}
+                        ${v.hoch ? `<tr>
+                            <td class="text-danger fw-bold">Zu hoch</td>
+                            <td>${v.hoch.replace(/\n/g, '<br>')}</td>
+                        </tr>` : ''}
+                    </table>
+                    ${v.hinweis ? `<p class="text-muted small mb-0"><strong>Hinweis:</strong> ${v.hinweis}</p>` : ''}
+                </div>
+            </div>
+        `).join('')}
+    `;
+}
+
+// ===================== ABLAUF =====================
+function renderAblauf() {
+    const c = document.getElementById('ablauf-content');
+    if (!ablaufData) {
+        c.innerHTML = '<p class="text-muted">Kein Ablauf vorhanden.</p>';
+        return;
+    }
+    const dialog = ablaufData.uebergabe_beispiel;
+    c.innerHTML = `
+        <h5 class="mb-3">${ablaufData.title}</h5>
+        ${ablaufData.steps.map((s, i) => `
+            <div class="card mb-2 shadow-sm" style="border-left: 4px solid #dc3545">
+                <div class="card-body p-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="step-badge step-x" style="width:30px;height:30px;font-size:.85rem;line-height:30px">${s.icon}</span>
+                        <h6 class="fw-bold mb-0">${s.title}</h6>
+                    </div>
+                    <ul class="mb-0 small" style="padding-left:1.2rem">
+                        ${s.actions.map(a => `<li class="mb-1">${a}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `).join('')}
+
+        ${dialog ? `
+            <hr class="my-4">
+            <h5 class="mb-2">${dialog.title}</h5>
+            <p class="text-muted small mb-3"><strong>Szenario:</strong> ${dialog.szenario}</p>
+            ${dialog.dialog.map(d => `
+                <div class="d-flex mb-2 ${d.rolle === 'Sanitäter' ? '' : 'flex-row-reverse'}">
+                    <div class="card shadow-sm" style="max-width:85%;border-left:3px solid ${d.rolle === 'Sanitäter' ? '#dc3545' : '#0d6efd'}">
+                        <div class="card-body p-2 px-3">
+                            <small class="fw-bold" style="color:${d.rolle === 'Sanitäter' ? '#dc3545' : '#0d6efd'}">${d.rolle}</small>
+                            <p class="mb-0 small">${d.text}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        ` : ''}
+    `;
+}
+
+// ===================== SZENARIO =====================
+let szenarien = [], szenarioCurrent = 0, szenarioStep = 0, szenarioScore = 0, szenarioAnswered = false;
+
+function startSzenarioMenu() {
+    const area = document.getElementById('szenario-area');
+    if (!szenarien || !szenarien.length) {
+        area.innerHTML = '<p class="text-muted">Keine Szenarien vorhanden.</p>';
+        return;
+    }
+    area.innerHTML = `
+        <h5 class="mb-3">Szenario wählen</h5>
+        <div class="d-grid gap-2">
+            <button class="btn btn-danger text-start py-3 px-3" onclick="startRandomSzenario()">
+                <strong>Zufällig</strong><br><small>Ein zufälliges Szenario starten</small>
+            </button>
+            ${szenarien.map((s, i) => `
+                <button class="btn btn-outline-danger text-start py-3 px-3" onclick="startSzenario(${i})">
+                    <strong>${s.title}</strong><br><small class="text-muted">${s.beschreibung}</small>
+                </button>
+            `).join('')}
+        </div>
+    `;
+}
+
+function startRandomSzenario() {
+    if (!szenarien || !szenarien.length) return;
+    const i = Math.floor(Math.random() * szenarien.length);
+    startSzenario(i);
+}
+
+function startSzenario(index) {
+    szenarioCurrent = index;
+    szenarioStep = 0;
+    szenarioScore = 0;
+    szenarioAnswered = false;
+    renderSzenario();
+}
+
+function renderSzenario() {
+    const area = document.getElementById('szenario-area');
+    const sz = szenarien[szenarioCurrent];
+    const total = sz.schritte.length;
+
+    if (szenarioStep >= total) {
+        const pct = Math.round((szenarioScore / total) * 100);
+        const sc = pct >= 80 ? 'train-score-good' : pct >= 50 ? 'train-score-ok' : 'train-score-bad';
+        area.innerHTML = `
+            <div class="card shadow-sm"><div class="card-body text-center p-3">
+                <h5>${sz.title}</h5>
+                <p class="display-5 fw-bold ${sc}">${szenarioScore} / ${total}</p>
+                <p class="text-muted small">${pct >= 80 ? 'Sehr gut!' : pct >= 50 ? 'Gut, aber noch Luft nach oben.' : 'Weiter üben!'}</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="startSzenarioMenu()">Andere Szenarien</button>
+                    <button class="btn btn-danger btn-sm" onclick="startSzenario(${szenarioCurrent})">Nochmal</button>
+                </div>
+            </div></div>`;
+        return;
+    }
+
+    const step = sz.schritte[szenarioStep];
+    area.innerHTML = `
+        <div class="card shadow-sm"><div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="small fw-bold">${sz.title}</span>
+                <span class="text-muted small">Schritt ${szenarioStep + 1} / ${total}</span>
+            </div>
+            <div class="progress mb-3" style="height:4px">
+                <div class="progress-bar bg-danger" style="width:${(szenarioStep / total) * 100}%"></div>
+            </div>
+            <p class="small mb-2" style="background:#f8f9fa;padding:.6rem;border-radius:.4rem;border-left:3px solid #6c757d"><em>${step.situation}</em></p>
+            <p class="fw-bold small mb-3">${step.frage}</p>
+            <div class="d-grid gap-2">
+                ${step.optionen.map((o, i) => `<button class="btn btn-outline-secondary text-start quiz-option py-2 px-3" id="sz-opt-${i}" onclick="answerSzenario(${i})">${o}</button>`).join('')}
+            </div>
+            <div id="sz-feedback" class="mt-3 d-none"></div>
+            <div id="sz-next" class="mt-3 d-none text-end">
+                <button class="btn btn-danger btn-sm" onclick="nextSzenarioStep()">Weiter</button>
+            </div>
+        </div></div>`;
+}
+
+function answerSzenario(i) {
+    if (szenarioAnswered) return;
+    szenarioAnswered = true;
+    const step = szenarien[szenarioCurrent].schritte[szenarioStep];
+    const ok = i === step.korrekt;
+    if (ok) szenarioScore++;
+
+    step.optionen.forEach((_, j) => {
+        const el = document.getElementById(`sz-opt-${j}`);
+        if (j === step.korrekt) el.classList.add('quiz-correct');
+        if (j === i && !ok) el.classList.add('quiz-wrong');
+        el.disabled = true;
+    });
+
+    const fb = document.getElementById('sz-feedback');
+    fb.classList.remove('d-none');
+    fb.innerHTML = (ok ? '<span class="text-success fw-bold small">Richtig!</span>' : '<span class="text-danger fw-bold small">Falsch.</span>') +
+        `<p class="text-muted small mt-2 mb-0">${step.erklaerung}</p>`;
+    document.getElementById('sz-next').classList.remove('d-none');
+}
+
+function nextSzenarioStep() {
+    szenarioStep++;
+    szenarioAnswered = false;
+    renderSzenario();
+}
+
+// ===================== INIT =====================
+initDataSync().then(() => {
+    // Szenarien laden (aus data.json via initDataSync oder eingebettet)
+    if (typeof szenarienData !== 'undefined' && szenarienData) szenarien = szenarienData;
+
+    showInfoSection('xabcde', null);
+    document.querySelector('#info .btn-group .btn').classList.add('active');
+    document.querySelector('[data-bs-target="#quiz"]').addEventListener('shown.bs.tab', () => showQuizMenu());
+    document.querySelector('[data-bs-target="#values"]').addEventListener('shown.bs.tab', () => renderValues());
+    document.querySelector('[data-bs-target="#ablauf"]').addEventListener('shown.bs.tab', () => renderAblauf());
+    document.querySelector('[data-bs-target="#szenario"]').addEventListener('shown.bs.tab', () => startSzenarioMenu());
+});
+</script>
+</body>
+</html>
