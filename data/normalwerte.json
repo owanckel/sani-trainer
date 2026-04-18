@@ -4,7 +4,7 @@
     "normal": "12–20 /min",
     "niedrig": "< 10 /min (Bradypnoe / verlangsamte Atmung)",
     "hoch": "> 20 /min (Tachypnoe / beschleunigte Atmung)",
-    "hinweis": "30 Sekunden zählen und verdoppeln"
+    "hinweis": "15 Sekunden zählen und mit 4 multiplizieren"
   },
   {
     "name": "Sauerstoffsättigung (SpO₂)",

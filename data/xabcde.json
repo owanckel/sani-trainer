@@ -67,7 +67,7 @@
       },
       {
         "name": "Atemfrequenz?",
-        "detail": "Normale Atemfrequenz Erwachsener: 12–20/min. Zu schnell (Tachypnoe >20, beschleunigte Atmung): Atemnot, Schock, Schmerz. Zu langsam (Bradypnoe <10, verlangsamte Atmung): Erschöpfung, Intoxikation (Vergiftung), SHT (Schädel-Hirn-Trauma). 30 Sekunden zählen und verdoppeln.",
+        "detail": "Normale Atemfrequenz Erwachsener: 12–20/min. Zu schnell (Tachypnoe >20, beschleunigte Atmung): Atemnot, Schock, Schmerz. Zu langsam (Bradypnoe <10, verlangsamte Atmung): Erschöpfung, Intoxikation (Vergiftung), SHT (Schädel-Hirn-Trauma). 15 Sekunden zählen und mit 4 multiplizieren.",
         "trauma": false
       },
       {
