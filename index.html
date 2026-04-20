@@ -1491,13 +1491,13 @@ function pickWrong(pool, correct, count) {
 
 function buildQuizQuestions(category) {
     const qs = [];
-    const allItems = xabcdeData.flatMap(g => g.items.map(i => i.name));
 
     if (category === 'xabcde' || category === 'alle') {
         xabcdeData.forEach(g => {
             if (!g.badge) return;
+            const otherStepItems = xabcdeData.filter(x => x.badge && x.badge !== g.badge).flatMap(x => x.items.map(i => i.name));
             g.items.forEach(item => {
-                const w = pickWrong(allItems, item.name, 3);
+                const w = pickWrong(otherStepItems, item.name, 3);
                 if (w.length > 0) qs.push({ question: `Welcher Prüfpunkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
             });
         });
@@ -1546,10 +1546,10 @@ function buildQuizQuestions(category) {
     }
 
     if ((category === 'reanimation' || category === 'alle') && reanimationData && reanimationData.length >= 2) {
-        const allItems = reanimationData.flatMap(g => g.items.map(i => i.name));
         reanimationData.forEach(g => {
+            const otherStepItems = reanimationData.filter(x => x.step !== g.step).flatMap(x => x.items.map(i => i.name));
             g.items.forEach(item => {
-                const w = pickWrong(allItems, item.name, 3);
+                const w = pickWrong(otherStepItems, item.name, 3);
                 if (w.length > 0) qs.push({ question: `Welcher Punkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
             });
         });

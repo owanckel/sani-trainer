@@ -22,7 +22,7 @@
           "Pupillen mit Taschenlampe prüfen",
           "Laut ansprechen und an den Schultern rütteln",
           "Blutdruck messen",
-          "Schmerzreiz am Nagelbett setzen"
+          "Sofort mit Reanimation beginnen"
         ],
         "korrekt": 1,
         "erklaerung": "Ansprechen und Anfassen — laut und deutlich: 'Hallo, können Sie mich hören?' + vorsichtiges Rütteln an beiden Schultern."
@@ -31,7 +31,7 @@
         "situation": "Der Patient reagiert nicht auf Ansprache und Rütteln.",
         "frage": "Was ist dein nächster Schritt?",
         "optionen": [
-          "Rettungsdienst rufen",
+          "Sofort reanimieren ohne weitere Prüfung",
           "Atemwege freimachen und Atmung prüfen",
           "Stabile Seitenlage",
           "Blutzucker messen"
@@ -271,8 +271,8 @@
         "situation": "Du erkennst die Anaphylaxie. Der Rettungsdienst ist alarmiert.",
         "frage": "Wie lagerst du den Patienten?",
         "optionen": [
-          "Oberkörper hoch wegen der Atemnot",
-          "Flach mit Beinen hoch wegen des niedrigen Blutdrucks",
+          "Trendelenburg-Lagerung: Kopf tief, Beine hoch",
+          "Kutschersitz: sitzend, vorne auf den Armen gestützt",
           "Es kommt drauf an: bei Atemnot Oberkörper hoch, bei Schock ohne Atemnot Beine hoch",
           "Stabile Seitenlage"
         ],
@@ -369,7 +369,7 @@
         "optionen": [
           "SAMPLE-Anamnese",
           "BE-FAST",
-          "Blutzucker messen",
+          "Körpertemperatur messen",
           "Blutdruck messen"
         ],
         "korrekt": 1,
@@ -487,7 +487,7 @@
         "situation": "Du drückst auf die Wunde, aber das Blut sickert weiter durch. Der Druckverband hält nicht.",
         "frage": "Was ist der nächste Schritt?",
         "optionen": [
-          "Mehr Verbandmaterial draufpacken und weiter drücken",
+          "Wundverband abnehmen, Wunde reinigen und neu verbinden",
           "Tourniquet (Abbindesystem) proximal (körpernah) der Verletzung anlegen",
           "Arm ins kalte Wasser halten",
           "Abwarten bis der Rettungsdienst kommt"
@@ -556,7 +556,7 @@
           "Nur Name und Adresse",
           "Erstmaliger Anfall? Bekannte Epilepsie? Medikamente? Wie lange hat der Anfall gedauert?",
           "Blutgruppe",
-          "Ob er heute schon gegessen hat"
+          "Ob er regelmäßig Sport treibt"
         ],
         "korrekt": 1,
         "erklaerung": "Wichtige Infos für den Rettungsdienst: Erstmaliger Anfall (dann immer Klinik!)? Bekannte Epilepsie + Medikamente? Dauer des Anfalls? Was war vorher (Auslöser)? Hat der Patient sich verletzt (Kopf, Zunge)?"
