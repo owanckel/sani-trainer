@@ -302,12 +302,6 @@ body > .container-fluid, main.container-fluid {
     color: var(--accent-1);
     box-shadow: inset 0 0 0 1px var(--border-accent);
 }
-.sub-pills .sub-pill-modal::after {
-    content: '↗';
-    margin-left: 6px;
-    opacity: 0.6;
-    font-size: 0.85em;
-}
 @media (max-width: 576px) {
     .sub-pills .sub-pill { font-size: 0.68rem; padding: 6px 11px; }
     .sub-pills { margin-bottom: 0.75rem !important; }
@@ -1550,7 +1544,7 @@ hr {
                 <ul class="sub-pills" id="ueben-sub-pills" role="tablist" aria-label="Übungs-Bereiche">
                     <li role="presentation"><button class="sub-pill active" type="button" data-section="quiz" onclick="showUebenSection('quiz', this)">Quiz</button></li>
                     <li role="presentation"><button class="sub-pill" type="button" data-section="szenario" onclick="showUebenSection('szenario', this)">Szenario</button></li>
-                    <li role="presentation"><button class="sub-pill sub-pill-modal" type="button" onclick="openUebergabeModal()" title="Übergabe-Schema (Cheatsheet)">Übergabe</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" onclick="openUebergabeModal()" title="Übergabe-Schema (Cheatsheet)">Übergabe</button></li>
                 </ul>
                 <section class="hero">
                     <h1 class="hero-title" id="ueben-hero-title">Quiz<span class="hero-dot">.</span></h1>
