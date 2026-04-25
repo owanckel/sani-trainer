@@ -54,10 +54,16 @@
     --r-lg: 20px;
     --r-xl: 28px;
     --shadow-card: 0 20px 50px -20px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
+    --nav-h: 60px;
+    --pills-h: 50px;
+    --sticky-offset: calc(var(--nav-h) + var(--pills-h));
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--sticky-offset) + 12px);
+}
 
 body {
     margin: 0;
@@ -133,7 +139,7 @@ body > .container-fluid {
 }
 .brand-logo::before { top: 7px; bottom: 7px; left: 14px; width: 4px; }
 .brand-logo::after  { left: 7px; right: 7px; top: 14px; height: 4px; }
-.brand-text { display: flex; flex-direction: column; line-height: 1; gap: 4px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-main {
     font-family: var(--font-display);
     font-weight: 700;
@@ -144,48 +150,17 @@ body > .container-fluid {
     background-clip: text;
     color: transparent;
 }
-.brand-sub {
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-}
-.nav-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: rgba(74, 222, 128, 0.10);
-    border: 1px solid rgba(74, 222, 128, 0.28);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    color: #A5F3B5;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-.status-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--success);
-    box-shadow: 0 0 8px var(--success-glow);
-    animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse { 50% { opacity: 0.4; } }
 
 /* ===== Top Tab Pills ===== */
 .nav-pills {
     display: flex !important;
     gap: 4px !important;
     padding: 5px !important;
-    background: var(--surface);
+    background: rgba(10, 14, 26, 0.78);
     border: 1px solid var(--border);
     border-radius: 999px;
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
     margin: 0 auto 1.5rem !important;
     width: fit-content;
     max-width: 100%;
@@ -193,6 +168,9 @@ body > .container-fluid {
     scrollbar-width: none;
     justify-content: flex-start !important;
     flex-wrap: nowrap !important;
+    position: sticky;
+    top: calc(var(--nav-h) + 8px);
+    z-index: 50;
 }
 .nav-pills::-webkit-scrollbar { display: none; }
 .nav-pills .nav-link {
@@ -1003,6 +981,10 @@ hr {
 
 /* ===== Mobile ===== */
 @media (max-width: 576px) {
+    :root {
+        --nav-h: 52px;
+        --pills-h: 44px;
+    }
     body { font-size: 14.5px; }
     .step-badge { width: 32px; height: 32px; font-size: 0.9rem; border-radius: 10px; }
     .navbar { padding: 12px 0 !important; }
@@ -1010,8 +992,6 @@ hr {
     .brand-logo::before { top: 6px; bottom: 6px; left: 12px; width: 4px; }
     .brand-logo::after  { left: 6px; right: 6px; top: 12px; height: 4px; }
     .brand-main { font-size: 0.82rem; }
-    .brand-sub { font-size: 0.5rem; letter-spacing: 0.2em; }
-    .nav-status { padding: 5px 9px; font-size: 0.55rem; letter-spacing: 0.16em; }
     h5 { font-size: 1.05rem; }
     h6 { font-size: 0.9rem; }
     .nav-pills .nav-link { font-size: 0.72rem !important; padding: 8px 12px !important; }
@@ -1388,9 +1368,9 @@ hr {
     border-left: 1.5px solid var(--text-muted);
 }
 
-/* Hero-Animation beim Tab-Wechsel */
-.tab-pane.show.active > .hero .hero-title {
-    animation: fadeUp 0.5s cubic-bezier(.25,.46,.45,.94) both;
+/* Hero-Animation beim Titel-Wechsel */
+.hero-title.flash {
+    animation: fadeUp 0.4s cubic-bezier(.25,.46,.45,.94) both;
 }
 
 /* Mobile Hero */
@@ -1398,6 +1378,19 @@ hr {
     .hero { padding: 20px 16px 28px; margin-bottom: 10px; }
     .hero-title { font-size: clamp(1.1rem, 6.5vw, 1.8rem); }
     .hero-bracket { width: 14px; height: 14px; }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .hero-ecg { display: none; }
+    .navbar::after { animation: none; opacity: 0.5; }
+    .brand-logo { animation: none; }
 }
 </style>
 </head>
@@ -1413,73 +1406,56 @@ hr {
         </div>
     </nav>
 
-    <div class="container-fluid px-2 px-sm-3 py-3">
+    <main class="container-fluid px-2 px-sm-3 py-3">
         <ul class="nav nav-pills justify-content-center gap-1 mb-3" role="tablist">
-            <li class="nav-item"><button class="nav-link active px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#info" type="button">Nachschlagen</button></li>
-            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#values" type="button">Vitalwerte</button></li>
-            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#quiz" type="button">Quiz</button></li>
-            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#szenario" type="button">Szenario</button></li>
-            <li class="nav-item"><button class="nav-link px-2 px-sm-3" data-bs-toggle="pill" data-bs-target="#uebergabe" type="button">Übergabe</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link active px-2 px-sm-3" id="tab-info" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true" data-title="Nachschlagen">Nachschlagen</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-values" data-bs-toggle="pill" data-bs-target="#values" type="button" role="tab" aria-controls="values" aria-selected="false" data-title="Vitalwerte">Vitalwerte</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-quiz" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab" aria-controls="quiz" aria-selected="false" data-title="Quiz">Quiz</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-szenario" data-bs-toggle="pill" data-bs-target="#szenario" type="button" role="tab" aria-controls="szenario" aria-selected="false" data-title="Szenario">Szenario</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-uebergabe" data-bs-toggle="pill" data-bs-target="#uebergabe" type="button" role="tab" aria-controls="uebergabe" aria-selected="false" data-title="Übergabe">Übergabe</button></li>
         </ul>
+
+        <section class="hero" id="page-hero">
+            <h1 class="hero-title" id="hero-title">Nachschlagen<span class="hero-dot">.</span></h1>
+            <div class="hero-ecg" aria-hidden="true"></div>
+            <div class="hero-bracket hero-bracket-tr"></div>
+            <div class="hero-bracket hero-bracket-bl"></div>
+        </section>
 
         <div class="tab-content">
             <!-- SZENARIO -->
-            <div class="tab-pane fade" id="szenario">
-                <section class="hero">
-                    <h1 class="hero-title">Szenario<span class="hero-dot">.</span></h1>
-                    <div class="hero-ecg" aria-hidden="true"></div>
-                    <div class="hero-bracket hero-bracket-tr"></div>
-                    <div class="hero-bracket hero-bracket-bl"></div>
-                </section>
+            <div class="tab-pane fade" id="szenario" role="tabpanel" aria-labelledby="tab-szenario">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-lg-8 col-md-10">
                         <div id="szenario-area"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- ABLAUF -->
-            <div class="tab-pane fade" id="uebergabe">
-                <section class="hero">
-                    <h1 class="hero-title">Übergabe<span class="hero-dot">.</span></h1>
-                    <div class="hero-ecg" aria-hidden="true"></div>
-                    <div class="hero-bracket hero-bracket-tr"></div>
-                    <div class="hero-bracket hero-bracket-bl"></div>
-                </section>
+            <!-- ÜBERGABE -->
+            <div class="tab-pane fade" id="uebergabe" role="tabpanel" aria-labelledby="tab-uebergabe">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-lg-8 col-md-10">
                         <div id="uebergabe-content"></div>
                     </div>
                 </div>
             </div>
 
             <!-- NORMALWERTE -->
-            <div class="tab-pane fade" id="values">
-                <section class="hero">
-                    <h1 class="hero-title">Vitalwerte<span class="hero-dot">.</span></h1>
-                    <div class="hero-ecg" aria-hidden="true"></div>
-                    <div class="hero-bracket hero-bracket-tr"></div>
-                    <div class="hero-bracket hero-bracket-bl"></div>
-                </section>
+            <div class="tab-pane fade" id="values" role="tabpanel" aria-labelledby="tab-values">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-lg-8 col-md-10">
                         <div id="values-content"></div>
                     </div>
                 </div>
             </div>
 
             <!-- INFO -->
-            <div class="tab-pane fade show active" id="info">
-                <section class="hero">
-                    <h1 class="hero-title" id="info-hero-title">Nachschlagen<span class="hero-dot">.</span></h1>
-                    <div class="hero-ecg" aria-hidden="true"></div>
-                    <div class="hero-bracket hero-bracket-tr"></div>
-                    <div class="hero-bracket hero-bracket-bl"></div>
-                </section>
+            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="tab-info">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-lg-8 col-md-10">
                         <div class="mb-3 text-center">
-                            <div class="btn-group btn-group-sm" role="group">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Nachschlagen-Bereiche">
                                 <button class="btn btn-outline-danger active" onclick="showInfoSection('xabcde', this)">xABCDE</button>
                                 <button class="btn btn-outline-danger" onclick="showInfoSection('sample', this)">SAMPLE</button>
                                 <button class="btn btn-outline-danger" onclick="showInfoSection('reanimation', this)">Reanimation</button>
@@ -1493,15 +1469,9 @@ hr {
             </div>
 
             <!-- QUIZ -->
-            <div class="tab-pane fade" id="quiz">
-                <section class="hero">
-                    <h1 class="hero-title">Quiz<span class="hero-dot">.</span></h1>
-                    <div class="hero-ecg" aria-hidden="true"></div>
-                    <div class="hero-bracket hero-bracket-tr"></div>
-                    <div class="hero-bracket hero-bracket-bl"></div>
-                </section>
+            <div class="tab-pane fade" id="quiz" role="tabpanel" aria-labelledby="tab-quiz">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-lg-8 col-md-10">
                         <div id="quiz-menu"></div>
                         <div id="quiz-active" class="d-none">
                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -1517,7 +1487,7 @@ hr {
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
@@ -1557,8 +1527,7 @@ async function showInfoSection(section, btn) {
     document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
     const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', reanimation: 'Reanimation', notfaelle: 'Notfallbilder', leitsymptome: 'Leitsymptome' };
-    const titleEl = document.getElementById('info-hero-title');
-    if (titleEl) titleEl.innerHTML = (titles[section] || 'Nachschlagen') + '<span class="hero-dot">.</span>';
+    setHeroTitle(titles[section] || 'Nachschlagen');
     const c = document.getElementById('info-content');
     const dataMap = { xabcde: 'xabcde', sample: 'sample', reanimation: 'reanimation', notfaelle: 'notfallbilder', leitsymptome: 'leitsymptome' };
     const dataKey = dataMap[section];
@@ -1827,8 +1796,7 @@ async function openNotfallbild(category, ref) {
     const idx = notfallbilder.findIndex(c => c.category === category);
     openCategories.clear();
     if (idx >= 0) openCategories.add(idx);
-    const titleEl = document.getElementById('info-hero-title');
-    if (titleEl) titleEl.innerHTML = 'Notfallbilder<span class="hero-dot">.</span>';
+    setHeroTitle('Notfallbilder');
     renderNotfaelle();
     requestAnimationFrame(() => {
         const cats = document.querySelectorAll('#info-content .accordion-cat');
@@ -1839,10 +1807,7 @@ async function openNotfallbild(category, ref) {
             if (h.textContent.trim() === ref) target = h.closest('.info-card');
         });
         const scrollTo = target || cat;
-        const nav = document.querySelector('.navbar.sticky-top');
-        const navH = nav ? nav.offsetHeight : 0;
-        const top = scrollTo.getBoundingClientRect().top + window.scrollY - navH - 12;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        scrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (target) {
             target.classList.add('ls-target-flash');
             setTimeout(() => target.classList.remove('ls-target-flash'), 2400);
@@ -2399,6 +2364,15 @@ async function ensureDataAndRender(dataKey, containerId, renderFn) {
     renderFn();
 }
 
+function setHeroTitle(text) {
+    const el = document.getElementById('hero-title');
+    if (!el) return;
+    el.innerHTML = text + '<span class="hero-dot">.</span>';
+    el.classList.remove('flash');
+    void el.offsetWidth;
+    el.classList.add('flash');
+}
+
 (async () => {
     showQuizMenu();
     await showInfoSection('xabcde', null);
@@ -2408,9 +2382,16 @@ async function ensureDataAndRender(dataKey, containerId, renderFn) {
     document.querySelector('[data-bs-target="#values"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('normalwerte', 'values-content', renderValues));
     document.querySelector('[data-bs-target="#uebergabe"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('uebergabe', 'uebergabe-content', renderUebergabe));
     document.querySelector('[data-bs-target="#szenario"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('szenarien', 'szenario-area', startSzenarioMenu));
-    document.querySelectorAll('.navbar [data-bs-toggle="pill"]').forEach(t => {
+    document.querySelectorAll('[data-bs-toggle="pill"]').forEach(t => {
         t.addEventListener('shown.bs.tab', e => {
-            if (e.target.getAttribute('data-bs-target') !== '#info') setLsBackBtn(false);
+            const target = e.target.getAttribute('data-bs-target');
+            if (target === '#info') {
+                const activeSub = document.querySelector('#info .btn-group .btn.active');
+                setHeroTitle(activeSub ? activeSub.textContent.trim() : 'Nachschlagen');
+            } else {
+                setHeroTitle(e.target.dataset.title || 'Sani-Trainer');
+                setLsBackBtn(false);
+            }
         });
     });
 })();
