@@ -302,6 +302,12 @@ body > .container-fluid, main.container-fluid {
     color: var(--accent-1);
     box-shadow: inset 0 0 0 1px var(--border-accent);
 }
+.sub-pills .sub-pill-modal::after {
+    content: '↗';
+    margin-left: 6px;
+    opacity: 0.6;
+    font-size: 0.85em;
+}
 @media (max-width: 576px) {
     .sub-pills .sub-pill { font-size: 0.68rem; padding: 6px 11px; }
     .sub-pills { margin-bottom: 0.75rem !important; }
@@ -1310,37 +1316,6 @@ hr {
     .hero-ecg { display: none; }
 }
 
-/* ===== Szenario Action Pill (Übergabe-Shortcut) ===== */
-.szenario-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin: -0.25rem 0 0.75rem;
-}
-.action-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 13px;
-    border-radius: 999px;
-    background: var(--surface);
-    border: 1px solid var(--border-2);
-    color: var(--text-muted);
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.74rem;
-    letter-spacing: 0.005em;
-    cursor: pointer;
-    transition: all 0.18s ease;
-}
-.action-pill:hover {
-    background: var(--gradient-accent-soft);
-    border-color: var(--border-accent);
-    color: var(--accent-1);
-    transform: translateY(-1px);
-}
-.action-pill:active { transform: translateY(0); }
-.action-pill-arrow { opacity: 0.7; font-size: 0.85em; }
-
 /* ===== Szenario Filter + Difficulty Badges ===== */
 .szenario-filters {
     display: flex;
@@ -1470,13 +1445,7 @@ hr {
     flex-shrink: 0;
 }
 
-/* ===== Navbar Icon Buttons (Theme + Übergabe) ===== */
-.nav-actions {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-}
+/* ===== Navbar Icon Button (Theme) ===== */
 .nav-icon-btn {
     display: inline-flex;
     align-items: center;
@@ -1542,15 +1511,10 @@ hr {
                     <span class="brand-main">SANI—TRAINER</span>
                 </span>
             </span>
-            <div class="nav-actions">
-                <button id="uebergabe-shortcut" class="nav-icon-btn" type="button" onclick="openUebergabeModal()" aria-label="Übergabe-Schema öffnen" title="Übergabe-Schema (Cheatsheet)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h6"/></svg>
-                </button>
-                <button id="theme-toggle" class="nav-icon-btn theme-toggle" type="button" aria-label="Theme wechseln" title="Theme wechseln">
-                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                </button>
-            </div>
+            <button id="theme-toggle" class="nav-icon-btn theme-toggle" type="button" aria-label="Theme wechseln" title="Theme wechseln">
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
         </div>
     </nav>
 
@@ -1586,6 +1550,7 @@ hr {
                 <ul class="sub-pills" id="ueben-sub-pills" role="tablist" aria-label="Übungs-Bereiche">
                     <li role="presentation"><button class="sub-pill active" type="button" data-section="quiz" onclick="showUebenSection('quiz', this)">Quiz</button></li>
                     <li role="presentation"><button class="sub-pill" type="button" data-section="szenario" onclick="showUebenSection('szenario', this)">Szenario</button></li>
+                    <li role="presentation"><button class="sub-pill sub-pill-modal" type="button" onclick="openUebergabeModal()" title="Übergabe-Schema (Cheatsheet)">Übergabe</button></li>
                 </ul>
                 <section class="hero">
                     <h1 class="hero-title" id="ueben-hero-title">Quiz<span class="hero-dot">.</span></h1>
@@ -1606,9 +1571,6 @@ hr {
                             </div>
                         </div>
                         <div id="ueben-szenario" class="d-none">
-                            <div class="szenario-actions">
-                                <button type="button" class="action-pill" onclick="openUebergabeModal()" title="Übergabe-Schema (Cheatsheet)">Übergabe-Schema<span class="action-pill-arrow">↗</span></button>
-                            </div>
                             <div id="szenario-area"></div>
                         </div>
                     </div>
