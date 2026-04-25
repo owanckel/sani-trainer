@@ -537,38 +537,6 @@ em { font-style: normal; color: var(--text); }
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
-.ls-back-fab {
-    position: fixed;
-    right: 1rem;
-    bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px));
-    z-index: 1040;
-    background: var(--surface);
-    border: 1px solid var(--border-accent);
-    color: var(--accent-1);
-    border-radius: 999px;
-    padding: 0.6rem 1.05rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: var(--shadow-elev);
-    transition: opacity 0.18s ease, transform 0.18s ease, border-color 0.15s ease;
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-}
-.ls-back-fab.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-.ls-back-fab:hover, .ls-back-fab:focus-visible {
-    border-color: var(--accent-1);
-    outline: none;
-    transform: translateY(-1px);
-}
 .ls-target-flash {
     animation: lsFlash 2.4s ease-out 1;
 }
@@ -1355,6 +1323,15 @@ hr {
     color: var(--text);
     letter-spacing: -0.01em;
 }
+.modal-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
 .modal-body {
     padding: 1rem 1.25rem 1.5rem !important;
 }
@@ -1540,6 +1517,24 @@ hr {
         </div>
     </div>
 
+    <!-- Notfallbild Modal (Leitsymptom → Detail) -->
+    <div class="modal fade" id="notfall-modal" tabindex="-1" aria-labelledby="notfall-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <div class="modal-eyebrow" id="notfall-modal-cat"></div>
+                        <h5 class="modal-title" id="notfall-modal-title">Notfallbild<span class="hero-dot">.</span></h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notfall-modal-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
 let xabcdeData = [], sampleData = [], notfallbilder = [], normalwerteData = [], uebergabeData = {}, szenarienData = [], reanimationData = [], leitsymptomeData = [];
@@ -1571,10 +1566,7 @@ let currentXabcdeStep = 0;
 let currentReanimationStep = 0;
 let openCategories = new Set();
 
-let lsBackPending = false;
-
 async function showWissenSection(section, btn) {
-    if (section !== 'notfaelle') { lsBackPending = false; setLsBackBtn(false); }
     document.querySelectorAll('#wissen .sub-pill').forEach(b => b.classList.remove('active'));
     const targetBtn = btn || document.querySelector('#wissen .sub-pill[data-section="' + section + '"]');
     if (targetBtn) targetBtn.classList.add('active');
@@ -1750,22 +1742,8 @@ function nbFormat(text) {
     return '<ul class="nb-list">' + sentences.map(s => `<li>${nbEnrich(s)}</li>`).join('') + '</ul>';
 }
 
-function backToLeitsymptome() {
-    lsBackPending = false;
-    setLsBackBtn(false);
-    const lsBtn = document.querySelector('#wissen .sub-pill[data-section="leitsymptome"]');
-    if (lsBtn) showWissenSection('leitsymptome', lsBtn);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function setLsBackBtn(visible) {
-    const fab = document.getElementById('ls-back-fab');
-    if (fab) fab.classList.toggle('visible', !!visible);
-}
-
 function renderNotfaelle() {
     const c = document.getElementById('wissen-content');
-    setLsBackBtn(lsBackPending);
     c.innerHTML = notfallbilder.map((cat, idx) => `
         <div class="accordion-cat">
             <button class="accordion-head ${openCategories.has(idx) ? 'open' : ''}" onclick="toggleCat(${idx}, this)">
@@ -1846,7 +1824,7 @@ function renderLeitsymptome() {
         </div>
     `).join('');
     c.querySelectorAll('.ls-cause-card').forEach(btn => {
-        btn.addEventListener('click', () => openNotfallbild(btn.dataset.cat, btn.dataset.ref));
+        btn.addEventListener('click', () => openNotfallbildModal(btn.dataset.cat, btn.dataset.ref));
     });
 }
 
@@ -1860,32 +1838,36 @@ function toggleLs(btn) {
     }
 }
 
-async function openNotfallbild(category, ref) {
-    lsBackPending = true;
-    document.querySelectorAll('#wissen .sub-pill').forEach(b => b.classList.remove('active'));
-    const targetBtn = document.querySelector('#wissen .sub-pill[data-section="notfaelle"]');
-    if (targetBtn) targetBtn.classList.add('active');
+let notfallModalInstance = null;
+async function openNotfallbildModal(category, ref) {
     if (!DATA_CACHE['notfallbilder']) await loadData('notfallbilder');
-    const idx = notfallbilder.findIndex(c => c.category === category);
-    openCategories.clear();
-    if (idx >= 0) openCategories.add(idx);
-    setHeroTitle('Notfallbilder');
-    renderNotfaelle();
-    requestAnimationFrame(() => {
-        const cats = document.querySelectorAll('#wissen-content .accordion-cat');
-        const cat = cats[idx];
-        if (!cat) return;
-        let target = null;
-        cat.querySelectorAll('.info-card h6').forEach(h => {
-            if (h.textContent.trim() === ref) target = h.closest('.info-card');
-        });
-        const scrollTo = target || cat;
-        scrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (target) {
-            target.classList.add('ls-target-flash');
-            setTimeout(() => target.classList.remove('ls-target-flash'), 2400);
-        }
-    });
+    const cat = notfallbilder.find(c => c.category === category);
+    const cond = cat ? cat.conditions.find(co => co.name === ref) : null;
+    const titleEl = document.getElementById('notfall-modal-title');
+    const catEl = document.getElementById('notfall-modal-cat');
+    const bodyEl = document.getElementById('notfall-modal-body');
+    if (!cond) {
+        if (titleEl) titleEl.innerHTML = 'Nicht gefunden<span class="hero-dot">.</span>';
+        if (catEl) catEl.textContent = '';
+        if (bodyEl) bodyEl.innerHTML = '<p class="text-muted small">Notfallbild nicht verfügbar.</p>';
+    } else {
+        if (titleEl) titleEl.innerHTML = cond.name + '<span class="hero-dot">.</span>';
+        if (catEl) catEl.textContent = category;
+        if (bodyEl) bodyEl.innerHTML = `
+            <div class="nb-block nb-symptoms">
+                <span class="nb-block-head">Symptome</span>
+                ${nbFormat(cond.symptoms)}
+            </div>
+            <div class="nb-block nb-action">
+                <span class="nb-block-head">Maßnahmen</span>
+                ${nbFormat(cond.action)}
+            </div>
+        `;
+    }
+    if (!notfallModalInstance) {
+        notfallModalInstance = new bootstrap.Modal(document.getElementById('notfall-modal'));
+    }
+    notfallModalInstance.show();
 }
 
 // ===================== QUIZ =====================
@@ -2517,6 +2499,5 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
-<button id="ls-back-fab" class="ls-back-fab" type="button" onclick="backToLeitsymptome()">‹ Zurück zu Leitsymptomen</button>
 </body>
 </html>
