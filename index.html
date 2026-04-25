@@ -67,9 +67,7 @@
     --shadow-elev: 0 10px 28px -14px rgba(60, 50, 35, 0.24), 0 0 0 1px var(--border);
     --nav-h: 60px;
     --pills-h: 50px;
-    --sub-pills-h: 44px;
-    --step-pills-h: 44px;
-    --sticky-offset: calc(var(--nav-h) + var(--pills-h) + var(--sub-pills-h));
+    --sticky-offset: calc(var(--nav-h) + var(--pills-h));
 }
 
 [data-theme="dark"] {
@@ -268,7 +266,7 @@ body > .container-fluid, main.container-fluid {
     box-shadow: inset 0 0 0 1px var(--border-accent), 0 2px 8px -6px var(--accent-glow);
 }
 
-/* ===== Sub-Pills (sticky 2nd nav level) ===== */
+/* ===== Sub-Pills (2nd nav level — scrolls with content) ===== */
 .sub-pills {
     list-style: none;
     margin: 0 auto 1rem !important;
@@ -278,16 +276,11 @@ body > .container-fluid, main.container-fluid {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 999px;
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
     width: fit-content;
     max-width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
     flex-wrap: nowrap;
-    position: sticky;
-    top: calc(var(--nav-h) + var(--pills-h) + 14px);
-    z-index: 45;
 }
 .sub-pills::-webkit-scrollbar { display: none; }
 .sub-pills li { display: inline-flex; }
@@ -1050,7 +1043,6 @@ hr {
     :root {
         --nav-h: 52px;
         --pills-h: 44px;
-        --sub-pills-h: 38px;
     }
     body { font-size: 14.5px; }
     .step-badge { width: 32px; height: 32px; font-size: 0.9rem; border-radius: 10px; }
@@ -1079,16 +1071,6 @@ hr {
     scrollbar-width: none;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
-}
-@media (min-width: 768px) {
-    .step-nav {
-        position: sticky;
-        top: calc(var(--nav-h) + var(--pills-h) + var(--sub-pills-h) + 22px);
-        z-index: 40;
-        background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-0) 75%, transparent 100%);
-        margin-left: -8px; margin-right: -8px;
-        padding-left: 12px; padding-right: 12px;
-    }
 }
 .step-nav::-webkit-scrollbar { display: none; }
 .step-pill {
@@ -1355,6 +1337,63 @@ hr {
     .hero-ecg { display: none; }
 }
 
+/* ===== Übergabe Modal ===== */
+.modal-content {
+    background: var(--bg-1) !important;
+    border: 1px solid var(--border-2) !important;
+    border-radius: var(--r-lg) !important;
+    color: var(--text) !important;
+    box-shadow: var(--shadow-elev);
+}
+.modal-header {
+    border-bottom: 1px solid var(--border) !important;
+    padding: 1rem 1.25rem !important;
+}
+.modal-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+.modal-body {
+    padding: 1rem 1.25rem 1.5rem !important;
+}
+.btn-close {
+    filter: var(--btn-close-filter, none);
+    opacity: 0.7;
+}
+.btn-close:hover { opacity: 1; }
+[data-theme="dark"] .btn-close { filter: invert(1) grayscale(1); }
+.modal-backdrop.show { opacity: 0.5; }
+.uebergabe-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--gradient-accent-soft);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-1);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.uebergabe-trigger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px -8px var(--accent-glow);
+}
+.uebergabe-trigger:active { transform: translateY(0); }
+.uebergabe-trigger::before {
+    content: '';
+    width: 14px; height: 14px;
+    background: var(--accent-1);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><rect x='8' y='2' width='8' height='4' rx='1'/><path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/><path d='M9 12h6M9 16h6'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><rect x='8' y='2' width='8' height='4' rx='1'/><path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/><path d='M9 12h6M9 16h6'/></svg>") center / contain no-repeat;
+    flex-shrink: 0;
+}
+
 /* ===== Theme Toggle ===== */
 .theme-toggle {
     display: inline-flex;
@@ -1426,7 +1465,6 @@ hr {
         <ul class="nav nav-pills justify-content-center gap-1 mb-3" role="tablist">
             <li class="nav-item" role="presentation"><button class="nav-link active px-2 px-sm-3" id="tab-wissen" data-bs-toggle="pill" data-bs-target="#wissen" type="button" role="tab" aria-controls="wissen" aria-selected="true" data-title="Wissen">Wissen</button></li>
             <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-ueben" data-bs-toggle="pill" data-bs-target="#ueben" type="button" role="tab" aria-controls="ueben" aria-selected="false" data-title="Üben">Üben</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-uebergabe" data-bs-toggle="pill" data-bs-target="#uebergabe" type="button" role="tab" aria-controls="uebergabe" aria-selected="false" data-title="Übergabe">Übergabe</button></li>
         </ul>
 
         <div class="tab-content">
@@ -1456,6 +1494,9 @@ hr {
                     <li role="presentation"><button class="sub-pill active" type="button" data-section="quiz" onclick="showUebenSection('quiz', this)">Quiz</button></li>
                     <li role="presentation"><button class="sub-pill" type="button" data-section="szenario" onclick="showUebenSection('szenario', this)">Szenario</button></li>
                 </ul>
+                <div class="text-center mb-3">
+                    <button type="button" class="uebergabe-trigger" onclick="openUebergabeModal()">Übergabe-Schema öffnen</button>
+                </div>
                 <section class="hero">
                     <h1 class="hero-title" id="ueben-hero-title">Quiz<span class="hero-dot">.</span></h1>
                 </section>
@@ -1481,19 +1522,23 @@ hr {
                 </div>
             </div>
 
-            <!-- ÜBERGABE -->
-            <div class="tab-pane fade" id="uebergabe" role="tabpanel" aria-labelledby="tab-uebergabe">
-                <section class="hero">
-                    <h1 class="hero-title">Übergabe<span class="hero-dot">.</span></h1>
-                </section>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
-                        <div id="uebergabe-content"></div>
-                    </div>
+        </div>
+    </main>
+
+    <!-- Übergabe Modal -->
+    <div class="modal fade" id="uebergabe-modal" tabindex="-1" aria-labelledby="uebergabe-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uebergabe-modal-title">Übergabe-Schema<span class="hero-dot">.</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="uebergabe-content"></div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
@@ -1771,28 +1816,48 @@ function renderLeitsymptome() {
     const c = document.getElementById('wissen-content');
     const data = leitsymptomeData || [];
     if (!data.length) { c.innerHTML = '<p class="text-muted small">Keine Leitsymptome verfügbar.</p>'; return; }
-    c.innerHTML = data.map(ls => `
-        <h5 class="mb-3 ls-name">${ls.name}</h5>
-        <div class="ls-immediate">
-            <span class="ls-immediate-head">Sofortmaßnahmen</span>
-            <ul class="ls-immediate-list">
-                ${ls.sofortmassnahmen.map(s => `<li>${nbEnrich(s)}</li>`).join('')}
-            </ul>
-        </div>
-        <div class="ls-causes-head">Mögliche Ursachen — tippen, um das Notfallbild zu öffnen</div>
-        <div class="ls-causes-grid">
-            ${ls.ursachen.map(u => `
-                <button class="ls-cause-card" data-cat="${lsEsc(u.category)}" data-ref="${lsEsc(u.ref)}">
-                    <span class="ls-cause-name">${u.name}</span>
-                    <span class="ls-cause-hint">${u.hint}</span>
-                    <span class="ls-cause-cta">Notfallbild öffnen ›</span>
-                </button>
-            `).join('')}
+    c.innerHTML = data.map((ls, idx) => `
+        <div class="accordion-cat">
+            <button class="accordion-head ${idx === 0 ? 'open' : ''}" onclick="toggleLs(this)">
+                <span class="accordion-title ls-name">${ls.name}</span>
+                <span class="accordion-count">${ls.ursachen.length}</span>
+                <span class="accordion-chevron">›</span>
+            </button>
+            <div class="accordion-body ${idx === 0 ? 'open' : ''}">
+                <div class="accordion-body-inner">
+                    <div class="ls-immediate">
+                        <span class="ls-immediate-head">Sofortmaßnahmen</span>
+                        <ul class="ls-immediate-list">
+                            ${ls.sofortmassnahmen.map(s => `<li>${nbEnrich(s)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="ls-causes-head">Mögliche Ursachen — tippen, um das Notfallbild zu öffnen</div>
+                    <div class="ls-causes-grid">
+                        ${ls.ursachen.map(u => `
+                            <button class="ls-cause-card" data-cat="${lsEsc(u.category)}" data-ref="${lsEsc(u.ref)}">
+                                <span class="ls-cause-name">${u.name}</span>
+                                <span class="ls-cause-hint">${u.hint}</span>
+                                <span class="ls-cause-cta">Notfallbild öffnen ›</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
         </div>
     `).join('');
     c.querySelectorAll('.ls-cause-card').forEach(btn => {
         btn.addEventListener('click', () => openNotfallbild(btn.dataset.cat, btn.dataset.ref));
     });
+}
+
+function toggleLs(btn) {
+    const wasOpen = btn.classList.contains('open');
+    document.querySelectorAll('#wissen-content .accordion-head.open, #wissen-content .accordion-body.open')
+        .forEach(el => el.classList.remove('open'));
+    if (!wasOpen) {
+        btn.classList.add('open');
+        btn.nextElementSibling.classList.add('open');
+    }
 }
 
 async function openNotfallbild(category, ref) {
@@ -2305,6 +2370,9 @@ function renderSzenario() {
                 <h5>${sz.title}</h5>
                 <p class="display-5 fw-bold ${sc}">${szenarioScore} / ${total}</p>
                 <p class="text-muted small">${pct >= 80 ? 'Sehr gut!' : pct >= 50 ? 'Gut, aber noch Luft nach oben.' : 'Weiter üben!'}</p>
+                <div class="mb-3">
+                    <button type="button" class="uebergabe-trigger" onclick="openUebergabeModal()">Jetzt Übergabe formulieren</button>
+                </div>
                 <div class="d-flex justify-content-center gap-2">
                     <button class="btn btn-outline-secondary btn-sm" onclick="startSzenarioMenu()">Andere Szenarien</button>
                     <button class="btn btn-danger btn-sm" onclick="startSzenario(${szenarioCurrent})">Nochmal</button>
@@ -2399,6 +2467,16 @@ async function showUebenSection(section, btn) {
     }
 }
 
+let uebergabeModalInstance = null;
+async function openUebergabeModal() {
+    if (!DATA_CACHE['uebergabe']) await loadData('uebergabe');
+    renderUebergabe();
+    if (!uebergabeModalInstance) {
+        uebergabeModalInstance = new bootstrap.Modal(document.getElementById('uebergabe-modal'));
+    }
+    uebergabeModalInstance.show();
+}
+
 function setupThemeToggle() {
     const btn = document.getElementById('theme-toggle');
     const meta = document.getElementById('theme-color-meta');
@@ -2416,7 +2494,6 @@ function setupThemeToggle() {
     setupThemeToggle();
     showQuizMenu();
     await showWissenSection('xabcde', null);
-    document.querySelector('[data-bs-target="#uebergabe"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('uebergabe', 'uebergabe-content', renderUebergabe));
     document.querySelectorAll('[data-bs-toggle="pill"]').forEach(t => {
         t.addEventListener('shown.bs.tab', e => {
             const target = e.target.getAttribute('data-bs-target');
@@ -2428,8 +2505,6 @@ function setupThemeToggle() {
                 const activeSub = document.querySelector('#ueben .sub-pill.active');
                 const section = activeSub ? activeSub.dataset.section : 'quiz';
                 showUebenSection(section, activeSub);
-            } else if (target === '#uebergabe') {
-                setLsBackBtn(false);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });

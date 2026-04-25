@@ -4,10 +4,10 @@
     "sofortmassnahmen": [
       "xABCDE durcharbeiten",
       "Stabile Seitenlage bei eigener Atmung",
-      "Notruf 112",
       "Wärmeerhalt (Rettungsdecke)",
-      "O₂-Gabe wenn verfügbar",
-      "Assistierte Beatmung bei Atemdepression"
+      "O₂-Gabe bei SpO₂ < 94 %",
+      "Assistierte Beatmung bei Atemdepression",
+      "BZ messen (DD Hypoglykämie!)"
     ],
     "ursachen": [
       { "name": "Schock", "hint": "Tachykardie, Hypotonie, kalt-feuchte Haut, Blässe", "category": "Schock", "ref": "Allgemeine Schockzeichen" },
@@ -22,6 +22,127 @@
       { "name": "Hypothermie", "hint": "Kalt, kein Zittern (HT II), Bradykardie", "category": "Kältenotfälle", "ref": "Hypothermie (Unterkühlung) — mit Stadien" },
       { "name": "Hitzschlag", "hint": "Hochrot, heiße trockene Haut, > 40 °C", "category": "Hitzenotfälle", "ref": "Hitzschlag" },
       { "name": "Starke Blutung / Volumenmangel", "hint": "Sichtbare Blutung oder Schockzeichen ohne sichtbar (innere Blutung)", "category": "Schock", "ref": "Hypovolämischer Schock" }
+    ]
+  },
+  {
+    "name": "Atemnot (Dyspnoe)",
+    "sofortmassnahmen": [
+      "xABCDE — A und B haben Vorrang",
+      "Oberkörper hoch oder Lieblingshaltung des Patienten lassen (Kutschersitz bei Asthma)",
+      "Beengende Kleidung öffnen, Frischluft sicherstellen",
+      "O₂-Gabe bei SpO₂ < 94 % (Reservoirmaske bei schwerer Atemnot)",
+      "Eigene Notfallmedikamente (Asthma-Spray, EpiPen) anwenden lassen",
+      "Engmaschige Vitalwerte (AF, SpO₂, Auskultation)",
+      "Beruhigen — Panik verstärkt Dyspnoe"
+    ],
+    "ursachen": [
+      { "name": "Akutes Koronarsyndrom", "hint": "Thoraxschmerz, Ausstrahlung, Schwitzen, Todesangst", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "ACS (Akutes Koronarsyndrom / akuter Herzanfall)" },
+      { "name": "Kardiogener Schock / Lungenödem", "hint": "Rasselnde Atmung, schaumiger Auswurf, gestaute Halsvenen", "category": "Schock", "ref": "Kardiogener Schock" },
+      { "name": "Anaphylaxie", "hint": "Quaddeln, Schwellung, Bronchospasmus, Kreislaufzeichen", "category": "Schock", "ref": "Anaphylaktischer Schock" },
+      { "name": "Obstruktiver Schock", "hint": "Einseitig fehlendes Atemgeräusch, gestaute Halsvenen, keine Besserung durch Lagerung", "category": "Schock", "ref": "Obstruktiver Schock" },
+      { "name": "Reizgas- / Rauchgasinhalation", "hint": "Reizhusten, Heiserkeit, Stridor, Rußspuren", "category": "Intoxikation (Vergiftung)", "ref": "Reizgas- / Rauchgasinhalation" },
+      { "name": "Opioid-Intoxikation", "hint": "Atemdepression (AF < 10), Miosis, Bewusstseinstrübung", "category": "Intoxikation (Vergiftung)", "ref": "Opioid-Intoxikation (Heroin, Morphin, Fentanyl, Tramadol, Methadon)" },
+      { "name": "Herzrhythmusstörung", "hint": "Tachy- / Bradykardie, unregelmäßiger Puls, Schwindel", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "Herzrhythmusstörung (HRS)" }
+    ]
+  },
+  {
+    "name": "Thoraxschmerz",
+    "sofortmassnahmen": [
+      "xABCDE",
+      "Oberkörper hoch (außer Schock-Lagerung indiziert)",
+      "Ruhe, beengende Kleidung öffnen",
+      "Eigenes Nitro-Spray nur bei bekannter Angina und RR systolisch > 100 mmHg",
+      "O₂ bei SpO₂ < 94 %",
+      "Vitalwerte engmaschig: Puls (Rhythmik!), RR beidseits, SpO₂, AF",
+      "12-Kanal-EKG so früh wie möglich"
+    ],
+    "ursachen": [
+      { "name": "Angina Pectoris", "hint": "Belastungsabhängig, lässt in Ruhe oder nach Nitro nach", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "Angina Pectoris (Brustenge / Herzenge)" },
+      { "name": "Akutes Koronarsyndrom", "hint": "Schmerz auch in Ruhe, Ausstrahlung, Vegetativum, Todesangst", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "ACS (Akutes Koronarsyndrom / akuter Herzanfall)" },
+      { "name": "Herzrhythmusstörung", "hint": "Palpitationen, unregelmäßiger Puls, Schwindel", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "Herzrhythmusstörung (HRS)" },
+      { "name": "Hypertensive Entgleisung", "hint": "RR systolisch >180 mmHg, Kopfschmerz, Nasenbluten", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "Hypertonie (Bluthochdruck)" },
+      { "name": "Obstruktiver Schock (Lungenembolie / Pneumothorax)", "hint": "Plötzliche Atemnot, einseitig fehlendes Atemgeräusch, gestaute Halsvenen", "category": "Schock", "ref": "Obstruktiver Schock" },
+      { "name": "Stimulanzien-Intoxikation", "hint": "Kokain / Amphetamine, junge Patienten, Hyperthermie", "category": "Intoxikation (Vergiftung)", "ref": "Stimulanzien-Intoxikation (Kokain, Amphetamine, Ecstasy / MDMA)" }
+    ]
+  },
+  {
+    "name": "Krampfanfall (akut)",
+    "sofortmassnahmen": [
+      "Patient NICHT festhalten, NICHTS in den Mund schieben",
+      "Umgebung absichern: weiches Polster unter Kopf, scharfe Kanten weg",
+      "Anfallsdauer messen (>5 Min = Status epilepticus)",
+      "Nach Anfall: stabile Seitenlage, xABCDE",
+      "BZ messen (Hypoglykämie als Auslöser ausschließen)",
+      "Wärmeerhalt",
+      "Auf Begleitverletzungen / Zungenbiss / Einnässen achten"
+    ],
+    "ursachen": [
+      { "name": "Epileptischer Anfall", "hint": "Bekannte Epilepsie, postiktale Phase, ggf. Aura", "category": "Neurologisch", "ref": "Krampfanfall (epileptischer Anfall)" },
+      { "name": "Hypoglykämie", "hint": "Diabetiker, BZ < 70 mg/dl, Schwitzen vor dem Anfall", "category": "Stoffwechsel", "ref": "Hypoglykämie (Unterzuckerung)" },
+      { "name": "Schädel-Hirn-Trauma", "hint": "Trauma-Anamnese, Wunde am Kopf, Anisokorie", "category": "Neurologisch", "ref": "SHT (Schädel-Hirn-Trauma)" },
+      { "name": "Hämorrhagischer Schlaganfall", "hint": "Vernichtungskopfschmerz, Nackensteife, hoher RR", "category": "Neurologisch", "ref": "Hämorrhagischer Schlaganfall (Hirnblutung)" },
+      { "name": "Hitzschlag", "hint": "Heiße trockene Haut, > 40 °C, Belastung in Hitze", "category": "Hitzenotfälle", "ref": "Hitzschlag" },
+      { "name": "Stimulanzien-Intoxikation", "hint": "Kokain / Amphetamine / MDMA, Hyperthermie, Tachykardie", "category": "Intoxikation (Vergiftung)", "ref": "Stimulanzien-Intoxikation (Kokain, Amphetamine, Ecstasy / MDMA)" },
+      { "name": "Allgemeine Vergiftung", "hint": "Hinweise am Auffindeort, Pupillenveränderung", "category": "Intoxikation (Vergiftung)", "ref": "Allgemeine Vergiftung (Leitsymptome)" }
+    ]
+  },
+  {
+    "name": "Akute neurologische Ausfälle",
+    "sofortmassnahmen": [
+      "Time is Brain — Symptombeginn-Uhrzeit dokumentieren!",
+      "xABCDE",
+      "Oberkörper ca. 30° hoch (wenn Kreislauf stabil)",
+      "NICHTS oral (Aspirationsgefahr durch Schluckstörung / Dysphagie)",
+      "BZ messen — DD Hypoglykämie!",
+      "Wärmeerhalt",
+      "Engmaschig: GCS, Pupillen, Motorik beidseits dokumentieren",
+      "Stroke-Unit ankündigen"
+    ],
+    "ursachen": [
+      { "name": "Schlaganfall (allgemein)", "hint": "BE-FAST: Balance, Eyes, Face, Arms, Speech, Time", "category": "Neurologisch", "ref": "Schlaganfall (Apoplex / Stroke) — allgemein" },
+      { "name": "Ischämischer Schlaganfall", "hint": "Häufigste Form (~85 %), fokale Ausfälle, oft ohne Kopfschmerz", "category": "Neurologisch", "ref": "Ischämischer Schlaganfall (Hirninfarkt)" },
+      { "name": "Hämorrhagischer Schlaganfall", "hint": "Vernichtungskopfschmerz, Nackensteife, rasche Bewusstseinstrübung", "category": "Neurologisch", "ref": "Hämorrhagischer Schlaganfall (Hirnblutung)" },
+      { "name": "TIA", "hint": "Symptome bilden sich vollständig zurück — trotzdem Klinik!", "category": "Neurologisch", "ref": "TIA (Transitorische ischämische Attacke)" },
+      { "name": "SHT", "hint": "Trauma-Anamnese, Anisokorie, Erinnerungslücke", "category": "Neurologisch", "ref": "SHT (Schädel-Hirn-Trauma)" },
+      { "name": "Hypoglykämie", "hint": "Kann Apoplex perfekt imitieren — IMMER BZ messen", "category": "Stoffwechsel", "ref": "Hypoglykämie (Unterzuckerung)" }
+    ]
+  },
+  {
+    "name": "Schockzeichen",
+    "sofortmassnahmen": [
+      "xABCDE",
+      "Lagerung NACH Schocktyp (Schocklage / Oberkörper hoch / flach)",
+      "Wärmeerhalt (Rettungsdecke)",
+      "O₂-Gabe bei SpO₂ < 94 %",
+      "Engmaschig: Puls, RR, SpO₂, Bewusstsein, Rekapillarisierungszeit",
+      "Auslöser identifizieren: Blutung? Allergie? Infekt? Trauma? Herz?",
+      "Notarzt"
+    ],
+    "ursachen": [
+      { "name": "Allgemeine Schockzeichen", "hint": "Tachykardie, Hypotonie, Blässe, kalte feuchte Haut, RKZ > 2 s", "category": "Schock", "ref": "Allgemeine Schockzeichen" },
+      { "name": "Hypovolämischer Schock", "hint": "Blutverlust oder Flüssigkeitsverlust, Durst, Schocklage", "category": "Schock", "ref": "Hypovolämischer Schock" },
+      { "name": "Kardiogener Schock", "hint": "Atemnot, Lungenödem, gestaute Halsvenen — KEINE Schocklage", "category": "Schock", "ref": "Kardiogener Schock" },
+      { "name": "Anaphylaktischer Schock", "hint": "Allergische Reaktion, Quaddeln, Bronchospasmus, EpiPen!", "category": "Schock", "ref": "Anaphylaktischer Schock" },
+      { "name": "Septischer Schock", "hint": "Infekt, Fieber/Hypothermie, initial warme Haut", "category": "Schock", "ref": "Septischer Schock" },
+      { "name": "Neurogener / Spinaler Schock", "hint": "Wirbelsäulentrauma, Bradykardie statt Tachykardie, warme Haut", "category": "Schock", "ref": "Neurogener / Spinaler Schock" },
+      { "name": "Obstruktiver Schock", "hint": "Spannungspneumothorax / Tamponade / Lungenembolie, gestaute Halsvenen", "category": "Schock", "ref": "Obstruktiver Schock" }
+    ]
+  },
+  {
+    "name": "Starke Blutung",
+    "sofortmassnahmen": [
+      "Eigenschutz (Handschuhe!)",
+      "Direkter Druck auf die Wunde, betroffene Extremität hochlagern",
+      "Druckverband anlegen — bei Durchblutung zweiten darüber",
+      "Tourniquet bei nicht stillbarer Extremitätenblutung — Anlagezeit dokumentieren",
+      "Bei innerer Blutung: keine direkte Kompression möglich — Schocklage, schneller Transport",
+      "Schocklage (Beine 20–30° hoch)",
+      "Wärmeerhalt (Rettungsdecke)",
+      "O₂-Gabe, engmaschige Vitalwerte"
+    ],
+    "ursachen": [
+      { "name": "Hypovolämischer Schock", "hint": "Sichtbare oder innere Blutung, Schockzeichen, Durst", "category": "Schock", "ref": "Hypovolämischer Schock" },
+      { "name": "Allgemeine Schockzeichen", "hint": "Tachykardie, Hypotonie, Blässe — auch ohne sichtbare Blutung möglich", "category": "Schock", "ref": "Allgemeine Schockzeichen" }
     ]
   }
 ]
