@@ -485,6 +485,40 @@ em { font-style: normal; color: var(--text); }
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
+.ls-back-fab {
+    position: fixed;
+    right: 1rem;
+    bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px));
+    z-index: 1040;
+    background: rgba(15, 20, 36, 0.92);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-1);
+    border-radius: 999px;
+    padding: 0.6rem 1.05rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 10px 28px -10px var(--accent-glow), 0 0 0 1px var(--border);
+    transition: opacity 0.18s ease, transform 0.18s ease, border-color 0.15s ease;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+}
+.ls-back-fab.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.ls-back-fab:hover, .ls-back-fab:focus-visible {
+    border-color: var(--accent-1);
+    outline: none;
+    transform: translateY(-1px);
+}
 .ls-target-flash {
     animation: lsFlash 2.4s ease-out 1;
 }
@@ -1516,7 +1550,10 @@ let currentXabcdeStep = 0;
 let currentReanimationStep = 0;
 let openCategories = new Set();
 
+let lsBackPending = false;
+
 async function showInfoSection(section, btn) {
+    if (section !== 'notfaelle') { lsBackPending = false; setLsBackBtn(false); }
     document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
     const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', reanimation: 'Reanimation', notfaelle: 'Notfallbilder', leitsymptome: 'Leitsymptome' };
@@ -1689,8 +1726,23 @@ function nbFormat(text) {
     return '<ul class="nb-list">' + sentences.map(s => `<li>${nbEnrich(s)}</li>`).join('') + '</ul>';
 }
 
+function backToLeitsymptome() {
+    lsBackPending = false;
+    setLsBackBtn(false);
+    const lsBtn = Array.from(document.querySelectorAll('#info .btn-group .btn'))
+        .find(b => b.textContent.trim() === 'Leitsymptome');
+    if (lsBtn) showInfoSection('leitsymptome', lsBtn);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setLsBackBtn(visible) {
+    const fab = document.getElementById('ls-back-fab');
+    if (fab) fab.classList.toggle('visible', !!visible);
+}
+
 function renderNotfaelle() {
     const c = document.getElementById('info-content');
+    setLsBackBtn(lsBackPending);
     c.innerHTML = notfallbilder.map((cat, idx) => `
         <div class="accordion-cat">
             <button class="accordion-head ${openCategories.has(idx) ? 'open' : ''}" onclick="toggleCat(${idx}, this)">
@@ -1766,6 +1818,7 @@ function renderLeitsymptome() {
 }
 
 async function openNotfallbild(category, ref) {
+    lsBackPending = true;
     document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
     const targetBtn = Array.from(document.querySelectorAll('#info .btn-group .btn'))
         .find(b => b.textContent.trim() === 'Notfallbilder');
@@ -1786,7 +1839,10 @@ async function openNotfallbild(category, ref) {
             if (h.textContent.trim() === ref) target = h.closest('.info-card');
         });
         const scrollTo = target || cat;
-        scrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nav = document.querySelector('.navbar.sticky-top');
+        const navH = nav ? nav.offsetHeight : 0;
+        const top = scrollTo.getBoundingClientRect().top + window.scrollY - navH - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         if (target) {
             target.classList.add('ls-target-flash');
             setTimeout(() => target.classList.remove('ls-target-flash'), 2400);
@@ -2352,6 +2408,11 @@ async function ensureDataAndRender(dataKey, containerId, renderFn) {
     document.querySelector('[data-bs-target="#values"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('normalwerte', 'values-content', renderValues));
     document.querySelector('[data-bs-target="#uebergabe"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('uebergabe', 'uebergabe-content', renderUebergabe));
     document.querySelector('[data-bs-target="#szenario"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('szenarien', 'szenario-area', startSzenarioMenu));
+    document.querySelectorAll('.navbar [data-bs-toggle="pill"]').forEach(t => {
+        t.addEventListener('shown.bs.tab', e => {
+            if (e.target.getAttribute('data-bs-target') !== '#info') setLsBackBtn(false);
+        });
+    });
 })();
 
 if ('serviceWorker' in navigator) {
@@ -2360,5 +2421,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
+<button id="ls-back-fab" class="ls-back-fab" type="button" onclick="backToLeitsymptome()">‹ Zurück zu Leitsymptomen</button>
 </body>
 </html>
