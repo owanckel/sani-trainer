@@ -302,18 +302,6 @@ body > .container-fluid, main.container-fluid {
     color: var(--accent-1);
     box-shadow: inset 0 0 0 1px var(--border-accent);
 }
-.sub-pills .sub-pill-modal {
-    margin-left: 4px;
-    padding-left: 8px;
-    border-left: 1px solid var(--border);
-    border-radius: 999px;
-}
-.sub-pills .sub-pill-modal::after {
-    content: '↗';
-    margin-left: 6px;
-    opacity: 0.65;
-    font-size: 0.85em;
-}
 @media (max-width: 576px) {
     .sub-pills .sub-pill { font-size: 0.68rem; padding: 6px 11px; }
     .sub-pills { margin-bottom: 0.75rem !important; }
@@ -1451,8 +1439,14 @@ hr {
     flex-shrink: 0;
 }
 
-/* ===== Theme Toggle ===== */
-.theme-toggle {
+/* ===== Navbar Icon Buttons (Theme + Übergabe) ===== */
+.nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+.nav-icon-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1466,14 +1460,19 @@ hr {
     transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
     position: relative;
     flex-shrink: 0;
+    padding: 0;
 }
-.theme-toggle:hover {
+.nav-icon-btn:hover {
     color: var(--accent-1);
     border-color: var(--border-accent);
     background: var(--gradient-accent-soft);
     transform: translateY(-1px);
 }
-.theme-toggle:active { transform: translateY(0); }
+.nav-icon-btn:active { transform: translateY(0); }
+.nav-icon-btn > svg:not(.theme-icon) {
+    width: 18px;
+    height: 18px;
+}
 .theme-icon {
     width: 18px;
     height: 18px;
@@ -1485,7 +1484,8 @@ hr {
 [data-theme="dark"]  .theme-icon-sun { opacity: 0; transform: rotate(30deg); }
 [data-theme="dark"]  .theme-icon-moon { opacity: 1; transform: rotate(0); }
 @media (max-width: 576px) {
-    .theme-toggle { width: 34px; height: 34px; }
+    .nav-icon-btn { width: 34px; height: 34px; }
+    .nav-icon-btn > svg:not(.theme-icon) { width: 16px; height: 16px; }
     .theme-icon { width: 16px; height: 16px; }
 }
 </style>
@@ -1511,10 +1511,15 @@ hr {
                     <span class="brand-main">SANI—TRAINER</span>
                 </span>
             </span>
-            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Theme wechseln" title="Theme wechseln">
-                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            </button>
+            <div class="nav-actions">
+                <button id="uebergabe-shortcut" class="nav-icon-btn" type="button" onclick="openUebergabeModal()" aria-label="Übergabe-Schema öffnen" title="Übergabe-Schema (Cheatsheet)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h6"/></svg>
+                </button>
+                <button id="theme-toggle" class="nav-icon-btn theme-toggle" type="button" aria-label="Theme wechseln" title="Theme wechseln">
+                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -1550,7 +1555,6 @@ hr {
                 <ul class="sub-pills" id="ueben-sub-pills" role="tablist" aria-label="Übungs-Bereiche">
                     <li role="presentation"><button class="sub-pill active" type="button" data-section="quiz" onclick="showUebenSection('quiz', this)">Quiz</button></li>
                     <li role="presentation"><button class="sub-pill" type="button" data-section="szenario" onclick="showUebenSection('szenario', this)">Szenario</button></li>
-                    <li role="presentation"><button class="sub-pill sub-pill-modal" type="button" onclick="openUebergabeModal()" title="Übergabe-Schema als Cheatsheet öffnen">Übergabe</button></li>
                 </ul>
                 <section class="hero">
                     <h1 class="hero-title" id="ueben-hero-title">Quiz<span class="hero-dot">.</span></h1>
