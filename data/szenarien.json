@@ -63,7 +63,11 @@
         "korrekt": 1,
         "erklaerung": "Schock auslösen (alle weg vom Patienten!), dann sofort weiter Reanimation — 2 Minuten, bis der AED erneut analysiert. Nicht auf Reaktion warten."
       }
-    ]
+    ],
+    "tags": [
+      "bewusstsein"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Brustschmerzen beim Stadtfest",
@@ -129,7 +133,11 @@
         "korrekt": 2,
         "erklaerung": "Strukturierte Übergabe: Wer bin ich, wie lange vor Ort, V.a. Diagnose, xABCDE-Befunde (auffällig/unauffällig), SAMPLE, durchgeführte Maßnahmen, Verlauf."
       }
-    ]
+    ],
+    "tags": [
+      "kreislauf"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Fahrradunfall mit Beinverletzung",
@@ -183,7 +191,11 @@
         "korrekt": 1,
         "erklaerung": "Laufende Betreuung: Wärmeerhalt (Rettungsdecke), regelmäßig Vitalzeichen prüfen (Re-Evaluation), SAMPLE-Anamnese erheben, alles dokumentieren, Patientin beruhigen."
       }
-    ]
+    ],
+    "tags": [
+      "trauma"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Unterzuckerung im Büro",
@@ -237,7 +249,11 @@
         "korrekt": 1,
         "erklaerung": "Nach schnellem Zucker: langsame Kohlenhydrate nachgeben (Brot, Müsliriegel), damit der BZ stabil bleibt. Weiter beobachten. Bei Unsicherheit oder Wiederauftreten → Rettungsdienst."
       }
-    ]
+    ],
+    "tags": [
+      "stoffwechsel"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Allergische Reaktion beim Grillfest",
@@ -291,7 +307,12 @@
         "korrekt": 1,
         "erklaerung": "Eigenes Notfallmedikament darf der Patient selbst anwenden! Du darfst ihm dabei helfen. Der EpiPen wird in den seitlichen Oberschenkel gedrückt — auch durch die Kleidung."
       }
-    ]
+    ],
+    "tags": [
+      "atmung",
+      "kreislauf"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Treppensturz mit Kopfverletzung",
@@ -345,7 +366,12 @@
         "korrekt": 1,
         "erklaerung": "V.a. SHT mit Hirndruck: Oberkörper 30° erhöht (senkt den Hirndruck), Kopf gerade in Mittelstellung (venöser Abfluss), HWS schonen (Sturzmechanismus!). Engmaschig Bewusstsein und Pupillen kontrollieren."
       }
-    ]
+    ],
+    "tags": [
+      "trauma",
+      "neurologisch"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Schlaganfall beim Abendessen",
@@ -399,7 +425,11 @@
         "korrekt": 1,
         "erklaerung": "Oberkörper leicht erhöht (ca. 30°). NICHTS oral geben — Schluckstörung (Dysphagie) ist häufig bei Schlaganfall, Aspirationsgefahr! Bewusstsein engmaschig überwachen — kann sich schnell verschlechtern."
       }
-    ]
+    ],
+    "tags": [
+      "neurologisch"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Bewusstlose Person — aber sie atmet",
@@ -453,7 +483,11 @@
         "korrekt": 1,
         "erklaerung": "Nach einem Krampfanfall folgt oft eine postiktale Phase (Nachschlafphase): Patient ist bewusstlos aber atmet. Wichtig: Weiter Atmung überwachen, stabile Seitenlage beibehalten. Rettungsdienst über den Krampfanfall informieren (Dauer? Erstmalig?)."
       }
-    ]
+    ],
+    "tags": [
+      "bewusstsein"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Starke Blutung nach Arbeitsunfall",
@@ -507,7 +541,12 @@
         "korrekt": 1,
         "erklaerung": "Volumenmangel-Schock durch Blutverlust: Schocklage (Beine hoch, ca. 20–30°), Wärmeerhalt (Rettungsdecke), Patienten beruhigen, engmaschig Vitalzeichen überwachen. Rettungsdienst ist hoffentlich bereits alarmiert!"
       }
-    ]
+    ],
+    "tags": [
+      "trauma",
+      "kreislauf"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Krampfanfall auf dem Marktplatz",
@@ -561,7 +600,11 @@
         "korrekt": 1,
         "erklaerung": "Wichtige Infos für den Rettungsdienst: Erstmaliger Anfall (dann immer Klinik!)? Bekannte Epilepsie + Medikamente? Dauer des Anfalls? Was war vorher (Auslöser)? Hat der Patient sich verletzt (Kopf, Zunge)?"
       }
-    ]
+    ],
+    "tags": [
+      "neurologisch"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Schwere Atemnot — Asthmaanfall",
@@ -615,7 +658,11 @@
         "korrekt": 1,
         "erklaerung": "SpO₂ unter 94% → Sauerstoff geben! Dazu Lippenbremse anleiten (langsam gegen locker geschlossene Lippen ausatmen) — verhindert das Zusammenfallen der Atemwege. Rettungsdienst ist alarmiert, weiter überwachen."
       }
-    ]
+    ],
+    "tags": [
+      "atmung"
+    ],
+    "difficulty": "easy"
   },
   {
     "title": "Volumenmangelschock nach Verkehrsunfall",
@@ -681,7 +728,12 @@
         "korrekt": 1,
         "erklaerung": "Re-Evaluierung alle 2–3 Minuten: Puls, RR, Atmung, Bewusstsein. Wärmeerhalt ist kritisch — Hypothermie (Unterkühlung) verstärkt den Schock massiv durch Gerinnungsstörung. Tourniquet NICHT öffnen. NICHTS oral geben (Aspirationsgefahr, mögliche Narkose)."
       }
-    ]
+    ],
+    "tags": [
+      "trauma",
+      "kreislauf"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Kardiogener Schock bei Herzinfarkt",
@@ -735,7 +787,11 @@
         "korrekt": 1,
         "erklaerung": "Absolute Ruhe (jede Belastung = höherer O₂-Bedarf des Herzens), beengende Kleidung öffnen (Krawatte, Gürtel), O₂ bei SpO₂ < 94 %, Notarzt. Patient beruhigen. KEINE körperliche Anstrengung zulassen!"
       }
-    ]
+    ],
+    "tags": [
+      "kreislauf"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Neurogener Schock nach Sturz aus Höhe",
@@ -789,7 +845,12 @@
         "korrekt": 2,
         "erklaerung": "Flach lagern (keine Rotation/Hebung der Wirbelsäule), HWS-Immobilisation, Log-Roll (seitliches Drehen am Stück) nur wenn unverzichtbar mit mind. 3 Helfern. Wärmeerhalt besonders wichtig — der Körper kann die Temperatur nicht mehr regulieren (thermoregulatorisches Versagen)."
       }
-    ]
+    ],
+    "tags": [
+      "trauma",
+      "neurologisch"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "Septischer Schock bei Infektion",
@@ -843,7 +904,11 @@
         "korrekt": 1,
         "erklaerung": "Bei Sepsis zählen Infektionsfokus (Quelle) und Verlauf: Seit wann Infekt? Seit wann Verwirrtheit? Vitalwerte mit Zeitstempeln. Das hilft Rettungsdienst und Klinik, qSOFA/SOFA-Kriterien (Sepsis-Scores) einzuschätzen und schnell zu behandeln."
       }
-    ]
+    ],
+    "tags": [
+      "kreislauf"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "CO-Vergiftung — das Pulsoxymeter lügt",
@@ -897,7 +962,11 @@
         "korrekt": 1,
         "erklaerung": "CO-Hb-Halbwertszeit: Raumluft ~5 Std, 100 % O₂ ~80 Min, hyperbarer O₂ ~20 Min. Bei Bewusstlosigkeit, neurologischen Ausfällen, Schwangerschaft → Druckkammer erwägen. Als Ersthelfer: Opfer aus Gefahrenbereich + RD nachfordern."
       }
-    ]
+    ],
+    "tags": [
+      "intoxikation"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "Hitzschlag — der Sportler ohne Schweiß",
@@ -951,7 +1020,11 @@
         "korrekt": 1,
         "erklaerung": "Hitzeerschöpfung (milder): starkes Schwitzen, feuchte Haut, Schwindel, Übelkeit — wach. Behandlung: Schatten, Ruhe, Flüssigkeit. Hitzschlag: trockene heiße Haut, neurologische Ausfälle, > 40 °C → aktives Kühlen + Rettungsdienst sofort."
       }
-    ]
+    ],
+    "tags": [
+      "hitze"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Hinterwandinfarkt — das \"verdorbene Essen\"",
@@ -1005,7 +1078,11 @@
         "korrekt": 1,
         "erklaerung": "Strukturierte Übergabe mit Verdachtsdiagnose spart wertvolle Zeit: sofort 12-Kanal-EKG, Voranmeldung Herzkatheter-Labor. Time is Muscle — je schneller die Intervention, desto weniger Herzmuskelschaden (Nekrose)."
       }
-    ]
+    ],
+    "tags": [
+      "kreislauf"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "Diabetische Ketoazidose — der \"Besoffene\"",
@@ -1059,7 +1136,11 @@
         "korrekt": 1,
         "erklaerung": "Unbehandelte DKA → Koma → Tod binnen Stunden. Klassischer Fehler: Jugendliche mit Bewusstseinstrübung werden als 'zu viel getrunken' abgetan und in stabiler Seitenlage 'ausgenüchtert'. IMMER bei Jugendlichen mit Bewusstseinstrübung: BZ messen, Atemmuster beachten, nach Diabetes fragen!"
       }
-    ]
+    ],
+    "tags": [
+      "stoffwechsel"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "Stille Hypoglykämie — maskiert durch Betablocker",
@@ -1113,7 +1194,11 @@
         "korrekt": 1,
         "erklaerung": "Bei alten Menschen, Patienten mit Betablockern oder Sulfonylharnstoffen (lange Halbwertszeit!) kann die Hypoglykämie erneut auftreten. Ärztliche Abklärung: Ursache (Niereninsuffizienz, neues Medikament, Infekt, Dosisfehler) und Dosisanpassung. Ein isolierter BZ-Rebound heilt die Grundursache nicht."
       }
-    ]
+    ],
+    "tags": [
+      "stoffwechsel"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "Bewusstloser auf einer Hausparty",
@@ -1191,7 +1276,12 @@
         "korrekt": 1,
         "erklaerung": "Strukturierte Übergabe (z.B. ISBAR / SBAR): Auffindesituation, Vitalwerte mit Verlauf, Verdachtsdiagnose, durchgeführte Maßnahmen, sichergestellte Substanzen. Spart dem Notarzt Minuten — bei Atemdepression zählt jede Minute bis zur Naloxon-Gabe."
       }
-    ]
+    ],
+    "tags": [
+      "bewusstsein",
+      "intoxikation"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Plötzlich der schlimmste Kopfschmerz seines Lebens",
@@ -1281,7 +1371,11 @@
         "korrekt": 1,
         "erklaerung": "Strukturierte Übergabe (ISBAR / SBAR): Symptombeginn-Uhrzeit ist Lyse- / OP-relevant, der Verlauf signalisiert Hirndruck, der Hinweis 'kein ASS gegeben' ist für die Therapieplanung wichtig. Konsistente Zeit- und Befundangaben sparen dem Notarzt Minuten."
       }
-    ]
+    ],
+    "tags": [
+      "neurologisch"
+    ],
+    "difficulty": "hard"
   },
   {
     "title": "Marathonläufer kippt am Streckenrand um",
@@ -1371,7 +1465,12 @@
         "korrekt": 2,
         "erklaerung": "Strukturierte Übergabe spart Zeit. Wichtig: Auffindeumstände, Symptomverlauf, durchgeführte Maßnahmen mit Wirkung, Verzicht auf orale Flüssigkeit. Beim Hitzschlag ist auch die kumulative Belastungszeit (wie lange in der Hitze, Wettkampfdauer) wertvolle Information."
       }
-    ]
+    ],
+    "tags": [
+      "hitze",
+      "kreislauf"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Kleinkind allein im heißen Auto",
@@ -1449,7 +1548,11 @@
         "korrekt": 1,
         "erklaerung": "Strukturierte Übergabe: Auffindesituation (extrem wichtig — geschätzte Expositionsdauer ist therapierelevant), Verlauf, Maßnahmen, kein oraler Input. Eltern-Diskussion ist NICHT deine Aufgabe — übernimmt die Polizei. Konzentrier dich auf das Kind."
       }
-    ]
+    ],
+    "tags": [
+      "hitze"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Eiseinbruch im Park",
@@ -1539,7 +1642,12 @@
         "korrekt": 1,
         "erklaerung": "Strukturierte Übergabe: Auffindesituation und geschätzte Expositionsdauer sind klinisch entscheidend. Stadium nach klinischen Zeichen, getroffene Maßnahmen, keine aktive Wiedererwärmung — die kommt erst in der Klinik unter Monitoring."
       }
-    ]
+    ],
+    "tags": [
+      "kälte",
+      "trauma"
+    ],
+    "difficulty": "medium"
   },
   {
     "title": "Obdachloser auf Parkbank",
@@ -1617,6 +1725,10 @@
         "korrekt": 1,
         "erklaerung": "Strukturierte Übergabe spart Minuten. Wichtig: Expositionsdauer, klinisches Stadium, Verlauf, ausdrücklicher Hinweis 'KEINE aktive Wiedererwärmung' und 'KEIN oraler Input' — vermeidet Doppelbehandlung. Reanimationsbereitschaft sicherstellen."
       }
-    ]
+    ],
+    "tags": [
+      "kälte"
+    ],
+    "difficulty": "easy"
   }
 ]

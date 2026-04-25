@@ -307,6 +307,18 @@ body > .container-fluid, main.container-fluid {
     color: var(--accent-1);
     box-shadow: inset 0 0 0 1px var(--border-accent);
 }
+.sub-pills .sub-pill-modal {
+    margin-left: 4px;
+    padding-left: 8px;
+    border-left: 1px solid var(--border);
+    border-radius: 999px;
+}
+.sub-pills .sub-pill-modal::after {
+    content: '↗';
+    margin-left: 6px;
+    opacity: 0.65;
+    font-size: 0.85em;
+}
 @media (max-width: 576px) {
     .sub-pills .sub-pill { font-size: 0.68rem; padding: 6px 11px; }
     .sub-pills { margin-bottom: 0.75rem !important; }
@@ -842,7 +854,17 @@ em { font-style: normal; color: var(--text); }
     padding: 5px 10px;
     border-radius: 6px;
     line-height: 1.4;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+button.quiz-chip {
+    font-family: var(--font-body);
+}
+.quiz-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px -6px var(--accent-glow);
+}
+.quiz-chip:active { transform: translateY(0); }
 .quiz-chip-good { background: rgba(21, 128, 61, 0.10); color: var(--success); border: 1px solid rgba(21, 128, 61, 0.30); }
 .quiz-chip-ok   { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn-border); }
 .quiz-chip-weak { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger-border); }
@@ -1305,6 +1327,69 @@ hr {
     .hero-ecg { display: none; }
 }
 
+/* ===== Szenario Filter + Difficulty Badges ===== */
+.szenario-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 0.25rem;
+}
+.szenario-tag {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+.szenario-tag:hover { color: var(--text); border-color: var(--border-2); }
+.szenario-tag.active {
+    background: var(--gradient-accent-soft);
+    border-color: var(--border-accent);
+    color: var(--accent-1);
+}
+.szenario-diff {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    align-self: center;
+}
+.szenario-diff-easy   { background: rgba(21, 128, 61, 0.10); color: var(--success); border: 1px solid rgba(21, 128, 61, 0.32); }
+.szenario-diff-medium { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn-border); }
+.szenario-diff-hard   { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger-border); }
+
+/* ===== Theory Link (false-answer) ===== */
+.theory-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-1);
+    background: transparent;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    padding: 5px 11px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+}
+.theory-link:hover { background: var(--gradient-accent-soft); }
+.theory-link::after { content: '›'; font-size: 1em; }
+
 /* ===== Übergabe Modal ===== */
 .modal-content {
     background: var(--bg-1) !important;
@@ -1470,10 +1555,8 @@ hr {
                 <ul class="sub-pills" id="ueben-sub-pills" role="tablist" aria-label="Übungs-Bereiche">
                     <li role="presentation"><button class="sub-pill active" type="button" data-section="quiz" onclick="showUebenSection('quiz', this)">Quiz</button></li>
                     <li role="presentation"><button class="sub-pill" type="button" data-section="szenario" onclick="showUebenSection('szenario', this)">Szenario</button></li>
+                    <li role="presentation"><button class="sub-pill sub-pill-modal" type="button" onclick="openUebergabeModal()" title="Übergabe-Schema als Cheatsheet öffnen">Übergabe</button></li>
                 </ul>
-                <div class="text-center mb-3">
-                    <button type="button" class="uebergabe-trigger" onclick="openUebergabeModal()">Übergabe-Schema öffnen</button>
-                </div>
                 <section class="hero">
                     <h1 class="hero-title" id="ueben-hero-title">Quiz<span class="hero-dot">.</span></h1>
                 </section>
@@ -1912,7 +1995,7 @@ function buildQuizQuestions(category) {
             const otherStepItems = xabcdeData.filter(x => x.badge && x.badge !== g.badge).flatMap(x => x.items.map(i => i.name));
             g.items.forEach(item => {
                 const w = pickWrong(otherStepItems, item.name, 3);
-                if (w.length > 0) qs.push({ question: `Welcher Prüfpunkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
+                if (w.length > 0) qs.push({ cat: 'xabcde', question: `Welcher Prüfpunkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
             });
         });
         xabcdeData.forEach(g => {
@@ -1920,7 +2003,7 @@ function buildQuizQuestions(category) {
             const otherSteps = xabcdeData.filter(x => x.badge && x.badge !== g.badge).map(x => x.step);
             g.items.forEach(item => {
                 const w = shuffleArr(otherSteps).slice(0, 3);
-                if (w.length > 0) qs.push({ question: `Zu welchem Schritt gehört <strong>${item.name}</strong>?`, correct: g.step, options: shuffleArr([g.step, ...w]), detail: item.detail });
+                if (w.length > 0) qs.push({ cat: 'xabcde', question: `Zu welchem Schritt gehört <strong>${item.name}</strong>?`, correct: g.step, options: shuffleArr([g.step, ...w]), detail: item.detail });
             });
         });
     }
@@ -1928,7 +2011,7 @@ function buildQuizQuestions(category) {
     if (category === 'sample' || category === 'alle') {
         sampleData.forEach(s => {
             const w = pickWrong(sampleData.map(x => x.name), s.name, 3);
-            if (w.length > 0) qs.push({ question: `Wofür steht <strong>${s.letter}</strong> in SAMPLE?`, correct: s.name, options: shuffleArr([s.name, ...w]), detail: s.detail });
+            if (w.length > 0) qs.push({ cat: 'sample', question: `Wofür steht <strong>${s.letter}</strong> in SAMPLE?`, correct: s.name, options: shuffleArr([s.name, ...w]), detail: s.detail });
         });
     }
 
@@ -1937,25 +2020,32 @@ function buildQuizQuestions(category) {
         if (allC.length >= 2) {
             allC.forEach(c => {
                 const w = pickWrong(allC.map(x => x.name), c.name, 3);
-                if (w.length > 0) qs.push({ question: `Welches Notfallbild passt?\n\n<em>${c.symptoms}</em>`, correct: c.name, options: shuffleArr([c.name, ...w]), detail: 'Maßnahmen: ' + c.action });
+                if (w.length > 0) qs.push({ cat: 'notfaelle', question: `Welches Notfallbild passt?\n\n<em>${c.symptoms}</em>`, correct: c.name, options: shuffleArr([c.name, ...w]), detail: 'Maßnahmen: ' + c.action });
             });
         }
     }
 
-    if (category === 'schock') {
-        const schockItems = notfallbilder.filter(c => c.category && c.category.includes('Schock')).flatMap(c => c.conditions);
-        if (schockItems.length >= 2) {
-            schockItems.forEach(c => {
-                const w = pickWrong(schockItems.map(x => x.name), c.name, 3);
-                if (w.length > 0) qs.push({ question: `Welches Schockbild passt?\n\n<em>${c.symptoms}</em>`, correct: c.name, options: shuffleArr([c.name, ...w]), detail: 'Maßnahmen: ' + c.action });
+    if ((category === 'leitsymptome' || category === 'alle') && leitsymptomeData && leitsymptomeData.length >= 2) {
+        leitsymptomeData.forEach(ls => {
+            ls.ursachen.forEach(u => {
+                const otherCauses = leitsymptomeData.flatMap(o => o.ursachen.map(x => x.name)).filter(n => n !== u.name);
+                const w = pickWrong([...new Set(otherCauses)], u.name, 3);
+                if (w.length >= 2) qs.push({ cat: 'leitsymptome', question: `Leitsymptom <strong>${ls.name}</strong> — welche Ursache passt zu folgendem Befund?\n\n<em>${u.hint}</em>`, correct: u.name, options: shuffleArr([u.name, ...w]), detail: `Aus dem Notfallbild: ${u.ref || u.name}` });
             });
-        }
+        });
+        leitsymptomeData.forEach(ls => {
+            const otherSyms = leitsymptomeData.filter(l => l.name !== ls.name).map(l => l.name);
+            ls.ursachen.slice(0, 2).forEach(u => {
+                const w = shuffleArr(otherSyms).slice(0, 3);
+                if (w.length >= 2) qs.push({ cat: 'leitsymptome', question: `Bei welchem Leitsymptom kommt <strong>${u.name}</strong> als mögliche Ursache in Frage?\n\n<em>${u.hint}</em>`, correct: ls.name, options: shuffleArr([ls.name, ...w]), detail: `Auch andere Leitsymptome können passen — hier ist es ${ls.name}.` });
+            });
+        });
     }
 
-    if ((category === 'normalwerte' || category === 'alle') && normalwerteData && normalwerteData.length >= 2) {
+    if ((category === 'vitalwerte' || category === 'alle') && normalwerteData && normalwerteData.length >= 2) {
         normalwerteData.forEach(v => {
             const w = pickWrong(normalwerteData.map(x => x.normal), v.normal, 3);
-            if (w.length > 0) qs.push({ question: `Was ist der Normalwert für <strong>${v.name}</strong>?`, correct: v.normal, options: shuffleArr([v.normal, ...w]), detail: v.hinweis || '' });
+            if (w.length > 0) qs.push({ cat: 'vitalwerte', question: `Was ist der Normalwert für <strong>${v.name}</strong>?`, correct: v.normal, options: shuffleArr([v.normal, ...w]), detail: v.hinweis || '' });
         });
     }
 
@@ -1964,14 +2054,14 @@ function buildQuizQuestions(category) {
             const otherStepItems = reanimationData.filter(x => x.step !== g.step).flatMap(x => x.items.map(i => i.name));
             g.items.forEach(item => {
                 const w = pickWrong(otherStepItems, item.name, 3);
-                if (w.length > 0) qs.push({ question: `Welcher Punkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
+                if (w.length > 0) qs.push({ cat: 'reanimation', question: `Welcher Punkt gehört zu <strong>${g.step}</strong>?`, correct: item.name, options: shuffleArr([item.name, ...w]), detail: item.detail });
             });
         });
         reanimationData.forEach(g => {
             const otherSteps = reanimationData.filter(x => x.step !== g.step).map(x => x.step);
             g.items.forEach(item => {
                 const w = shuffleArr(otherSteps).slice(0, 3);
-                if (w.length > 0) qs.push({ question: `Zu welcher Phase gehört <strong>${item.name}</strong>?`, correct: g.step, options: shuffleArr([g.step, ...w]), detail: item.detail });
+                if (w.length > 0) qs.push({ cat: 'reanimation', question: `Zu welcher Phase gehört <strong>${item.name}</strong>?`, correct: g.step, options: shuffleArr([g.step, ...w]), detail: item.detail });
             });
         });
         const reaniFacts = [
@@ -1991,21 +2081,30 @@ function buildQuizQuestions(category) {
             { question: 'Was ist ROSC?', correct: 'Wiedereinsetzender Spontankreislauf', options: ['Schocktyp', 'Wiedereinsetzender Spontankreislauf', 'Reanimations-Medikament', 'AED-Herstellername'], detail: 'Return of Spontaneous Circulation — danach stabile Seitenlage bei normaler Atmung, engmaschig kontrollieren.' },
             { question: 'Wie werden die AED-Elektroden beim Erwachsenen platziert?', correct: 'Rechts unterhalb Schlüsselbein + links unterhalb Achsel', options: ['Beide über dem Herzen', 'Rechts unterhalb Schlüsselbein + links unterhalb Achsel', 'Rechts und links auf dem Rücken', 'Oben und unten am Brustbein'], detail: 'Anterior-laterale Position — gemäß Aufdruck auf den Elektroden.' }
         ];
-        reaniFacts.forEach(f => qs.push({ ...f, options: shuffleArr([...f.options]) }));
+        reaniFacts.forEach(f => qs.push({ ...f, cat: 'reanimation', options: shuffleArr([...f.options]) }));
     }
 
     return shuffleArr(qs).slice(0, QUIZ_BLOCK_SIZE);
 }
 
 const QUIZ_CATS = [
+    { id: 'alle', title: 'Alles gemischt', desc: 'Alle Bereiche zusammen' },
     { id: 'xabcde', title: 'xABCDE', desc: 'Prüfpunkte & Zuordnung' },
     { id: 'sample', title: 'SAMPLE', desc: 'Anamnese-Buchstaben' },
     { id: 'reanimation', title: 'Reanimation', desc: 'BLS-Algorithmus & AED' },
     { id: 'notfaelle', title: 'Notfallbilder', desc: 'Symptome → Krankheitsbild' },
-    { id: 'schock', title: 'Schock', desc: 'Schocktypen & Zeichen' },
-    { id: 'normalwerte', title: 'Normalwerte', desc: 'Vitalparameter & Grenzwerte' },
-    { id: 'alle', title: 'Alles gemischt', desc: 'Alle Bereiche zusammen' }
+    { id: 'leitsymptome', title: 'Leitsymptome', desc: 'Leitsymptom → mögliche Ursache' },
+    { id: 'vitalwerte', title: 'Vitalwerte', desc: 'Vitalparameter & Grenzwerte' }
 ];
+
+const QUIZ_CAT_TO_WISSEN = {
+    xabcde: 'xabcde',
+    sample: 'sample',
+    reanimation: 'reanimation',
+    notfaelle: 'notfaelle',
+    leitsymptome: 'leitsymptome',
+    vitalwerte: 'vitalwerte'
+};
 
 function quizCatTitle(id) { const c = QUIZ_CATS.find(c => c.id === id); return c ? c.title : id; }
 
@@ -2021,25 +2120,30 @@ function showQuizMenu() {
     document.getElementById('quiz-active').classList.add('d-none');
     const menu = document.getElementById('quiz-menu');
     menu.classList.remove('d-none');
+    setHeroTitle('Quiz', 'ueben-hero-title');
     const best = getQuizBest();
     const saved = loadQuizState();
 
     const tested = QUIZ_CATS.filter(c => best[c.id]);
-    const weak = tested.filter(c => quizStatus(c.id, best).key === 'weak').map(c => c.title);
-    const ok = tested.filter(c => quizStatus(c.id, best).key === 'ok').map(c => c.title);
-    const good = tested.filter(c => quizStatus(c.id, best).key === 'good').map(c => c.title);
+    const weakCats = tested.filter(c => quizStatus(c.id, best).key === 'weak');
+    const okCats = tested.filter(c => quizStatus(c.id, best).key === 'ok');
+    const goodCats = tested.filter(c => quizStatus(c.id, best).key === 'good');
+
+    const chipLink = (c, klass) => `<button class="quiz-chip ${klass}" onclick="startQuizCategory('${c.id}')" title="${c.title} jetzt üben">${c.title}</button>`;
 
     let summary = '';
     if (tested.length > 0) {
+        const chips = [
+            ...weakCats.map(c => chipLink(c, 'quiz-chip-weak')),
+            ...okCats.map(c => chipLink(c, 'quiz-chip-ok')),
+            ...goodCats.map(c => chipLink(c, 'quiz-chip-good'))
+        ];
+        const headLabel = weakCats.length ? 'Übungsbedarf' : (okCats.length ? 'Bereiche' : 'Stark');
         summary = `
             <div class="quiz-summary">
-                <div class="quiz-summary-title">Deine Auswertung</div>
-                <div class="quiz-summary-chips">
-                    ${good.length ? `<span class="quiz-chip quiz-chip-good">Stark · ${good.join(', ')}</span>` : ''}
-                    ${ok.length ? `<span class="quiz-chip quiz-chip-ok">Solide · ${ok.join(', ')}</span>` : ''}
-                    ${weak.length ? `<span class="quiz-chip quiz-chip-weak">Übungsbedarf · ${weak.join(', ')}</span>` : ''}
-                </div>
-                ${weak.length ? `<p class="quiz-summary-hint">Fokus: ${weak.join(', ')}</p>` : (tested.length === QUIZ_CATS.length && !weak.length && !ok.length ? `<p class="quiz-summary-hint">Alles im grünen Bereich.</p>` : '')}
+                <div class="quiz-summary-title">Deine Auswertung · ${headLabel} zuerst — tippen zum Üben</div>
+                <div class="quiz-summary-chips">${chips.join('')}</div>
+                ${weakCats.length ? `<p class="quiz-summary-hint">Fokus: ${weakCats.map(c => c.title).join(', ')}</p>` : (tested.length === QUIZ_CATS.length - 1 && !weakCats.length && !okCats.length ? `<p class="quiz-summary-hint">Alles im grünen Bereich.</p>` : '')}
             </div>
         `;
     }
@@ -2055,8 +2159,8 @@ function showQuizMenu() {
 
     const order = { weak: 0, ok: 1, none: 2, good: 3 };
     const sortedCats = [...QUIZ_CATS].sort((a, b) => {
-        if (a.id === 'alle') return 1;
-        if (b.id === 'alle') return -1;
+        if (a.id === 'alle') return -1;
+        if (b.id === 'alle') return 1;
         return order[quizStatus(a.id, best).key] - order[quizStatus(b.id, best).key];
     });
 
@@ -2091,10 +2195,11 @@ async function startQuizCategory(cat) {
     const needs = [];
     if (cat === 'xabcde' || cat === 'alle') needs.push('xabcde');
     if (cat === 'sample' || cat === 'alle') needs.push('sample');
-    if (cat === 'notfaelle' || cat === 'schock' || cat === 'alle') needs.push('notfallbilder');
-    if (cat === 'normalwerte' || cat === 'alle') needs.push('normalwerte');
+    if (cat === 'notfaelle' || cat === 'alle') needs.push('notfallbilder');
+    if (cat === 'leitsymptome' || cat === 'alle') needs.push('leitsymptome', 'notfallbilder');
+    if (cat === 'vitalwerte' || cat === 'alle') needs.push('normalwerte');
     if (cat === 'reanimation' || cat === 'alle') needs.push('reanimation');
-    const toLoad = needs.filter(n => !DATA_CACHE[n]);
+    const toLoad = [...new Set(needs)].filter(n => !DATA_CACHE[n]);
     if (toLoad.length) {
         document.getElementById('quiz-menu').innerHTML = '<div class="loading-placeholder"></div><div class="loading-placeholder"></div>';
         await Promise.all(toLoad.map(n => loadData(n)));
@@ -2106,6 +2211,7 @@ async function startQuizCategory(cat) {
     saveQuizState();
     document.getElementById('quiz-menu').classList.add('d-none');
     document.getElementById('quiz-active').classList.remove('d-none');
+    setHeroTitle(quizCatTitle(cat), 'ueben-hero-title');
     renderQuiz();
 }
 
@@ -2119,6 +2225,7 @@ function resumeQuiz() {
     quizAnswered = false;
     document.getElementById('quiz-menu').classList.add('d-none');
     document.getElementById('quiz-active').classList.remove('d-none');
+    setHeroTitle(quizCatTitle(quizCategory), 'ueben-hero-title');
     renderQuiz();
 }
 
@@ -2176,9 +2283,25 @@ function answerQuiz(i) {
     const fb = document.getElementById('quiz-feedback'); fb.classList.remove('d-none');
     let html = ok ? '<span class="text-success fw-bold small">Richtig!</span>' : `<span class="text-danger fw-bold small">Falsch.</span> <span class="text-muted small">Richtig: ${q.correct}</span>`;
     if (q.detail) html += `<p class="text-muted small mt-2 mb-0">${q.detail}</p>`;
+    if (!ok && q.cat && QUIZ_CAT_TO_WISSEN[q.cat]) {
+        const wissenSec = QUIZ_CAT_TO_WISSEN[q.cat];
+        const label = quizCatTitle(q.cat);
+        html += `<div><button type="button" class="theory-link" onclick="jumpToTheory('${wissenSec}')">Theorie öffnen: ${label}</button></div>`;
+    }
     fb.innerHTML = html;
     document.getElementById('quiz-next').classList.remove('d-none');
     saveQuizState();
+}
+
+function jumpToTheory(section) {
+    const wissenTab = document.getElementById('tab-wissen');
+    if (wissenTab) {
+        const tab = bootstrap.Tab.getOrCreateInstance(wissenTab);
+        tab.show();
+    }
+    const subBtn = document.querySelector(`#wissen .sub-pill[data-section="${section}"]`);
+    if (subBtn) showWissenSection(section, subBtn);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function nextQuestion() { currentQuestion++; quizAnswered = false; saveQuizState(); renderQuiz(); }
@@ -2303,32 +2426,114 @@ function renderUebergabe() {
 
 // ===================== SZENARIO =====================
 let szenarien = [], szenarioCurrent = 0, szenarioStep = 0, szenarioScore = 0, szenarioAnswered = false;
+const SZENARIO_STATE_KEY = 'sani.szenario.state';
+
+function saveSzenarioState() {
+    try {
+        const sz = szenarien[szenarioCurrent];
+        if (!sz) return;
+        const total = sz.schritte.length;
+        if (szenarioStep >= total) { clearSzenarioState(); return; }
+        localStorage.setItem(SZENARIO_STATE_KEY, JSON.stringify({
+            current: szenarioCurrent, step: szenarioStep, score: szenarioScore, title: sz.title, total
+        }));
+    } catch (e) {}
+}
+function loadSzenarioState() { try { const r = localStorage.getItem(SZENARIO_STATE_KEY); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
+function clearSzenarioState() { try { localStorage.removeItem(SZENARIO_STATE_KEY); } catch (e) {} }
+
+function resumeSzenario() {
+    const s = loadSzenarioState();
+    if (!s || typeof s.current !== 'number' || !szenarien[s.current]) return;
+    szenarioCurrent = s.current;
+    szenarioStep = s.step || 0;
+    szenarioScore = s.score || 0;
+    szenarioAnswered = false;
+    setHeroTitle(szenarien[szenarioCurrent].title, 'ueben-hero-title');
+    renderSzenario();
+}
+
+const SZENARIO_TAGS = {
+    bewusstsein: 'Bewusstsein',
+    atmung: 'Atmung',
+    kreislauf: 'Kreislauf',
+    trauma: 'Trauma',
+    neurologisch: 'Neuro',
+    stoffwechsel: 'Stoffwechsel',
+    intoxikation: 'Intox',
+    hitze: 'Hitze',
+    'kälte': 'Kälte'
+};
+const SZENARIO_DIFFICULTY = { easy: 'leicht', medium: 'mittel', hard: 'schwer' };
+let szenarioFilterTag = 'all';
 
 function startSzenarioMenu() {
+    setHeroTitle('Szenario', 'ueben-hero-title');
     const area = document.getElementById('szenario-area');
     if (!szenarien || !szenarien.length) {
         area.innerHTML = '<p class="text-muted">Keine Szenarien vorhanden.</p>';
         return;
     }
+    const allTags = new Set();
+    szenarien.forEach(s => (s.tags || []).forEach(t => allTags.add(t)));
+    const tagsArr = ['all', ...Array.from(allTags)];
+
+    const filtered = szenarioFilterTag === 'all'
+        ? szenarien
+        : szenarien.filter(s => (s.tags || []).includes(szenarioFilterTag));
+
+    const saved = loadSzenarioState();
+    const resumeBtn = saved && saved.current != null && szenarien[saved.current] && saved.step < (saved.total || 99) ? `
+        <button class="btn btn-danger text-start py-3 px-3" onclick="resumeSzenario()">
+            <strong>Fortsetzen</strong><br><small>${saved.title} · Schritt ${saved.step + 1} / ${saved.total}</small>
+        </button>
+    ` : '';
+
+    const tagFilters = tagsArr.map(t => `
+        <button class="szenario-tag ${szenarioFilterTag === t ? 'active' : ''}" onclick="setSzenarioFilter('${t}')">${t === 'all' ? 'Alle' : (SZENARIO_TAGS[t] || t)}</button>
+    `).join('');
+
+    const diffBadge = (s) => s.difficulty ? `<span class="szenario-diff szenario-diff-${s.difficulty}">${SZENARIO_DIFFICULTY[s.difficulty] || s.difficulty}</span>` : '';
+
     area.innerHTML = `
         <h5 class="mb-3">Szenario wählen</h5>
-        <div class="d-grid gap-2">
+        <div class="szenario-filters">${tagFilters}</div>
+        <div class="d-grid gap-2 mt-3">
+            ${resumeBtn}
             <button class="btn btn-danger text-start py-3 px-3" onclick="startRandomSzenario()">
-                <strong>Zufällig</strong><br><small>Ein zufälliges Szenario starten</small>
+                <strong>Zufällig</strong><br><small>Ein zufälliges Szenario starten ${szenarioFilterTag !== 'all' ? '(aus Filter)' : ''}</small>
             </button>
-            ${szenarien.map((s, i) => `
-                <button class="btn btn-outline-danger text-start py-3 px-3" onclick="startSzenario(${i})">
-                    <strong>${s.title}</strong><br><small class="text-muted">${s.beschreibung}</small>
-                </button>
-            `).join('')}
+            ${filtered.length === 0 ? '<p class="text-muted small">Keine Szenarien für diesen Filter.</p>' : ''}
+            ${filtered.map(s => {
+                const i = szenarien.indexOf(s);
+                return `
+                    <button class="btn btn-outline-danger text-start py-3 px-3" onclick="startSzenario(${i})">
+                        <div class="d-flex justify-content-between align-items-start gap-2">
+                            <div class="flex-grow-1">
+                                <strong>${s.title}</strong><br><small class="text-muted">${s.beschreibung}</small>
+                            </div>
+                            ${diffBadge(s)}
+                        </div>
+                    </button>
+                `;
+            }).join('')}
         </div>
     `;
 }
 
+function setSzenarioFilter(tag) {
+    szenarioFilterTag = tag;
+    startSzenarioMenu();
+}
+
 function startRandomSzenario() {
     if (!szenarien || !szenarien.length) return;
-    const i = Math.floor(Math.random() * szenarien.length);
-    startSzenario(i);
+    const pool = szenarioFilterTag === 'all'
+        ? szenarien
+        : szenarien.filter(s => (s.tags || []).includes(szenarioFilterTag));
+    if (!pool.length) return;
+    const idx = szenarien.indexOf(pool[Math.floor(Math.random() * pool.length)]);
+    startSzenario(idx);
 }
 
 function startSzenario(index) {
@@ -2336,6 +2541,8 @@ function startSzenario(index) {
     szenarioStep = 0;
     szenarioScore = 0;
     szenarioAnswered = false;
+    if (szenarien[index]) setHeroTitle(szenarien[index].title, 'ueben-hero-title');
+    saveSzenarioState();
     renderSzenario();
 }
 
@@ -2345,6 +2552,7 @@ function renderSzenario() {
     const total = sz.schritte.length;
 
     if (szenarioStep >= total) {
+        clearSzenarioState();
         const pct = Math.round((szenarioScore / total) * 100);
         const sc = pct >= 80 ? 'train-score-good' : pct >= 50 ? 'train-score-ok' : 'train-score-bad';
         area.innerHTML = `
@@ -2404,11 +2612,13 @@ function answerSzenario(i) {
     fb.innerHTML = (ok ? '<span class="text-success fw-bold small">Richtig!</span>' : '<span class="text-danger fw-bold small">Falsch.</span>') +
         `<p class="text-muted small mt-2 mb-0">${step.erklaerung}</p>`;
     document.getElementById('sz-next').classList.remove('d-none');
+    saveSzenarioState();
 }
 
 function nextSzenarioStep() {
     szenarioStep++;
     szenarioAnswered = false;
+    saveSzenarioState();
     renderSzenario();
 }
 
