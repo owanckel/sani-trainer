@@ -1114,5 +1114,509 @@
         "erklaerung": "Bei alten Menschen, Patienten mit Betablockern oder Sulfonylharnstoffen (lange Halbwertszeit!) kann die Hypoglykämie erneut auftreten. Ärztliche Abklärung: Ursache (Niereninsuffizienz, neues Medikament, Infekt, Dosisfehler) und Dosisanpassung. Ein isolierter BZ-Rebound heilt die Grundursache nicht."
       }
     ]
+  },
+  {
+    "title": "Bewusstloser auf einer Hausparty",
+    "beschreibung": "Du wirst zu einem ca. 20-jährigen Mann gerufen, der reglos im Bad liegt. Freunde sind aufgeregt, ein Tablettenblister und eine angebrochene Wodkaflasche liegen daneben.",
+    "schritte": [
+      {
+        "situation": "Du betrittst das enge Bad. Der Patient liegt halb an die Wanne gelehnt. Auf dem Boden: leere Tablettenblister, eine Spritze in der Ecke, eine angebrochene Wodkaflasche. Die Freunde drängen hinter dir herein.",
+        "frage": "Was tust du zuerst?",
+        "optionen": [
+          "Sofort den Patienten flach hinlegen und Puls fühlen",
+          "Szene/Sicherheit, Eigenschutz (Spritze!), Freunde nach draußen schicken, Überblick verschaffen",
+          "Tablettenblister einsammeln und zur Toilette werfen",
+          "Patient sofort hochnehmen und nach draußen tragen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Eigenschutz vor Patient. Eine Spritze auf dem Boden = Stichgefahr. Aufgeregte Umstehende behindern. Erst Szene sichern und Überblick verschaffen, dann zum Patienten."
+      },
+      {
+        "situation": "Du sprichst den Patienten laut an und rüttelst an den Schultern — keine Reaktion. Du machst die Atemwege frei und prüfst die Atmung: flache Atmung, du zählst etwa 8 Atemzüge pro Minute.",
+        "frage": "Was ist die richtige Einschätzung?",
+        "optionen": [
+          "Keine Atmung — sofort mit Reanimation beginnen (30:2)",
+          "Atmung ist vorhanden (auch wenn niedrig) — keine Reanimation, aber Atmung beobachten und Hilfe nachfordern",
+          "Atmung normal — stabile Seitenlage und warten",
+          "Patient sofort intubieren"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Bewusstlos + eigene Atmung vorhanden = KEINE Reanimation. AF 8/min ist aber bedrohlich niedrig (Bradypnoe / Atemdepression). Patient engmaschig überwachen, Notruf 112, Hilfe organisieren — Atemstillstand kann jederzeit eintreten."
+      },
+      {
+        "situation": "Du leuchtest mit der Taschenlampe in die Augen: beide Pupillen sind stecknadelkopfgroß und reagieren kaum auf Licht.",
+        "frage": "Was sagt dir dieser Befund in dieser Situation?",
+        "optionen": [
+          "Normalbefund — kein Problem",
+          "Mydriasis (weite Pupillen) — typisch für Stimulanzien",
+          "Miosis (enge Pupillen) + Atemdepression + Bewusstlosigkeit = klassische Trias der Opioid-Intoxikation",
+          "Hinweis auf Hirndruck"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Trias: Bewusstseinstrübung + Atemdepression (AF < 10/min) + Miosis = Verdacht auf Opioidintoxikation (Heroin, Fentanyl, Tramadol, Methadon, Morphin). Wichtig: Diagnose stützt die weitere Maßnahme — Atmung steht im Vordergrund, Antidot Naloxon kommt vom Notarzt."
+      },
+      {
+        "situation": "Die Atmung wird noch flacher, AF jetzt etwa 6/min, Lippen werden bläulich (Zyanose). SpO₂ am Pulsoxymeter: 84%.",
+        "frage": "Was ist jetzt die wichtigste Maßnahme?",
+        "optionen": [
+          "Stabile Seitenlage und warten",
+          "Sofort Reanimation beginnen",
+          "Atemwege freihalten und assistierte Beatmung mit Beutel-Maske + O₂ — die eigene Atmung reicht nicht mehr",
+          "Patient mit kaltem Wasser bespritzen, um ihn zu wecken"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bei Atemdepression (AF < 10) mit Sättigungsabfall und Zyanose wird die eigene Atmung assistiert beatmet (Beutel-Maske + O₂, etwa 10–12 Beatmungen/min). Stabile Seitenlage nur bei ausreichender Eigenatmung. Reanimation erst bei komplettem Atem-/Kreislaufstillstand."
+      },
+      {
+        "situation": "Der Rettungsdienst ist auf dem Weg. Die Freunde sammeln panisch die Tablettenblister und die Flasche ein, um 'aufzuräumen'.",
+        "frage": "Wie reagierst du?",
+        "optionen": [
+          "Egal, ist nicht wichtig — Hauptsache der Rettungsdienst kommt",
+          "Stoppen! Substanzen, Verpackungen, Spritzen sichern und dem Rettungsdienst übergeben — entscheidend für Antidot und Klinik",
+          "Die Sachen wegwerfen, damit es keinen Ärger mit der Polizei gibt",
+          "Den Patienten nach den Substanzen fragen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Substanzen, Verpackungen und Reste sind die wichtigste Information für die Klinik (Naloxon-Dosis, Mischintoxikation, Paracetamol-Dosis bei Tabletten). Niemals wegwerfen oder verändern. Spritzen vorsichtig in stichfeste Behälter."
+      },
+      {
+        "situation": "Der Rettungsdienst trifft ein. Du hast Zeit für eine strukturierte Übergabe.",
+        "frage": "Was berichtest du?",
+        "optionen": [
+          "Nur 'der ist betrunken'",
+          "Auffindesituation + Vitalwerte (AF, Puls, SpO₂, Pupillen) + Verdacht Mischintoxikation Opioid + Alkohol + bisherige Maßnahmen + sichergestellte Substanzen",
+          "Nur den Namen des Patienten",
+          "Erstmal warten, bis sie selber fragen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Strukturierte Übergabe (z.B. ISBAR / SBAR): Auffindesituation, Vitalwerte mit Verlauf, Verdachtsdiagnose, durchgeführte Maßnahmen, sichergestellte Substanzen. Spart dem Notarzt Minuten — bei Atemdepression zählt jede Minute bis zur Naloxon-Gabe."
+      }
+    ]
+  },
+  {
+    "title": "Plötzlich der schlimmste Kopfschmerz seines Lebens",
+    "beschreibung": "Du wirst in ein Bürogebäude gerufen. Ein 58-jähriger Mann sitzt zusammengesunken am Schreibtisch und hält sich den Kopf. Eine Kollegin sagt, er habe vorhin plötzlich aufgeschrien und sich an den Hinterkopf gefasst.",
+    "schritte": [
+      {
+        "situation": "Der Patient stöhnt, hält den Kopf, wirkt blass und schwitzt. Er sagt: 'So einen Kopfschmerz hatte ich noch nie.' Die Szene ist ruhig und sicher.",
+        "frage": "Wie schätzt du die Lage ein und was tust du?",
+        "optionen": [
+          "Wirkt wie eine Migräne — Patient soll sich kurz hinlegen, abwarten",
+          "Kritisch! Vernichtungskopfschmerz + plötzlicher Beginn = Alarmzeichen — sofort Rettungsdienst / Notarzt parallel zur weiteren Untersuchung, Reizabschirmung",
+          "Erstmal Schmerzmittel aus dem Sani-Rucksack geben",
+          "Patient nach draußen an die frische Luft führen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Schlagartig einsetzender 'Vernichtungskopfschmerz' aus voller Ruhe ist klassisch für eine Subarachnoidalblutung (SAB / Hirnblutung). Sofort Notarzt, Reizabschirmung (leise sprechen, Licht reduzieren), keine Schmerzmittel — Diagnostik nur per CT in der Klinik."
+      },
+      {
+        "situation": "Du fragst kurz nach Symptombeginn, Auslöser und Vorerkrankungen.",
+        "frage": "Was ist die wichtigste Information, die du jetzt sicher dokumentierst?",
+        "optionen": [
+          "Lieblingsessen des Patienten",
+          "Genaue Uhrzeit des Symptombeginns + Vorerkrankungen + aktuelle Medikamente (besonders Blutverdünner!)",
+          "Nur den Namen",
+          "Nur die Telefonnummer der Ehefrau"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Symptombeginn-Uhrzeit ist beim Schlaganfall die Schlüsselinfo (Lyse-Fenster bei Ischämie, OP-Indikation bei Blutung). Vorerkrankungen (Hypertonie, Aneurysma bekannt?) und Medikamente (ASS, Marcumar, Eliquis) sind entscheidend — bekannt: Hypertonie, RR-Tabletten unregelmäßig genommen, kein Trauma."
+      },
+      {
+        "situation": "Du machst BE-FAST: Gesicht symmetrisch, beide Arme heben gleichmäßig, Sprache leicht verlangsamt aber verständlich, keine Sehstörung. Zusätzlich: Übelkeit und Nackensteife. Patient klagt weiter über stärksten Kopfschmerz.",
+        "frage": "Was sagt dir diese Konstellation?",
+        "optionen": [
+          "BE-FAST unauffällig → kein Schlaganfall, Spannungskopfschmerz",
+          "Vernichtungskopfschmerz + Übelkeit + Nackensteife (Meningismus) = sehr verdächtig auf Subarachnoidalblutung — auch ohne klassische BE-FAST-Ausfälle Hirnblutung annehmen",
+          "Wahrscheinlich Migräne mit Aura",
+          "Sicher Meningitis"
+        ],
+        "korrekt": 1,
+        "erklaerung": "BE-FAST kann bei einer SAB initial unauffällig sein — die Trias Vernichtungskopfschmerz + Übelkeit / Erbrechen + Meningismus (Nackensteife durch Blut im Liquorraum) ist hochverdächtig. Verdacht reicht für die Klinikzuweisung, die endgültige Diagnose stellt das CT."
+      },
+      {
+        "situation": "Du überlegst Lagerung und erste Maßnahmen.",
+        "frage": "Was ist richtig?",
+        "optionen": [
+          "Flach liegen, Beine hoch (Schocklage)",
+          "Oberkörper ca. 30° hoch, beengende Kleidung öffnen, Reizabschirmung, Wärmeerhalt, NICHTS oral, engmaschig Vitalwerte und Bewusstsein überwachen",
+          "Stabile Seitenlage, obwohl er wach ist",
+          "Patient laufen lassen, das lockert"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Oberkörperhochlagerung (~30°) senkt den intrakraniellen Druck. Reizabschirmung (Lärm, Licht) reduziert Stress. NICHTS oral wegen drohender Schluckstörung / Bewusstseinsverschlechterung. Vitalwerte und GCS / Bewusstsein engmaschig kontrollieren — Verschlechterung kann rasch eintreten."
+      },
+      {
+        "situation": "Die Kollegin bringt seine Tablettenschachtel: ASS 100. Sie sagt: 'Sollen wir ihm eine geben? Er hat doch sicher einen Schlaganfall.'",
+        "frage": "Wie reagierst du?",
+        "optionen": [
+          "Klar, ASS hilft beim Schlaganfall — sofort geben",
+          "NEIN. ASS oder Blutverdünner sind beim hämorrhagischen Schlaganfall lebensgefährlich (Blutungsverstärkung). Ohne CT gibt der Sanitäter NIE Thrombozytenaggregationshemmer oder Antikoagulanzien",
+          "Halbe Tablette zur Sicherheit",
+          "Erst Patient fragen, ob er es will"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Ob Infarkt oder Blutung lässt sich klinisch nicht unterscheiden — nur per CT. Bei Blutung verschlechtert ASS die Prognose massiv. Auch eigene RR-Senker NICHT zusätzlich geben — RR-Steuerung erfolgt unter Notarzt-Kontrolle."
+      },
+      {
+        "situation": "Nach 4 Minuten wird der Patient zunehmend schläfrig, antwortet verzögert. Pupillen: rechts deutlich weiter als links, kaum Lichtreaktion.",
+        "frage": "Was bedeutet das und wie reagierst du?",
+        "optionen": [
+          "Patient ist müde — schlafen lassen",
+          "Anisokorie + Bewusstseinstrübung = beginnender Hirndruck / drohende Einklemmung. Höchste Dringlichkeit: Notarzt-Status updaten, Atemwege freihalten, bei Erbrechen sofort stabile Seitenlage",
+          "Pupillen sind unwichtig",
+          "Ammoniak unter die Nase halten"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Einseitig weite, lichtstarre Pupille (Anisokorie) zusammen mit zunehmender Bewusstseinstrübung ist ein Alarmzeichen für Hirndruck und drohende Einklemmung. Notarzt-Update durchgeben ('Verschlechterung, Anisokorie'), Atemweg sichern, Erbrechen antizipieren — bei Bewusstlosigkeit + Erhalt der Atmung geht stabile Seitenlage vor Hochlagerung."
+      },
+      {
+        "situation": "Der Rettungsdienst trifft ein. Du übergibst.",
+        "frage": "Was berichtest du strukturiert?",
+        "optionen": [
+          "Nur 'starker Kopfschmerz'",
+          "Symptombeginn-Uhrzeit, Verlauf (Vernichtungskopfschmerz → Bewusstseinstrübung → Anisokorie), Vitalwerte mit Trend, BE-FAST-Befund, Vorerkrankung Hypertonie, KEINE Eigenmedikation gegeben, durchgeführte Maßnahmen",
+          "Nur den Namen und das Geburtsdatum",
+          "Erstmal warten, bis sie selbst fragen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Strukturierte Übergabe (ISBAR / SBAR): Symptombeginn-Uhrzeit ist Lyse- / OP-relevant, der Verlauf signalisiert Hirndruck, der Hinweis 'kein ASS gegeben' ist für die Therapieplanung wichtig. Konsistente Zeit- und Befundangaben sparen dem Notarzt Minuten."
+      }
+    ]
+  },
+  {
+    "title": "Marathonläufer kippt am Streckenrand um",
+    "beschreibung": "Sonniger Sommertag, 32 °C. Du betreust einen Halbmarathon. Bei Kilometer 18 wankt ein Läufer (ca. 35 J.) zum Versorgungspunkt, lallt etwas und kippt um.",
+    "schritte": [
+      {
+        "situation": "Der Läufer liegt in der prallen Sonne auf dem Asphalt. Helfer rufen dich heran. Die Sonne brennt, kein Schatten in der Nähe — nur das Versorgungszelt 10 m weiter.",
+        "frage": "Was tust du zuerst?",
+        "optionen": [
+          "Sofort an Ort und Stelle untersuchen, der Asphalt ist egal",
+          "Szene / Sicherheit, Eigenschutz, Patient sofort in den Schatten verlegen — Hitze ist hier der Schädiger und wirkt weiter",
+          "Kaltes Wasser über den Kopf gießen",
+          "Erstmal Notruf absetzen, sonst nichts"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Bei Hitzenotfällen wirkt die Ursache weiter, solange der Patient in der Hitze liegt. Erste Maßnahme ist immer: aus der Hitze raus. Heißer Asphalt verstärkt das Problem zusätzlich."
+      },
+      {
+        "situation": "Du bringst den Läufer ins Versorgungszelt. Er atmet, ist verwirrt, antwortet zusammenhanglos. Haut: trocken, heiß, gerötet. Stirn fühlt sich glühend heiß an.",
+        "frage": "Wie ordnest du das ein?",
+        "optionen": [
+          "Hitzeerschöpfung — schwitzt nur wenig, ist müde",
+          "Trockene heiße Haut + Bewusstseinsstörung in Hitze = Hitzschlag, lebensbedrohlich",
+          "Sonnenstich — typischer Verlauf",
+          "Wahrscheinlich nur Unterzucker"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Der entscheidende Unterschied: Bei Hitzeerschöpfung schwitzt der Patient stark und ist blass / kalt-feucht. Beim Hitzschlag versagt die Wärmeregulation — Haut wird trocken, heiß, rot, das Bewusstsein trübt ein. Hitzschlag ist eine Notarztindikation."
+      },
+      {
+        "situation": "Du beginnst die Versorgung.",
+        "frage": "Welche Maßnahme ist hier am wichtigsten?",
+        "optionen": [
+          "Schmerzmittel geben",
+          "Notarzt + aggressive aktive Kühlung: Kleidung entfernen, Wasser sprühen + fächeln (Verdunstungskälte), Kältepacks auf Hals, Achsel, Leiste (mit Tuch); Vitalwerte engmaschig",
+          "In dicke Decken einwickeln, damit er nicht auskühlt",
+          "Salbe auf die Haut auftragen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Beim Hitzschlag zählt jede Minute über 40 °C. Verdunstungskühlung (sprühen + fächeln) ist die effektivste praktikable Methode. Kältepacks auf große Gefäße (Hals, Achsel, Leiste). Direkt auf die Haut nur mit Tuch — sonst lokale Erfrierung."
+      },
+      {
+        "situation": "Ein Helfer hält eine Wasserflasche bereit: 'Soll ich ihm was zu trinken geben? Er muss doch dehydriert sein.'",
+        "frage": "Wie reagierst du?",
+        "optionen": [
+          "Ja, ruhig viel und schnell, ist ja Marathon",
+          "Bei Bewusstseinstrübung NICHTS oral (Aspirationsgefahr). Erst wenn klar wach und schluckfähig — und dann Elektrolytlösung, kein eiskaltes Wasser",
+          "Eiswasser ist genau richtig",
+          "Nur ein Schluck schadet nicht"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Bewusstseinstrübung schließt orale Flüssigkeit aus — Aspirationsgefahr. Auch wach und schluckfähig: lieber Elektrolytlösung in kleinen Schlucken, kein eiskaltes Wasser (Magenkrämpfe, Vasokonstriktion in der Haut bremst die Wärmeabgabe)."
+      },
+      {
+        "situation": "Während du kühlst, beginnt der Läufer zu krampfen — tonisch-klonisch, ca. 45 Sekunden.",
+        "frage": "Wie verhältst du dich?",
+        "optionen": [
+          "Patient festhalten, damit er aufhört",
+          "Etwas in den Mund schieben, damit er sich nicht auf die Zunge beißt",
+          "Umgebung absichern, Polster unter den Kopf, NICHTS in den Mund, Zeit messen, weiter kühlen, nach dem Anfall stabile Seitenlage, xABCDE, Notarzt-Status updaten",
+          "Reanimation starten"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Beim Krampfanfall: nicht festhalten, NICHTS in den Mund (Aspirations- und Verletzungsgefahr für Helfer und Patient), Umgebung absichern, Zeit messen. Kühlmaßnahmen weiterführen — der Krampf ist Folge der Überhitzung. Nach dem Anfall stabile Seitenlage und xABCDE."
+      },
+      {
+        "situation": "Nach einigen Minuten Kühlung wird der Läufer wieder klarer, antwortet auf Ansprache. Du tastest die Stirn — deutlich kühler.",
+        "frage": "Wann reduzierst du die Kühlung?",
+        "optionen": [
+          "Gar nicht — durchkühlen bis zum Eintreffen Rettungsdienst",
+          "Sobald Kerntemperatur unter ca. 39 °C bzw. Bewusstsein klar — Cave Unterkühlung. Klinikzuweisung trotzdem obligat",
+          "Sobald der Patient sagt, es geht ihm gut",
+          "Nach genau 10 Minuten"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Aktive Kühlung wird beendet, sobald die Kerntemperatur unter ca. 39 °C liegt — sonst kippt der Patient in eine Hypothermie. Trotz klinischer Besserung: immer Klinikzuweisung — Organkomplikationen (Niere, Leber, Gerinnung) drohen verzögert."
+      },
+      {
+        "situation": "Der Notarzt trifft ein.",
+        "frage": "Was berichtest du strukturiert?",
+        "optionen": [
+          "Nur 'Hitzschlag'",
+          "Nur den Namen",
+          "Auffindesituation (Marathon, 32 °C, prall in der Sonne), Verlauf (Bewusstseinsstörung → trockene heiße Haut → Krampfanfall), Vitalwerte mit Trend, durchgeführte Kühlmaßnahmen, NICHTS oral gegeben",
+          "Erstmal warten bis er fragt"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Strukturierte Übergabe spart Zeit. Wichtig: Auffindeumstände, Symptomverlauf, durchgeführte Maßnahmen mit Wirkung, Verzicht auf orale Flüssigkeit. Beim Hitzschlag ist auch die kumulative Belastungszeit (wie lange in der Hitze, Wettkampfdauer) wertvolle Information."
+      }
+    ]
+  },
+  {
+    "title": "Kleinkind allein im heißen Auto",
+    "beschreibung": "Sonniger Samstag, 30 °C im Schatten. Auf einem Supermarktparkplatz machst du eine Person darauf aufmerksam, dass in einem dunklen Kombi ein Kleinkind (~2 Jahre) angeschnallt im Kindersitz sitzt. Fenster geschlossen, keine Eltern in Sicht.",
+    "schritte": [
+      {
+        "situation": "Das Kind sitzt apathisch im Sitz, hochroter Kopf, Augen halb geschlossen. Es reagiert kaum, als du an die Scheibe klopfst. Das Auto steht in der Sonne, Innenraum ist sichtbar dunstig.",
+        "frage": "Was tust du als erstes?",
+        "optionen": [
+          "Im Supermarkt die Eltern ausrufen lassen und warten",
+          "Auf die Polizei warten und nicht ans Auto gehen",
+          "Notruf 112 + Polizei, kurzer Versuch das Auto zu öffnen — bei Lebensgefahr und drohendem Hitzschlag Scheibe einschlagen (Recht auf rechtfertigenden Notstand). Möglichst hintere Scheibe weit weg vom Kind",
+          "Das Kind aus der Ferne mit Wasser bespritzen"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bei einem Kleinkind in einem heißen Auto zählen Minuten. Innentemperaturen können in 10 Min auf 50 °C steigen, Kinder erhitzen 3–5× schneller als Erwachsene. Bei sichtbarer Apathie / Bewusstseinstrübung ist die Gefahr unmittelbar — Notruf, Polizei, und im Zweifel Scheibe einschlagen (rechtfertigender Notstand, § 34 StGB). Hintere Scheibe weit weg vom Kind, Splitter wegwischen."
+      },
+      {
+        "situation": "Du hast das Kind aus dem Auto. Es ist apathisch, reagiert nur schwach, atmet, Haut ist hochrot und glühend heiß, kaum Schweiß. AF erhöht.",
+        "frage": "Wo lagerst du das Kind und was ist die wichtigste Maßnahme?",
+        "optionen": [
+          "Direkt zurück in den Kindersitz",
+          "Sofort in den Schatten / einen klimatisierten Innenraum, Kleidung lockern / entfernen, behutsame Kühlung mit lauwarm-feuchten Tüchern an Stamm, Hals, Achseln, Leiste — KEIN Eiswasser bei Kleinkindern",
+          "In eine Decke einwickeln",
+          "Mit Eiswürfeln direkt auf der Haut kühlen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Kühlung beim Kleinkind muss behutsamer sein als beim Erwachsenen — kleine Körperoberfläche zu Volumen, schnelle Auskühlung möglich. Kein Eiswasser, kein Eis direkt auf Haut. Lauwarme bis kühle feuchte Tücher, Schatten / klimatisierter Raum, Luftzug zur Verdunstungskühlung."
+      },
+      {
+        "situation": "Du prüfst Bewusstsein und Atmung am Kind.",
+        "frage": "Wie machst du das beim Kleinkind richtig?",
+        "optionen": [
+          "Wie beim Erwachsenen: an den Schultern rütteln und laut ansprechen, Atmung max. 10 Sek. prüfen (Sehen / Hören / Fühlen)",
+          "Nur am Fuß kitzeln",
+          "Bewusstsein nicht prüfen, sofort reanimieren",
+          "Mit kaltem Wasser besprühen, um es zu wecken"
+        ],
+        "korrekt": 0,
+        "erklaerung": "Bewusstseinscheck am Kleinkind: laut ansprechen, vorsichtiges Rütteln (an Schultern oder Füßen, je nach Alter), Reaktion beobachten. Atmung max. 10 Sek. prüfen — Sehen (Brustkorb), Hören (Mund), Fühlen (Wange). Schnappatmung zählt nicht als normale Atmung."
+      },
+      {
+        "situation": "Eine Passantin kommt mit einer Trinkflasche: 'Soll ich ihm was zu trinken geben?'",
+        "frage": "Wie reagierst du?",
+        "optionen": [
+          "Ja, viel und schnell",
+          "Bei apathischem oder bewusstseinsgetrübtem Kleinkind NICHTS oral (Aspirationsgefahr). Erst wenn klar wach und schluckfähig — dann nur kleine Schlucke",
+          "Cola ist am besten",
+          "Kaltes Wasser einflößen, auch wenn es nicht schluckt"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Apathie / Bewusstseinstrübung schließt orale Flüssigkeit aus — Kleinkinder aspirieren besonders schnell. Bei Wachheit und Schluckfähigkeit: kleine Schlucke lauwarme Flüssigkeit (kein Eiswasser). Volumengabe macht der Rettungsdienst i.v."
+      },
+      {
+        "situation": "Das Kind beginnt nun zu krampfen, kurz tonisch-klonisch.",
+        "frage": "Wie verhältst du dich beim krampfenden Kleinkind?",
+        "optionen": [
+          "Festhalten",
+          "Etwas in den Mund schieben",
+          "Umgebung absichern, weiches Polster unter den Kopf, NICHTS in den Mund, Zeit messen, weiter kühlen — Krampf ist hier Folge der Überhitzung. Nach dem Anfall stabile Seitenlage, xABCDE",
+          "Sofort Reanimation starten"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bei Hitzschlag-bedingtem Krampfanfall: Umgebung absichern, nicht festhalten, NICHTS in den Mund, Zeit messen. Kühlmaßnahmen werden fortgesetzt — die Überhitzung ist Auslöser. Nach dem Anfall stabile Seitenlage und engmaschige Kontrolle."
+      },
+      {
+        "situation": "Polizei und Rettungsdienst treffen ein. Eltern tauchen empört am Auto auf.",
+        "frage": "Was berichtest du dem Notarzt?",
+        "optionen": [
+          "Nur 'Hitzschlag'",
+          "Auffindesituation (allein im Auto, geschätzte Expositionsdauer, Innentemperatur fühlbar), Befund bei Auffinden (Apathie, hochrot, heiße trockene Haut), Verlauf (Krampfanfall), durchgeführte Kühlmaßnahmen, Vitalwerte mit Trend, NICHTS oral gegeben",
+          "Mit den Eltern diskutieren, bevor du übergibst",
+          "Erstmal warten bis sie selber fragen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Strukturierte Übergabe: Auffindesituation (extrem wichtig — geschätzte Expositionsdauer ist therapierelevant), Verlauf, Maßnahmen, kein oraler Input. Eltern-Diskussion ist NICHT deine Aufgabe — übernimmt die Polizei. Konzentrier dich auf das Kind."
+      }
+    ]
+  },
+  {
+    "title": "Eiseinbruch im Park",
+    "beschreibung": "Wintersamstag, –4 °C. Du gehst durch einen Park, hörst Geschrei. Auf einem zugefrorenen Teich ist ein junger Mann eingebrochen, klammert sich an die Eiskante und ruft um Hilfe.",
+    "schritte": [
+      {
+        "situation": "Der Mann hängt etwa 6 m vom Ufer entfernt am Eis. Du siehst Risse rund um das Loch. Andere Passanten schauen entsetzt zu. Eine Frau will spontan aufs Eis laufen.",
+        "frage": "Was ist dein erster Schritt?",
+        "optionen": [
+          "Selbst sofort aufs Eis kriechen und ihn rausziehen",
+          "Wegrennen und niemandem davon erzählen",
+          "Eigenschutz! Frau zurückhalten, Notruf 112 (Feuerwehr / Wasserrettung), vom festen Ufer aus arbeiten — Eis ist instabil, Helfer dürfen nicht selbst einbrechen",
+          "Ihm vom Ufer aus zurufen, er soll sich selbst rausziehen"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Eigenschutz hat absolute Priorität. Wer ohne Sicherung aufs gebrochene Eis geht, wird zum zweiten Patienten. Sofort 112 anrufen — Feuerwehr / Wasserrettung sind ausgerüstet. Andere Helfer ebenfalls vom Eis fernhalten."
+      },
+      {
+        "situation": "Du suchst nach Bergungswerkzeug. Am Ufer liegen ein langer Ast, ein Schal und ein Plastikschlitten.",
+        "frage": "Wie näherst du dich dem Patienten?",
+        "optionen": [
+          "Auf allen Vieren aufs Eis kriechen mit dem Ast",
+          "Vom festen Ufer / sicherem Stand: Ast oder zusammengebundenen Schal reichen, Schlitten als Auflage hinausschieben — dem Patienten etwas zum Festhalten geben, ihn zum Ufer ziehen",
+          "Den Ast ins Wasser werfen",
+          "Ihn anbrüllen, dass er aussteigen soll"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Reichen, werfen, schieben — von festem Stand aus. Ein Ast / Schal verlängert den Arm, ein Schlitten oder eine Leiter verteilt das Gewicht und kann zur Plattform werden. Niemals selbst auf gebrochenes Eis kriechen, wenn nicht mit Seil gesichert."
+      },
+      {
+        "situation": "Mit Hilfe einer zweiten Person ziehst du den Mann ans Ufer. Er ist wach, zittert stark, klappert mit den Zähnen, atmet schnell, hat Tachykardie.",
+        "frage": "In welchem Hypothermie-Stadium ist er?",
+        "optionen": [
+          "HT I (35–32 °C): wach, starkes Zittern, Tachykardie, Hyperventilation",
+          "HT II (32–28 °C): Bewusstseinstrübung, Zittern hört auf",
+          "HT III (28–24 °C): bewusstlos",
+          "HT IV: scheinbarer Tod"
+        ],
+        "korrekt": 0,
+        "erklaerung": "Wach + starkes Zittern + Tachykardie = HT I. Das Zittern produziert Wärme — solange er kräftig zittert, ist die Eigen-Wärmeproduktion noch aktiv. Sobald das Zittern aufhört, ist das ein Alarmzeichen für Übergang in HT II."
+      },
+      {
+        "situation": "Du willst ihn versorgen. Ein Helfer schlägt vor, ihn aufzustellen und zum nahen Café zu bringen. Ein anderer will ihm einen Schluck Schnaps geben 'gegen die Kälte'.",
+        "frage": "Wie reagierst du?",
+        "optionen": [
+          "Aufstellen ist okay, Schnaps auch — wärmt von innen",
+          "Aufstellen okay, Schnaps NICHT",
+          "Beides NEIN: streng horizontal lagern (Bergungstod!), KEIN Alkohol (Volksglaube — erweitert Gefäße, beschleunigt Auskühlung). Patient ruhig liegen lassen, vor Ort versorgen",
+          "Ihn rennen lassen, das wärmt"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bergungstod-Risiko: Beim aufrechten Bewegen strömt kaltes Blut aus den Beinen zum Herzen — Blutdruckabfall, Kammerflimmern. Strikt horizontal. Alkohol ist Volksglaube: Vasodilatation beschleunigt Wärmeverlust, plus Beeinträchtigung des Bewusstseins."
+      },
+      {
+        "situation": "Du sicherst die Versorgung am Boden ab.",
+        "frage": "Was machst du jetzt mit der nassen Kleidung und der Wärmeversorgung?",
+        "optionen": [
+          "Anlassen, sonst wird ihm noch kälter",
+          "Heißes Wasser über die Hände schütten zum Auftauen",
+          "Mit Wolldecke fest einwickeln und kräftig die Arme reiben, damit er warm wird",
+          "Nasse Kleidung schneiden (nicht ausziehen — bewegt zu viel), trocken polstern, Rettungsdecke (Silberseite zum Körper), vor Wind / Boden isolieren. KEINE aktive Wiedererwärmung im Feld, NICHT reiben / massieren"
+        ],
+        "korrekt": 3,
+        "erklaerung": "Nasse Kleidung kühlt 25× stärker als trockene — schneiden, nicht ausziehen, weil Bewegung das kalte Schalenblut umverteilt. Rettungsdecke und Wind- / Bodenisolation. Aktive Wiedererwärmung (heißes Wasser, Wärmflasche, Reiben) provoziert Bergungstod und Hautschäden."
+      },
+      {
+        "situation": "Der Patient ist wach und schluckfähig. Eine Helferin bringt einen Thermosbecher. Sie fragt: 'Was darf er trinken?'",
+        "frage": "Was ist okay?",
+        "optionen": [
+          "Heißer Schnaps oder Glühwein",
+          "Eiskaltes Wasser",
+          "Bei wachem, klar antwortendem Patienten (HT I): warme, gesüßte, alkoholfreie Getränke (z.B. süßer Tee). Bei jeder Bewusstseinstrübung NICHTS oral",
+          "Gar nichts, sicherheitshalber"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bei HT I (wach, schluckfähig) hilft warmer, gesüßter, alkoholfreier Tee — Wärme + Energie. Sobald Bewusstseinstrübung auftritt: NICHTS oral (Aspirationsgefahr). Kein Alkohol — siehe oben."
+      },
+      {
+        "situation": "Der Rettungsdienst trifft ein.",
+        "frage": "Was berichtest du?",
+        "optionen": [
+          "Nur 'der war im Wasser'",
+          "Auffindesituation (Eiseinbruch, Wassertemp ~0 °C, geschätzte Expositionsdauer), Bergung (horizontal vom Ufer aus), Befund (HT I — wach, zittert, Tachykardie), Maßnahmen (nasse Kleidung geschnitten, Rettungsdecke, süßer warmer Tee), keine aktive Wiedererwärmung",
+          "Gar nichts, der ist ja wach",
+          "Erstmal mit den Umstehenden Erfahrungen austauschen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Strukturierte Übergabe: Auffindesituation und geschätzte Expositionsdauer sind klinisch entscheidend. Stadium nach klinischen Zeichen, getroffene Maßnahmen, keine aktive Wiedererwärmung — die kommt erst in der Klinik unter Monitoring."
+      }
+    ]
+  },
+  {
+    "title": "Obdachloser auf Parkbank",
+    "beschreibung": "Wintermorgen, –6 °C. Passanten alarmieren dich: ein Mann liegt seit Stunden auf einer Parkbank im Park, reagiert kaum.",
+    "schritte": [
+      {
+        "situation": "Du erreichst die Bank. Der Mann liegt auf der Seite, dünne nasse Jacke, kein Kopfschutz. Du sprichst ihn laut an. Er öffnet kurz die Augen, antwortet nicht klar. Du beobachtest: kein Zittern, langsame Atmung.",
+        "frage": "Was ist dein erster Schritt nach Eigenschutz und Ersteindruck?",
+        "optionen": [
+          "Sofort aufrichten und hin- und herbewegen, damit er wach wird",
+          "Notruf 112 absetzen — Bewusstseinstrübung + kein Zittern + lange Kälteexposition spricht für mindestens HT II, also klinisch ernst",
+          "Ihn alleine lassen und Polizei rufen",
+          "Ihm sofort einen Schnaps einflößen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Bewusstseinstrübung + fehlendes Zittern + lange Exposition = Verdacht HT II oder schlechter. Notarzt-Indikation. Aufrichten / Bewegen wäre gefährlich (Bergungstod). Schnaps verstärkt die Auskühlung."
+      },
+      {
+        "situation": "Du machst eine Schnellbeurteilung: Patient reagiert verzögert auf Ansprache, AF ca. 8/min, Puls langsam, Haut kalt und blau-marmoriert, kein Zittern mehr.",
+        "frage": "Welches Hypothermie-Stadium ist das?",
+        "optionen": [
+          "HT I (35–32 °C): wach, starkes Zittern",
+          "HT II (32–28 °C): Bewusstseinstrübung, Zittern hört auf, Bradykardie, Bradypnoe",
+          "HT III (28–24 °C): bewusstlos",
+          "HT IV: scheinbarer Tod"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Bewusstseinstrübung, fehlendes Zittern, Bradykardie, Bradypnoe = HT II. Das Zittern ist die kritische Schwelle: solange er zittert, kämpft sein Körper aktiv. Wenn das Zittern aufhört, sinkt die Eigenwärme rapide."
+      },
+      {
+        "situation": "Du überlegst die Lagerung. Eine Passantin will helfen und schlägt vor, den Mann sofort aufzusetzen, damit er besser atmet.",
+        "frage": "Wie reagierst du?",
+        "optionen": [
+          "Gute Idee, aufrichten",
+          "Ihn auf einen Stuhl setzen",
+          "NEIN — bei HT II strikt horizontal belassen, jede Bewegung minimieren, Bergungstod-Risiko! Atemwege durch Lagerung des Kopfes freihalten",
+          "Auf den Bauch drehen"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bei Hypothermie ab HT II ist das Herz extrem reizempfindlich. Aufrichten / Bewegen kann durch Rückstrom kalten Blutes Kammerflimmern auslösen — Bergungstod. Streng horizontal, Bewegungen minimal halten."
+      },
+      {
+        "situation": "Ein Helfer bringt einen Thermosbecher mit heißem Tee und Wärmflaschen.",
+        "frage": "Was ist hier richtig?",
+        "optionen": [
+          "Heißen Tee einflößen, auch wenn er kaum reagiert",
+          "Wärmflaschen direkt auf die Haut legen",
+          "Wärmflaschen unter die Achseln pressen, kräftig die Arme reiben",
+          "Nichts oral (Aspirationsgefahr bei Bewusstseinstrübung). Keine direkte Hitzequelle auf Haut, NICHT reiben / massieren. Stattdessen: nasse Kleidung schneiden, trocken polstern, Rettungsdecke (Silberseite zum Körper), vor Wind / Boden isolieren — passive Wärmeerhaltung"
+        ],
+        "korrekt": 3,
+        "erklaerung": "Bei HT II keine aktive Wiedererwärmung im Feld (keine Wärmflaschen direkt auf Haut, kein Reiben — verschiebt kaltes Schalenblut zentral, Bergungstod). Nichts oral wegen Bewusstseinstrübung. Passive Wärmeerhaltung: trocken, isoliert, Rettungsdecke."
+      },
+      {
+        "situation": "Du wartest auf den Rettungsdienst und kontrollierst engmaschig. Plötzlich reagiert der Patient gar nicht mehr, Atmung wird sehr langsam und kaum sichtbar.",
+        "frage": "Wie verhältst du dich?",
+        "optionen": [
+          "Ihn schütteln, damit er wieder atmet",
+          "Auf normalen Reanimations-Standard wechseln, sofort drücken auch wenn vermutlich noch ein Puls da ist",
+          "Atmung max. 60 Sekunden sehr genau prüfen (bei Hypothermie wird die Atemfrequenz sehr niedrig — Sehen, Hören, Fühlen länger als sonst). Bei keiner Atmung: Reanimation beginnen, AED anwenden, schonend transportieren — 'nobody is dead until warm and dead'",
+          "Aufgeben — bei der Kälte hat er keine Chance"
+        ],
+        "korrekt": 2,
+        "erklaerung": "Bei Hypothermie sind Atmung und Puls extrem langsam — übliche 10-Sekunden-Atemkontrolle reicht nicht, daher länger prüfen. Wenn keine Atmung: Reanimation. Wichtig: wegen verlangsamtem Stoffwechsel kann das Gehirn lange überleben. Reanimation und Transport bis zur Wiedererwärmung in der Klinik (ECMO)."
+      },
+      {
+        "situation": "Der Notarzt trifft ein.",
+        "frage": "Was übergibst du strukturiert?",
+        "optionen": [
+          "'Der war einfach durchgefroren'",
+          "Auffindesituation (Parkbank, –6 °C, Expositionsdauer geschätzt mehrere Stunden), Befund bei Eintreffen (HT II — Bewusstseinstrübung, kein Zittern, AF 8/min, Bradykardie), Verlauf (zunehmende Bewusstlosigkeit, Atmung schwach), Maßnahmen (horizontal belassen, Kleidung geschnitten, Rettungsdecke, KEIN oraler Input, KEINE aktive Wiedererwärmung), Reanimationsbereitschaft",
+          "Nur den Namen",
+          "Erstmal alles selber regeln wollen"
+        ],
+        "korrekt": 1,
+        "erklaerung": "Strukturierte Übergabe spart Minuten. Wichtig: Expositionsdauer, klinisches Stadium, Verlauf, ausdrücklicher Hinweis 'KEINE aktive Wiedererwärmung' und 'KEIN oraler Input' — vermeidet Doppelbehandlung. Reanimationsbereitschaft sicherstellen."
+      }
+    ]
   }
 ]

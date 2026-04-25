@@ -1,0 +1,110 @@
+{
+  "schema": {
+    "name": "xABCDE-Übergabe",
+    "intro": "Strukturierte Übergabe folgt direkt dem Schema, das du am Patienten abgearbeitet hast. Kurze Vorab-Info, dann pro Buchstabe ein Befundsatz (unauffällige Punkte zusammenfassen), anschließend SAMPLE-Anamnese und durchgeführte Maßnahmen mit Zeitstempel.",
+    "blocks": [
+      { "key": "vorab", "title": "Vorab", "hint": "Wer du bist, Patient (Alter, Geschlecht), Auffindesituation in einem Satz" },
+      { "key": "x", "title": "x — Blutung", "hint": "Lebensbedrohliche Blutung — vorhanden / nicht vorhanden, gestoppt mit was und seit wann" },
+      { "key": "A", "title": "A — Atemweg", "hint": "Frei, verlegt, gesichert (Esmarch / Wendl / Guedel)" },
+      { "key": "B", "title": "B — Atmung", "hint": "AF, SpO₂, Atemgeräusch, O₂-Gabe" },
+      { "key": "C", "title": "C — Kreislauf", "hint": "Puls (Frequenz, Rhythmus), RR, Rekap-Zeit, Hautkolorit" },
+      { "key": "D", "title": "D — Bewusstsein", "hint": "GCS / AVPU, Pupillen, BZ, neurologische Ausfälle, Symptombeginn-Uhrzeit" },
+      { "key": "E", "title": "E — Exposure", "hint": "Trauma, Wunden, Temperatur, Sonstiges" },
+      { "key": "sample", "title": "SAMPLE", "hint": "Symptome, Allergien, Medikamente, Vorerkrankungen, letzte Mahlzeit, Ereignis" },
+      { "key": "massnahmen", "title": "Maßnahmen / Empfehlung", "hint": "Was wurde gemacht, mit Zeit (Tourniquet, Lyse-Fenster), was empfiehlst du" }
+    ]
+  },
+  "beispiele": [
+    {
+      "title": "ACS / Brustschmerzen",
+      "situation": "Mann, ca. 65 J., kommt am Stadtfest mit plötzlichen Brustschmerzen mit Ausstrahlung in den linken Arm zum Sanitätszelt.",
+      "blocks": {
+        "vorab": "Sani-Dienst Stadtfest, männlich, ca. 65 J., kam vor 8 Min wegen plötzlicher Brustschmerzen ans Sanitätszelt.",
+        "A": "unauffällig",
+        "B": "AF 22, SpO₂ 94 % unter Raumluft, O₂ 4 l/min via Nasenbrille läuft, Lunge beidseits unauffällig",
+        "C": "Puls 98 unregelmäßig, RR 150/95, Rekap < 2 Sek, Haut blass und schweißig",
+        "D": "unauffällig (BZ 118 mg/dl, GCS 15, Pupillen isokor)",
+        "E": "Schmerz 7/10 retrosternal mit Ausstrahlung in linken Arm und Kiefer, normotherm, sonst keine Befunde",
+        "sample": "S: Brustschmerz seit 20 Min, in Ruhe ungebessert. A: keine bekannt. M: Beta-Blocker, ASS 100, eigene Nitro-Spray einmal genutzt ohne Besserung. P: bekannte KHK, Z. n. Stent-Implantation 2021. L: vor 2 Std gegessen. E: Schmerz akut beim Bummeln aufgetreten.",
+        "massnahmen": "Oberkörper hochgelagert (08:42), beengende Kleidung geöffnet, O₂ 4 l/min, kontinuierliche Vitalwertüberwachung. Empfehle 12-Kanal-EKG und Klinikzuweisung mit Cardio-Voranmeldung."
+      },
+      "hinweis": "Bei ACS sind Schmerzcharakter und -beginn, Eigenmedikation (Nitro!), Vorerkrankungen und ein vollständiges Vitalwert-Bild der Schlüssel."
+    },
+    {
+      "title": "Schlaganfall (Time is Brain)",
+      "situation": "Frau, 72 J., beim Familienfrühstück plötzlich hängender Mundwinkel und verwaschene Sprache. Symptombeginn: 09:48.",
+      "blocks": {
+        "vorab": "Erstversorgender vor Ort, weiblich, 72 J., neurologische Ausfälle seit 09:48 (laut Tochter genau beobachtet).",
+        "A": "frei, Schluckakt unauffällig — bislang nichts oral gegeben",
+        "B": "unauffällig (AF 18, SpO₂ 96 %, kein O₂ erforderlich)",
+        "C": "Puls 110 unregelmäßig (V. a. Vorhofflimmern), RR 168/95, Rekap < 2 Sek, Haut warm",
+        "D": "GCS 14 (verlangsamte Sprache), BE-FAST positiv: Face hängender Mundwinkel rechts, Arms rechtsseitige Pronation, Speech verwaschen. Pupillen isokor, BZ 112 mg/dl. Symptombeginn-Uhrzeit: 09:48",
+        "E": "unauffällig",
+        "sample": "S: rechtsseitige Schwäche und verwaschene Sprache. A: keine. M: Bisoprolol, Apixaban (Antikoagulans), Metformin. P: arterielle Hypertonie, Vorhofflimmern, Diabetes Typ 2. L: 10 Min vor Beginn gefrühstückt. E: Symptome traten beim Sitzen am Tisch akut auf.",
+        "massnahmen": "Oberkörper 30° hoch, beengende Kleidung geöffnet, NICHTS oral, BE-FAST dokumentiert, Symptombeginn-Uhrzeit notiert. Empfehle Stroke-Unit-Voranmeldung und sofortige Klinikzuweisung."
+      },
+      "hinweis": "Schlüssel: exakte Symptombeginn-Uhrzeit (Lyse-Fenster 4,5 h), Antikoagulanzien, BE-FAST-Befund. Kein ASS durch Sanitäter — Hirnblutung ist erst per CT auszuschließen."
+    },
+    {
+      "title": "Hypoglykämie",
+      "situation": "Diabetiker, 78 J., wird verwirrt und schwitzend zu Hause aufgefunden. Tochter ist anwesend.",
+      "blocks": {
+        "vorab": "Sani vor Ort, männlich, 78 J., bekannter Diabetiker, von der Tochter wegen plötzlicher Verwirrtheit und Schwitzen alarmiert.",
+        "A": "frei, war anfangs schluckfähig",
+        "B": "unauffällig (AF 18, SpO₂ 97 %)",
+        "C": "Puls 102 regelmäßig, RR 135/80, Rekap < 2 Sek, Haut feucht-kühl (sympathische Aktivierung)",
+        "D": "Initial GCS 13 (verwirrt, ungezielte Antworten), nach Zuckergabe GCS 15, Pupillen isokor, BZ initial 38 mg/dl, nach 15 Min 85 mg/dl",
+        "E": "unauffällig",
+        "sample": "S: Verwirrtheit, Schwitzen, Heißhunger. A: keine. M: Insulin Lantus + Humalog, Metformin, Bisoprolol. P: Diabetes Typ 2, KHK. L: hat Frühstück ausgelassen, Insulin aber wie üblich gespritzt. E: Symptome ca. 30 Min vor Eintreffen aufgetreten.",
+        "massnahmen": "BZ-Messung (38 → 85 mg/dl), 4 Plättchen Traubenzucker oral (10:15), nach 15 Min Müsliriegel als langsame Kohlenhydrate. Empfehle ärztliche Vorstellung trotz Besserung — bei Beta-Blockern und älterem Patienten Rebound möglich, Ursache für ausgelassenes Frühstück klären."
+      },
+      "hinweis": "BZ-Verlauf mit zwei Werten + Eigenmedikation (Insulin / Sulfonylharnstoffe / Beta-Blocker) sind kritisch. Auch wenn der Patient wieder klar ist, gehört eine ärztliche Abklärung zur Übergabe."
+    },
+    {
+      "title": "Hitzschlag (Marathonläufer)",
+      "situation": "Halbmarathon, 32 °C, Läufer ca. 35 J. wankt bei km 18 ans Sanitätszelt, kippt um, ist verwirrt, Haut trocken-heiß.",
+      "blocks": {
+        "vorab": "Sani-Dienst Halbmarathon, männlich, ca. 35 J., bei km 18 mit Bewusstseinsstörung kollabiert, sofort in den Schatten verlegt.",
+        "A": "frei, antwortet zusammenhanglos",
+        "B": "AF 28, SpO₂ 95 %, O₂ 6 l/min läuft",
+        "C": "Puls 138 regelmäßig, RR 95/55, Rekap 3 Sek, Haut trocken, heiß und gerötet",
+        "D": "GCS 12 (verwirrt, lokalisiert auf Schmerz), Pupillen isokor, BZ 95 mg/dl. Während Versorgung kurzer tonisch-klonischer Krampfanfall ca. 45 Sek",
+        "E": "Tympanale Temperatur 41,2 °C, keine Verletzungen",
+        "sample": "S: Bewusstseinsstörung in Hitze, Krampfanfall. A: keine bekannt. M: keine. P: keine bekannt. L: nur kleines Frühstück, wenig Flüssigkeit unterwegs. E: Halbmarathon bei 32 °C, prall in der Sonne.",
+        "massnahmen": "In den Schatten verlegt, Kleidung entfernt, Verdunstungskühlung (Wasser sprühen + fächeln) plus Kältepacks an Hals/Achsel/Leiste mit Tuch (12:18), O₂ 6 l/min, NICHTS oral wegen Bewusstseinsstörung, nach Krampf stabile Seitenlage. Empfehle weitere aktive Kühlung bis Kerntemperatur < 39 °C, dann reduzieren — Cave Hypothermie."
+      },
+      "hinweis": "Hitzschlag-Übergabe: Expositionsdauer und Belastung, Kerntemperatur bei Auffinden und aktuell, Krampfanfall, durchgeführte Kühlmaßnahmen mit Beginn-Zeit, kein oraler Input."
+    },
+    {
+      "title": "Polytrauma (Verkehrsunfall)",
+      "situation": "PKW gegen Baum, Fahrer nicht angeschnallt, Hochrasanztrauma. Patient männlich, ca. 40 J., sitzt eingeklemmt.",
+      "blocks": {
+        "vorab": "First Responder vor Ort, männlich, ca. 40 J., Frontalkollision Pkw gegen Baum, Patient nicht angeschnallt, eingeklemmt im Fahrzeug. Feuerwehr für technische Rettung verständigt.",
+        "x": "Starke arterielle Blutung am rechten Oberschenkel — Tourniquet 5 cm proximal der Wunde angelegt um 14:32, Blutung steht",
+        "A": "frei, HWS-Immobilisation manuell durchgeführt, Patient antwortet auf Ansprache",
+        "B": "AF 26 flach, SpO₂ 91 % unter Raumluft → O₂ 12 l/min via Maske, Atemgeräusch links abgeschwächt (Verdacht Pneumothorax)",
+        "C": "Puls 128 schwach, RR 88/55, Rekap 4 Sek, Haut blass und kalt — kompensierter Schock",
+        "D": "GCS 13 (V4 M6 A3), Pupillen isokor, BZ 110 mg/dl, klagt über Hüft- und Beinschmerz",
+        "E": "Tourniquet rechter Oberschenkel; Prellmarken Brust links, Becken bei vorsichtiger Prüfung instabil → Beckenschlinge angelegt; Wärmeerhalt mit Rettungsdecke. Aktuelle Temperatur 35,8 °C — beginnende Hypothermie",
+        "sample": "S: Schmerz Brust und Becken. A: keine bekannt. M: keine bekannt. P: keine bekannt. L: unklar. E: Frontalkollision Pkw / Baum, geschätzt > 70 km/h, Airbag ausgelöst, kein Gurt.",
+        "massnahmen": "Tourniquet rechter Oberschenkel (14:32), HWS-Immobilisation manuell, O₂ 12 l/min, Beckenschlinge, Wärmeerhalt, kontinuierliche Vitalwertüberwachung. Empfehle Schockraum-Voranmeldung mit Trauma-Team, Notarzt + Feuerwehr für Rettung läuft."
+      },
+      "hinweis": "Trauma-Übergabe: Mechanism (Hochrasanz), Tourniquet-Uhrzeit ist klinisch kritisch (NIE lösen!), Verdachtsdiagnosen (Pneumothorax, Beckenfraktur), beginnende Hypothermie als Trauma-Trias-Komponente."
+    },
+    {
+      "title": "Reanimation mit ROSC",
+      "situation": "Mann, 58 J., kollabiert beim Joggen im Park. Reanimation durch zwei Ersthelfer + AED, ROSC nach 6 Min.",
+      "blocks": {
+        "vorab": "Ersthelfer vor Ort, männlich, 58 J., beim Joggen kollabiert. Reanimation 30:2 ab 16:04, AED-Schock 1× um 16:07. Wiedereinsetzender Spontankreislauf (ROSC) um 16:10.",
+        "A": "frei, Patient atmet wieder selbständig nach ROSC",
+        "B": "AF 14 regelmäßig, SpO₂ 92 % unter O₂ 10 l/min via Maske, Brustkorb hebt symmetrisch",
+        "C": "Puls 110 regelmäßig, jetzt tastbar, RR 95/60, Rekap 3 Sek, Haut blass",
+        "D": "GCS 6 (M5 V1 E2), bewusstlos aber atmet, Pupillen weit aber lichtreagibel, BZ 142 mg/dl",
+        "E": "unauffällig (keine Verletzungen durch Sturz, Wärmeerhalt mit Rettungsdecke, Temperatur 36,2 °C)",
+        "sample": "S: plötzlicher Kollaps. A: unbekannt. M: laut Joggingpartner Beta-Blocker und ASS. P: KHK bekannt. L: unbekannt. E: kollabierte ohne Vorwarnung beim Laufen.",
+        "massnahmen": "Reanimation 30:2 ab 16:04, AED-Schock 1× 16:07, ROSC 16:10, danach stabile Seitenlage mit Atemwegssicherung, O₂ 10 l/min, kontinuierliche Vitalwertüberwachung mit AED am Patienten. Empfehle sofortigen Transport in Klinik mit Herzkatheterlabor zur post-ROSC-Versorgung."
+      },
+      "hinweis": "Post-ROSC-Übergabe: exakte Zeiten (Kollaps, Reanimationsbeginn, AED-Schock, ROSC) sind kritisch für die Klinik. AED bleibt am Patienten — Rezidiv-Kammerflimmern jederzeit möglich."
+    }
+  ]
+}

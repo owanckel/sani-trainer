@@ -21,6 +21,11 @@
         "name": "Hypotonie (niedriger Blutdruck)",
         "symptoms": "Schwindel, Schwarzwerden vor Augen, Blässe, Übelkeit, kalter Schweiß, Kollapsneigung (Ohnmachtsgefühl). RR (Blutdruck) systolisch (oberer Wert) <90 mmHg",
         "action": "Flach lagern, Beine hoch (Schocklage), frische Luft, Flüssigkeit anbieten (wenn wach), bei anhaltenden Beschwerden oder Bewusstlosigkeit Rettungsdienst"
+      },
+      {
+        "name": "Herzrhythmusstörung (HRS)",
+        "symptoms": "Herzrasen (Tachykardie > 100/min) oder Herzpause (Bradykardie < 60/min). Palpitationen (spürbares Herzklopfen), Schwindel, Synkope (Ohnmacht), Brustschmerz, Dyspnoe (Atemnot), Schwäche. Vorhofflimmern: unregelmäßiger Puls, oft schnell — erhöhtes Embolie- / Schlaganfallrisiko. Kammerflimmern: bewusstlos + kein Puls — Reanimation!",
+        "action": "Ruhe, Oberkörper hoch, beengende Kleidung öffnen. Vitalwerte mit Pulskontrolle (regelmäßig oder unregelmäßig?), O₂ bei SpO₂ < 94 %, Rettungsdienst — 12-Kanal-EKG erfolgt im Rettungswagen. Eigene Medikamente NICHT zusätzlich geben. Bei Bewusstlosigkeit + kein Puls: sofort Reanimation, AED anwenden"
       }
     ]
   },
@@ -61,6 +66,146 @@
         "name": "Obstruktiver Schock",
         "symptoms": "Ursache: mechanische Behinderung des Blutflusses — Spannungspneumothorax (Luft im Pleuraspalt unter Druck), Perikardtamponade (Flüssigkeit im Herzbeutel), Lungenembolie (Gerinnsel in der Lungenarterie). Zeichen: gestaute Halsvenen, Tachykardie, Hypotonie, ggf. einseitig fehlende Atemgeräusche, keine Besserung durch Lagerung",
         "action": "Meist Oberkörper hoch bei Atemnot. Notarzt sofort — Entlastung (z.B. Nadeldekompression / Punktion) nur durch Notarzt"
+      }
+    ]
+  },
+  {
+    "category": "Intoxikation (Vergiftung)",
+    "conditions": [
+      {
+        "name": "Allgemeine Vergiftung (Leitsymptome)",
+        "symptoms": "Bewusstseinsstörung (Somnolenz / Schläfrigkeit bis Koma), Übelkeit, Erbrechen, Atemstörung, Pupillenveränderung (Miosis / verengt oder Mydriasis / weit), auffällige Hautfarbe, Krampfanfall möglich. Hinweise am Auffindeort: Tablettenblister, Spritzen, Flaschen, ungewöhnlicher Geruch (Alkohol, Lösungsmittel, Bittermandel)",
+        "action": "Eigenschutz (Kontaktgift, Erbrochenes, Spritzen!), xABCDE, bei Bewusstlosigkeit + Atmung stabile Seitenlage. KEIN Erbrechen auslösen, NICHTS zu trinken geben (Ausnahme: nur auf Anweisung der Giftnotrufzentrale). Substanz / Reste / Verpackung sichern und mitgeben. Giftnotruf + Rettungsdienst, bei Atemstillstand Reanimation"
+      },
+      {
+        "name": "Alkoholintoxikation",
+        "symptoms": "Foetor alcoholicus (Alkoholgeruch), Ataxie (Gangunsicherheit), verwaschene Sprache, Erbrechen, Hypoglykämie (Unterzuckerung) möglich, Hypothermie (Unterkühlung) bei Auffinden im Freien, Bewusstseinstrübung bis Koma. Cave: Verletzungen durch Sturz werden leicht übersehen",
+        "action": "xABCDE, Wärmeerhalt, stabile Seitenlage bei Bewusstseinstrübung (Aspirationsgefahr durch Erbrechen!), BZ messen wenn möglich, auf Begleitverletzungen (SHT / Schädel-Hirn-Trauma) untersuchen. Rettungsdienst bei tiefer Bewusstlosigkeit, Atemstörung, Trauma oder Mischintoxikation"
+      },
+      {
+        "name": "Opioid-Intoxikation (Heroin, Morphin, Fentanyl, Tramadol, Methadon)",
+        "symptoms": "Klassische Trias: Bewusstseinstrübung + Atemdepression (AF < 10/min) + Miosis (stecknadelkopfgroße Pupillen). Zyanose (Blaufärbung), schlaffer Muskeltonus, evtl. Einstichstellen",
+        "action": "xABCDE — Atmung steht im Vordergrund! Atemwege freihalten, bei unzureichender Atmung assistierte Beatmung mit Beutel-Maske + O₂. Stabile Seitenlage bei erhaltener Atmung, Rettungsdienst alarmieren (Verdacht Opiatintoxikation — Notarzt gibt Naloxon / Antidot). Eigenschutz: Spritzen!"
+      },
+      {
+        "name": "Stimulanzien-Intoxikation (Kokain, Amphetamine, Ecstasy / MDMA)",
+        "symptoms": "Tachykardie, Hypertonie, Mydriasis (weite Pupillen), Hyperthermie (Überhitzung), Schwitzen, Unruhe / Agitation, Aggressivität, Krampfanfall, Angina-Pectoris- / Infarkt-Symptome auch bei jungen Patienten",
+        "action": "Eigenschutz (Aggression!), Reizabschirmung (ruhige Umgebung, leise sprechen), Kühlen bei Hyperthermie, xABCDE, Verdacht Herzinfarkt ernst nehmen, Rettungsdienst / Notarzt. Keine körperliche Fixierung durch Laienhelfer"
+      },
+      {
+        "name": "Kohlenmonoxid-Vergiftung (CO)",
+        "symptoms": "Mehrere Personen am gleichen Ort betroffen (!), Kopfschmerzen, Schwindel, Übelkeit, Bewusstseinsstörung, später Bewusstlosigkeit. Klassisch falsch: SpO₂ am Pulsoxymeter zeigt normale Werte — CO bindet Hämoglobin, ohne dass das Pulsoxymeter es erkennt. Hautfarbe kirschrot ist Spätzeichen",
+        "action": "Eigenschutz hat absolute Priorität — Räume nicht ohne Atemschutz betreten, Feuerwehr nachfordern! Patient an die frische Luft, hohe O₂-Gabe (15 l/min über Reservoirmaske), xABCDE, Rettungsdienst. Auch Helfer müssen sich untersuchen lassen"
+      },
+      {
+        "name": "Reizgas- / Rauchgasinhalation",
+        "symptoms": "Reizhusten, Heiserkeit, Stridor (pfeifendes Atemgeräusch), Dyspnoe (Atemnot), Rußspuren um Mund / Nase, angesengte Nasenhaare, evtl. Bewusstseinsstörung (häufig kombiniert mit CO- / Cyanid-Vergiftung bei Bränden)",
+        "action": "Eigenschutz, Patient sofort aus der Gefahrenzone (durch Feuerwehr!), an die frische Luft, hohe O₂-Gabe, Oberkörperhochlagerung wenn wach, xABCDE, Rettungsdienst — Atemwegsschwellung kann sich rasant verschlechtern"
+      }
+    ]
+  },
+  {
+    "category": "Neurologisch",
+    "conditions": [
+      {
+        "name": "Schlaganfall (Apoplex / Stroke) — allgemein",
+        "symptoms": "Plötzlich auftretend, BE-FAST: Balance (Gleichgewichtsstörung, Schwindel), Eyes (Sehstörung, Doppelbilder, halbseitiger Gesichtsfeldausfall), Face (hängender Mundwinkel, einseitig), Arms (Armschwäche im Halteversuch — Pronation / Absinken einer Seite), Speech (verwaschene oder fehlende Sprache, Wortfindungsstörung), Time (Zeitpunkt des Symptombeginns merken!). Begleitend: Kopfschmerz, Übelkeit, Bewusstseinsstörung, Krampfanfall möglich",
+        "action": "Time is Brain — sofort Rettungsdienst / Notarzt, 'Stroke' melden (Stroke-Unit). Oberkörper ca. 30° hoch, beengende Kleidung öffnen, NICHTS oral (Aspirationsgefahr durch Schluckstörung / Dysphagie), Wärmeerhalt, Bewusstsein und Atmung engmaschig überwachen. Symptombeginn-Uhrzeit dokumentieren — entscheidend für Lyse-Therapie (4,5-h-Fenster). Eigene Medikamente (z.B. ASS) NICHT geben — Hirnblutung muss erst per CT ausgeschlossen werden"
+      },
+      {
+        "name": "Ischämischer Schlaganfall (Hirninfarkt)",
+        "symptoms": "Häufigste Form (ca. 85 %). Ursache: Verschluss einer Hirnarterie durch Thrombus / Embolus → Minderdurchblutung. Klinisch: fokal-neurologische Ausfälle nach BE-FAST, meist ohne starken Kopfschmerz, Bewusstsein häufig erhalten. Risikofaktoren: Vorhofflimmern, Hypertonie, Diabetes, KHK",
+        "action": "Wie bei Schlaganfall allgemein. Nur Klinik kann per CT zwischen Infarkt und Blutung unterscheiden — Lyse oder Thrombektomie nur nach Bildgebung. Schnelle Klinikzuweisung in Stroke-Unit, Symptombeginn-Uhrzeit ist Schlüsselinfo"
+      },
+      {
+        "name": "Hämorrhagischer Schlaganfall (Hirnblutung)",
+        "symptoms": "Ca. 15 % der Schlaganfälle. Ursache: Ruptur einer Hirnarterie (häufig hypertensiv, Aneurysma → SAB / Subarachnoidalblutung). Typisch: schlagartiger Vernichtungskopfschmerz ('wie nie zuvor'), Übelkeit / Erbrechen, Nackensteife (Meningismus), rasche Bewusstseinstrübung, Krampfanfall häufiger als beim Infarkt, oft hoher RR",
+        "action": "Wie bei Schlaganfall allgemein. Ruhe und Reizabschirmung (Lärm, Licht), Oberkörper hoch, Notarzt. KEIN ASS, kein Heparin, keine RR-Senkung durch Laienhelfer (Blutung würde verstärkt)"
+      },
+      {
+        "name": "TIA (Transitorische ischämische Attacke)",
+        "symptoms": "Kurzzeitige neurologische Ausfälle nach BE-FAST, die sich innerhalb von Minuten bis maximal 24 Stunden komplett zurückbilden. Patient sagt häufig 'mir geht's wieder gut' — gefährliche Fehleinschätzung",
+        "action": "Trotz Beschwerdefreiheit: Klinikzuweisung wie beim Schlaganfall! Eine TIA ist Vorbote — Risiko für einen 'echten' Schlaganfall in den nächsten 48 h ist hoch. Symptome dokumentieren (was war ausgefallen, wie lange, jetziger Befund), Notruf bzw. mind. dringende ärztliche Vorstellung"
+      },
+      {
+        "name": "SHT (Schädel-Hirn-Trauma)",
+        "symptoms": "Kopfprellung oder Wunde am Kopf, Bewusstseinsstörung (kurz oder anhaltend), Erinnerungslücke (Amnesie) für das Ereignis, Kopfschmerz, Übelkeit / Erbrechen, Schwindel, neurologische Ausfälle (Koordination, Sprache, Motorik). Schweres SHT: Anisokorie (Pupillen ungleich), zunehmende Bewusstseinstrübung, Krampfanfall, Bradykardie + Hypertonie (Cushing-Reflex bei Hirndruck). Cave: Symptome können verzögert über Stunden auftreten",
+        "action": "Eigenschutz, xABCDE, HWS-Immobilisation (bei jedem SHT auch HWS-Verletzung möglich), Oberkörper ca. 30° hoch (wenn Kreislauf stabil — senkt Hirndruck), Wärmeerhalt, NICHTS oral, GCS und Pupillen engmaschig dokumentieren. Bei Bewusstlosigkeit + Atmung: stabile Seitenlage mit HWS-Schutz. Notarzt bei Bewusstseinsstörung, Erbrechen, neurologischen Ausfällen, Antikoagulanzien-Patient, Kindern, Hochrasanztrauma"
+      },
+      {
+        "name": "Krampfanfall (epileptischer Anfall)",
+        "symptoms": "Plötzliche Bewusstlosigkeit, tonisch-klonische Zuckungen (Versteifen + rhythmisches Zucken), Augenverdrehen, Speichelfluss / Schaum, Zungenbiss, Einnässen / Einkoten. Postiktale Phase (Erschöpfung, Verwirrtheit) nach dem Anfall. Auslöser: Epilepsie, Hypoglykämie, SHT, Intoxikation, Fieber (Kinder), Hypoxie, Hitzschlag, Schlaganfall",
+        "action": "Patient NICHT festhalten, NICHTS in den Mund schieben, Umgebung absichern (weiches Polster unter Kopf, scharfe Kanten weg), Zeit messen. Nach dem Anfall: stabile Seitenlage, xABCDE, BZ messen (Hypoglykämie als Auslöser), Wärmeerhalt. Notarzt bei: erstem Anfall, Anfall > 5 Min (Status epilepticus), Serie von Anfällen, Verletzung, Schwangerschaft, fehlender Erholung, Trauma als Ursache"
+      }
+    ]
+  },
+  {
+    "category": "Stoffwechsel",
+    "conditions": [
+      {
+        "name": "Hypoglykämie (Unterzuckerung)",
+        "symptoms": "BZ < 70 mg/dl, klassisch bei Diabetikern. Frühsymptome (sympathische Aktivierung): Heißhunger, Schwitzen, Tremor (Zittern), Tachykardie, Blässe, innere Unruhe, Konzentrationsstörung. Spätsymptome (Glukosemangel ZNS): Verwirrtheit, Aggression, undeutliche Sprache, Krampfanfall, Bewusstlosigkeit. Cave: kann mit Apoplex oder Intoxikation verwechselt werden — bei JEDER Bewusstseinsstörung BZ messen",
+        "action": "BZ messen wenn möglich. Wach + schluckfähig: 15–20 g schnellen Zucker oral (Traubenzucker, Saft, Cola — NICHT zuckerfrei!), nach 15 Min BZ-Kontrolle, dann langsame Kohlenhydrate (Brot, Müsliriegel). Nicht schluckfähig oder bewusstlos: NICHTS oral (Aspirationsgefahr), stabile Seitenlage, sofort Rettungsdienst (i.v.-Glukose / Glukagon i.m.). Cave bei alten Patienten, Betablockern, Sulfonylharnstoffen — Hypoglykämie kann wiederkommen, immer ärztliche Abklärung"
+      },
+      {
+        "name": "Hyperglykämie (Überzuckerung)",
+        "symptoms": "BZ > 250 mg/dl, schleichender Beginn (Stunden bis Tage). Polyurie (häufiges Wasserlassen), Polydipsie (starker Durst), Müdigkeit, Übelkeit / Erbrechen, Bauchschmerz, Kußmaul-Atmung (tiefe regelmäßige Atmung — Versuch, Säure abzuatmen), Acetongeruch der Atemluft (obstartig), Bewusstseinstrübung bis hyperglykämisches Koma. Diabetische Entgleisung: Ketoazidose (Typ 1) oder hyperosmolar (Typ 2)",
+        "action": "BZ messen, Vitalwerte, xABCDE, Lagerung nach Befund (bei Bewusstlosigkeit + Atmung stabile Seitenlage). KEIN Insulin durch Laienhelfer, KEIN orales Trinken bei Bewusstseinstrübung. Wach + schluckfähig: ungesüßte Flüssigkeit anbieten (Wasser). Rettungsdienst — Klinik braucht Volumengabe + Insulin i.v."
+      }
+    ]
+  },
+  {
+    "category": "Hitzenotfälle",
+    "conditions": [
+      {
+        "name": "Hitzeerschöpfung (Hitzekollaps)",
+        "symptoms": "Schwäche, Schwindel, Kopfschmerz, Übelkeit, evtl. Erbrechen, starkes Schwitzen, blasse, kalt-feuchte Haut, Tachykardie, Hypotonie, Kollapsneigung. Körpertemperatur normal bis leicht erhöht (meist < 40 °C). Bewusstsein erhalten, aber abgeschlagen",
+        "action": "Sofort aus Sonne / Hitze in kühles Schatten- oder Innenraum-Umfeld, beengende Kleidung öffnen, flach lagern + Beine hoch (Schocklage) bei Kreislaufschwäche, Elektrolyt- / Mineralgetränk schluckweise wenn wach (kein eiskaltes Wasser), Hautkühlung mit feuchten Tüchern, engmaschig Vitalwerte. Bei Bewusstseinstrübung, anhaltendem Erbrechen oder Übergang in trockene heiße Haut → Rettungsdienst (Übergang in Hitzschlag droht)"
+      },
+      {
+        "name": "Hitzschlag",
+        "symptoms": "Lebensbedrohlich! Versagen der Wärmeregulation. Körperkerntemperatur > 40 °C, oft trockene, heiße, gerötete Haut (Schwitzen kann sistieren), Bewusstseinsstörung bis Bewusstlosigkeit, Verwirrung, Aggressivität, Krampfanfall, Tachykardie, Tachypnoe, Hypotonie. Häufig nach körperlicher Belastung in Hitze (Marathon, Bauarbeit) oder bei Älteren / Kindern in heißen Räumen / Autos",
+        "action": "Notarzt sofort, parallel aggressive aktive Kühlung: Kleidung entfernen, Patient mit kühlem Wasser besprühen + Fächeln (Verdunstungskälte ist effektivste Methode), Kältepacks auf Hals, Achsel, Leiste (mit Tuch, nicht direkt auf Haut). Ziel: Kerntemperatur unter 39 °C, dann Kühlung reduzieren (Cave: Unterkühlung). xABCDE, stabile Seitenlage bei Bewusstlosigkeit. Nichts oral bei Bewusstseinstrübung"
+      },
+      {
+        "name": "Sonnenstich",
+        "symptoms": "Direkte Sonneneinstrahlung auf Kopf / Nacken → meningeale Reizung. Hochroter, heißer Kopf bei oft normaler Körpertemperatur (!), Kopfschmerz, Nackensteife, Schwindel, Übelkeit, Erbrechen, Unruhe, ggf. Bewusstseinsstörung. Symptome häufig erst Stunden nach Exposition — gerne abends nach Strandtag, besonders bei Kindern",
+        "action": "Sofort in den Schatten / kühlen Raum, Oberkörper hochlagern, Kopf und Nacken mit feuchten kühlen Tüchern bedecken, schluckweise trinken anbieten wenn wach und nicht erbrechend. Rettungsdienst bei Bewusstseinstrübung, anhaltendem Erbrechen, Krampfanfall oder Symptomen bei Kleinkindern"
+      },
+      {
+        "name": "Hitzekrämpfe",
+        "symptoms": "Schmerzhafte Muskelkrämpfe (typisch: Waden, Bauch, Arme) nach körperlicher Anstrengung in Hitze mit starkem Schwitzen → Salz- / Elektrolytverlust. Bewusstsein klar, Körpertemperatur normal, kein Schock",
+        "action": "Aus der Hitze, ruhen, Elektrolytlösung oder leicht gesalzenes Wasser trinken, betroffene Muskulatur passiv vorsichtig dehnen. Bei nicht abklingenden Krämpfen oder Übergang in Erschöpfung / Hitzschlag → ärztliche Vorstellung"
+      },
+      {
+        "name": "Hitzesynkope (Hitzeohnmacht)",
+        "symptoms": "Kurze Bewusstlosigkeit nach längerem Stehen in Hitze (Aufmarsch, Konzert, Festzug) — Blut versackt in den Beinen, kurzzeitige Hirnminderdurchblutung. Patient erholt sich im Liegen rasch und vollständig",
+        "action": "Flach lagern, Beine hoch (Schocklage), kühle Umgebung, schluckweise trinken anbieten. Vitalwerte. Bei wiederholter Synkope, fehlender Erholung oder anderen Begleitsymptomen (Brustschmerz, neurologische Ausfälle) Rettungsdienst — DD wichtig: nicht jede 'Ohnmacht in der Hitze' ist harmlos"
+      },
+      {
+        "name": "Verbrennung / Verbrühung (thermische Hautschäden)",
+        "symptoms": "Grade nach Tiefe: Grad 1 — Oberhaut (Epidermis), Schmerzen, Rötung, Schwellung. Grad 2 — Lederhaut (Dermis), Schmerzen, Blasen, weiß-gräulicher Untergrund. Grad 3 — Unterhaut (Subkutis), KEINE Schmerzen (Nervenenden zerstört), keine intakten Blasen, Nekrosen. Grad 4 — Muskeln & Knochen, KEINE Schmerzen, Nekrosen, Verkohlung. Faustregel Fläche (Neunerregel Erwachsener): Kopf 9 %, jeder Arm 9 %, Brust 9 %, Bauch 9 %, oberer Rücken 9 %, unterer Rücken 9 %, jedes Bein 18 %, Genital 1 %. Handfläche des Patienten ≈ 1 %",
+        "action": "Eigenschutz, Brandquelle entfernen, brennende Kleidung löschen. Anhaftende Kleidung NICHT abreißen. Kühlen mit handwarmem Wasser (ca. 20 °C) nur kleinflächig (< 10 % Körperoberfläche) und nur in den ersten 10 Minuten — sonst Hypothermie-Risiko. KEIN Eis, KEINE Hausmittel (Mehl, Öl, Salbe, Zahnpasta). Brandwunden steril abdecken (Metalline / Brandtuch), Schmuck / enge Kleidung entfernen (Schwellung droht), Wärmeerhalt (Rettungsdecke), Schock-Management. Notarzt bei: Grad 2 ab Handflächengröße, Grad 3 / 4, Gesicht / Hände / Genital, Atemwegsbeteiligung, Kindern"
+      }
+    ]
+  },
+  {
+    "category": "Kältenotfälle",
+    "conditions": [
+      {
+        "name": "Hypothermie (Unterkühlung) — mit Stadien",
+        "symptoms": "Körperkerntemperatur < 35 °C. Schweizer Stadien-Modell: HT I (35–32 °C): wach, starkes Zittern, Tachykardie, Hyperventilation, kalte Extremitäten, beginnende Verwirrtheit. HT II (32–28 °C): Bewusstseinstrübung, Zittern hört auf (kritisches Zeichen!), Bradykardie, Hypotonie, träge Pupillen. HT III (28–24 °C): bewusstlos, Atmung und Kreislauf stark verlangsamt, Vitalwerte kaum tastbar. HT IV (< 24 °C): scheinbarer Tod — kein Puls, keine Atmung, weite lichtstarre Pupillen. Grundsatz: 'Nobody is dead until warm and dead' — Reanimation bis Wiedererwärmung in der Klinik (ECMO)",
+        "action": "Eigenschutz, sehr vorsichtig bergen (Bergungstod!), streng horizontal lagern, nasse Kleidung schneiden (nicht ausziehen), trocken polstern, Wärmeerhalt mit Rettungsdecke (Silberseite zum Körper), vor Wind / Boden isolieren. KEINE aktive Wiedererwärmung im Feld (kein warmes Bad, keine Wärmflasche auf Haut, nicht reiben, nicht massieren). Kein Alkohol. Wach + schluckfähig (HT I): warme, gesüßte, alkoholfreie Getränke. Bei HT III/IV: Reanimation und schonender Transport — Klinik mit ECMO / Wiedererwärmung"
+      },
+      {
+        "name": "Erfrierung (lokale Kälteschäden)",
+        "symptoms": "Meist Finger, Zehen, Nase, Ohren, Wangen. Grade: I — blasse, weißliche Haut, Taubheit / Brennen, nach Erwärmen rot und geschwollen. II — Blasenbildung mit klarem Inhalt. III — hämorrhagische (blutige) Blasen, Gewebsuntergang. IV — tief, mit Muskel- / Knochenbeteiligung",
+        "action": "Aus der Kälte, enge Kleidung / Schuhe / Schmuck entfernen (Schwellung droht), Patient gesamthaft warmhalten (Hypothermie-Risiko parallel!). Erfrorene Bereiche NICHT reiben, NICHT massieren, NICHT mit Schnee einreiben (gefährlicher Volksglaube). Steril abdecken, weich polstern. Kein aktives Auftauen im Feld, wenn ein Wiedereinfrieren möglich ist (verschlimmert den Schaden — kalt belassen bis Klinik). Wenn definitives Auftauen möglich: lauwarmes Wasser ca. 37–39 °C, kein heißes Wasser, keine direkte Hitzequelle (Verbrühungsgefahr durch Gefühlsverlust). Blasen NICHT eröffnen, Schmerzbehandlung durch Notarzt"
+      },
+      {
+        "name": "Kaltwasserimmersion / Eiseinbruch",
+        "symptoms": "4-Phasen-Modell: 1. Cold Shock (0–3 Min) — Schock-Atmung, reflektorisches Einatmen unter Wasser, Aspiration, Hyperventilation, Tachykardie, Hypertonie (Ertrinkungsgefahr in den ersten Minuten ist größer als die Hypothermie). 2. Schwimmversagen (3–30 Min) — Kraft- und Koordinationsverlust, Hände / Arme nicht mehr brauchbar. 3. Hypothermie (> 30 Min) — Auskühlung mit den HT-Stadien. 4. Bergungstod (nach Rettung) — Blutdruckabfall, Herzstillstand durch Rückstrom kalten Blutes aus der Peripherie",
+        "action": "Eigenschutz absolut! NICHT selbst ins Wasser oder aufs Eis — Stange / Seil / Brett reichen, von festem Stand aus arbeiten. Feuerwehr / Wasserrettung sofort. Geretteten streng horizontal bergen und transportieren (nicht senkrecht hochziehen — Bergungstod). Nasse Kleidung schneiden, trocken polstern, Rettungsdecke, vor Wind schützen, Notarzt. Keine aktive Wiedererwärmung im Feld. Bei HKS Reanimation und transportieren"
       }
     ]
   }

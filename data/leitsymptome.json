@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Bewusstlosigkeit",
+    "sofortmassnahmen": [
+      "xABCDE durcharbeiten",
+      "Stabile Seitenlage bei eigener Atmung",
+      "Notruf 112",
+      "Wärmeerhalt (Rettungsdecke)",
+      "O₂-Gabe wenn verfügbar",
+      "Assistierte Beatmung bei Atemdepression"
+    ],
+    "ursachen": [
+      { "name": "Schock", "hint": "Tachykardie, Hypotonie, kalt-feuchte Haut, Blässe", "category": "Schock", "ref": "Allgemeine Schockzeichen" },
+      { "name": "Schlaganfall", "hint": "BE-FAST positiv, einseitige Ausfälle, plötzlicher Beginn", "category": "Neurologisch", "ref": "Schlaganfall (Apoplex / Stroke) — allgemein" },
+      { "name": "Hypoglykämie", "hint": "BZ < 70 mg/dl, Diabetiker, Schwitzen, Heißhunger", "category": "Stoffwechsel", "ref": "Hypoglykämie (Unterzuckerung)" },
+      { "name": "Hyperglykämie", "hint": "BZ > 250 mg/dl, Acetongeruch, Kußmaul-Atmung", "category": "Stoffwechsel", "ref": "Hyperglykämie (Überzuckerung)" },
+      { "name": "Intoxikation / Drogen", "hint": "Pupillenveränderung, Atemdepression, Hinweise am Auffindeort", "category": "Intoxikation (Vergiftung)", "ref": "Allgemeine Vergiftung (Leitsymptome)" },
+      { "name": "SHT", "hint": "Trauma, Anisokorie, GCS-Verschlechterung", "category": "Neurologisch", "ref": "SHT (Schädel-Hirn-Trauma)" },
+      { "name": "Krampfanfall (postiktal)", "hint": "Vorausgegangener Anfall, Zungenbiss, Einnässen", "category": "Neurologisch", "ref": "Krampfanfall (epileptischer Anfall)" },
+      { "name": "Synkope / Schwächeanfall", "hint": "Kurze Bewusstlosigkeit, schnelle Erholung im Liegen", "category": "Hitzenotfälle", "ref": "Hitzesynkope (Hitzeohnmacht)" },
+      { "name": "Herzrhythmusstörung", "hint": "Unregelmäßiger Puls, Brustschmerz möglich", "category": "Kardiovaskulär (Herz-Kreislauf)", "ref": "Herzrhythmusstörung (HRS)" },
+      { "name": "Hypothermie", "hint": "Kalt, kein Zittern (HT II), Bradykardie", "category": "Kältenotfälle", "ref": "Hypothermie (Unterkühlung) — mit Stadien" },
+      { "name": "Hitzschlag", "hint": "Hochrot, heiße trockene Haut, > 40 °C", "category": "Hitzenotfälle", "ref": "Hitzschlag" },
+      { "name": "Starke Blutung / Volumenmangel", "hint": "Sichtbare Blutung oder Schockzeichen ohne sichtbar (innere Blutung)", "category": "Schock", "ref": "Hypovolämischer Schock" }
+    ]
+  }
+]
