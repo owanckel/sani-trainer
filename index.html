@@ -67,7 +67,7 @@
     --shadow-elev: 0 10px 28px -14px rgba(60, 50, 35, 0.24), 0 0 0 1px var(--border);
     --nav-h: 60px;
     --pills-h: 50px;
-    --sticky-offset: calc(var(--nav-h) + var(--pills-h));
+    --sticky-offset: var(--nav-h);
 }
 
 [data-theme="dark"] {
@@ -194,8 +194,6 @@ body > .container-fluid, main.container-fluid {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 999px;
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
     margin: 0 auto 1.5rem !important;
     width: fit-content;
     max-width: 100%;
@@ -203,9 +201,6 @@ body > .container-fluid, main.container-fluid {
     scrollbar-width: none;
     justify-content: flex-start !important;
     flex-wrap: nowrap !important;
-    position: sticky;
-    top: calc(var(--nav-h) + 8px);
-    z-index: 50;
 }
 .nav-pills::-webkit-scrollbar { display: none; }
 .nav-pills .nav-link {
