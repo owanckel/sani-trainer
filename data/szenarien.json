@@ -44,12 +44,12 @@
         "frage": "Was tust du jetzt?",
         "optionen": [
           "Stabile Seitenlage und warten",
-          "Notruf absetzen und mit Reanimation beginnen (30:2)",
+          "Nachforderung absetzen und mit Reanimation beginnen (30:2)",
           "Oberkörper hochlagern und O₂ geben",
           "SAMPLE-Anamnese bei Umstehenden erheben"
         ],
         "korrekt": 1,
-        "erklaerung": "Keine normale Atmung = Reanimation! Notruf/Nachforderung, AED anfordern, sofort 30 Kompressionen : 2 Beatmungen."
+        "erklaerung": "Keine normale Atmung = Reanimation! Nachforderung, AED anfordern, sofort 30 Kompressionen : 2 Beatmungen."
       },
       {
         "situation": "Du reanimierst. Dein Kollege bringt den AED. Der AED analysiert: 'Schock empfohlen'.",
@@ -457,7 +457,7 @@
           "Erst 2 Minuten warten und dann entscheiden"
         ],
         "korrekt": 1,
-        "erklaerung": "Bewusstlos + normale Atmung = stabile Seitenlage + Notruf. Bewusstlos + KEINE normale Atmung = Reanimation. Dieser Unterschied ist lebenswichtig!"
+        "erklaerung": "Bewusstlos + normale Atmung = stabile Seitenlage + Nachforderung. Bewusstlos + KEINE normale Atmung = Reanimation. Dieser Unterschied ist lebenswichtig!"
       },
       {
         "situation": "Du bringst die Person in die stabile Seitenlage. Der Rettungsdienst ist alarmiert.",
@@ -1226,7 +1226,7 @@
           "Patient sofort intubieren"
         ],
         "korrekt": 1,
-        "erklaerung": "Bewusstlos + eigene Atmung vorhanden = KEINE Reanimation. AF 8/min ist aber bedrohlich niedrig (Bradypnoe / Atemdepression). Patient engmaschig überwachen, Notruf 112, Hilfe organisieren — Atemstillstand kann jederzeit eintreten."
+        "erklaerung": "Bewusstlos + eigene Atmung vorhanden = KEINE Reanimation. AF 8/min ist aber bedrohlich niedrig (Bradypnoe / Atemdepression). Patient engmaschig überwachen, Notarzt nachfordern, Hilfe organisieren — Atemstillstand kann jederzeit eintreten."
       },
       {
         "situation": "Du leuchtest mit der Taschenlampe in die Augen: beide Pupillen sind stecknadelkopfgroß und reagieren kaum auf Licht.",
@@ -1388,7 +1388,7 @@
           "Sofort an Ort und Stelle untersuchen, der Asphalt ist egal",
           "Szene / Sicherheit, Eigenschutz, Patient sofort in den Schatten verlegen — Hitze ist hier der Schädiger und wirkt weiter",
           "Kaltes Wasser über den Kopf gießen",
-          "Erstmal Notruf absetzen, sonst nichts"
+          "Erstmal Nachforderung absetzen, sonst nichts"
         ],
         "korrekt": 1,
         "erklaerung": "Bei Hitzenotfällen wirkt die Ursache weiter, solange der Patient in der Hitze liegt. Erste Maßnahme ist immer: aus der Hitze raus. Heißer Asphalt verstärkt das Problem zusätzlich."
@@ -1482,11 +1482,11 @@
         "optionen": [
           "Im Supermarkt die Eltern ausrufen lassen und warten",
           "Auf die Polizei warten und nicht ans Auto gehen",
-          "Notruf 112 + Polizei, kurzer Versuch das Auto zu öffnen — bei Lebensgefahr und drohendem Hitzschlag Scheibe einschlagen (Recht auf rechtfertigenden Notstand). Möglichst hintere Scheibe weit weg vom Kind",
+          "Polizei verständigen + Notarzt nachfordern, kurzer Versuch das Auto zu öffnen — bei Lebensgefahr und drohendem Hitzschlag Scheibe einschlagen (Recht auf rechtfertigenden Notstand). Möglichst hintere Scheibe weit weg vom Kind",
           "Das Kind aus der Ferne mit Wasser bespritzen"
         ],
         "korrekt": 2,
-        "erklaerung": "Bei einem Kleinkind in einem heißen Auto zählen Minuten. Innentemperaturen können in 10 Min auf 50 °C steigen, Kinder erhitzen 3–5× schneller als Erwachsene. Bei sichtbarer Apathie / Bewusstseinstrübung ist die Gefahr unmittelbar — Notruf, Polizei, und im Zweifel Scheibe einschlagen (rechtfertigender Notstand, § 34 StGB). Hintere Scheibe weit weg vom Kind, Splitter wegwischen."
+        "erklaerung": "Bei einem Kleinkind in einem heißen Auto zählen Minuten. Innentemperaturen können in 10 Min auf 50 °C steigen, Kinder erhitzen 3–5× schneller als Erwachsene. Bei sichtbarer Apathie / Bewusstseinstrübung ist die Gefahr unmittelbar — Nachforderung, Polizei, und im Zweifel Scheibe einschlagen (rechtfertigender Notstand, § 34 StGB). Hintere Scheibe weit weg vom Kind, Splitter wegwischen."
       },
       {
         "situation": "Du hast das Kind aus dem Auto. Es ist apathisch, reagiert nur schwach, atmet, Haut ist hochrot und glühend heiß, kaum Schweiß. AF erhöht.",
@@ -1564,11 +1564,11 @@
         "optionen": [
           "Selbst sofort aufs Eis kriechen und ihn rausziehen",
           "Wegrennen und niemandem davon erzählen",
-          "Eigenschutz! Frau zurückhalten, Notruf 112 (Feuerwehr / Wasserrettung), vom festen Ufer aus arbeiten — Eis ist instabil, Helfer dürfen nicht selbst einbrechen",
+          "Eigenschutz! Frau zurückhalten, Notarzt nachfordern (Feuerwehr / Wasserrettung), vom festen Ufer aus arbeiten — Eis ist instabil, Helfer dürfen nicht selbst einbrechen",
           "Ihm vom Ufer aus zurufen, er soll sich selbst rausziehen"
         ],
         "korrekt": 2,
-        "erklaerung": "Eigenschutz hat absolute Priorität. Wer ohne Sicherung aufs gebrochene Eis geht, wird zum zweiten Patienten. Sofort 112 anrufen — Feuerwehr / Wasserrettung sind ausgerüstet. Andere Helfer ebenfalls vom Eis fernhalten."
+        "erklaerung": "Eigenschutz hat absolute Priorität. Wer ohne Sicherung aufs gebrochene Eis geht, wird zum zweiten Patienten. Sofort Notarzt nachfordern — Feuerwehr / Wasserrettung sind ausgerüstet. Andere Helfer ebenfalls vom Eis fernhalten."
       },
       {
         "situation": "Du suchst nach Bergungswerkzeug. Am Ufer liegen ein langer Ast, ein Schal und ein Plastikschlitten.",
@@ -1658,7 +1658,7 @@
         "frage": "Was ist dein erster Schritt nach Eigenschutz und Ersteindruck?",
         "optionen": [
           "Sofort aufrichten und hin- und herbewegen, damit er wach wird",
-          "Notruf 112 absetzen — Bewusstseinstrübung + kein Zittern + lange Kälteexposition spricht für mindestens HT II, also klinisch ernst",
+          "Notarzt nachfordern absetzen — Bewusstseinstrübung + kein Zittern + lange Kälteexposition spricht für mindestens HT II, also klinisch ernst",
           "Ihn alleine lassen und Polizei rufen",
           "Ihm sofort einen Schnaps einflößen"
         ],

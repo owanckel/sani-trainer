@@ -85,7 +85,7 @@
       {
         "name": "Opioid-Intoxikation (Heroin, Morphin, Fentanyl, Tramadol, Methadon)",
         "symptoms": "Klassische Trias: Bewusstseinstrübung + Atemdepression (AF < 10/min) + Miosis (stecknadelkopfgroße Pupillen). Zyanose (Blaufärbung), schlaffer Muskeltonus, evtl. Einstichstellen",
-        "action": "xABCDE — Atmung steht im Vordergrund! Atemwege freihalten, bei unzureichender Atmung assistierte Beatmung mit Beutel-Maske + O₂. Stabile Seitenlage bei erhaltener Atmung, Rettungsdienst alarmieren (Verdacht Opiatintoxikation — Notarzt gibt Naloxon / Antidot). Eigenschutz: Spritzen!"
+        "action": "xABCDE — Atmung steht im Vordergrund! Atemwege freihalten, bei unzureichender Atmung assistierte Beatmung mit Beutel-Maske + O₂. Stabile Seitenlage bei erhaltener Atmung, Notarzt nachfordern (Verdacht Opiatintoxikation — Notarzt gibt Naloxon / Antidot). Eigenschutz: Spritzen!"
       },
       {
         "name": "Stimulanzien-Intoxikation (Kokain, Amphetamine, Ecstasy / MDMA)",
@@ -125,7 +125,7 @@
       {
         "name": "TIA (Transitorische ischämische Attacke)",
         "symptoms": "Kurzzeitige neurologische Ausfälle nach BE-FAST, die sich innerhalb von Minuten bis maximal 24 Stunden komplett zurückbilden. Patient sagt häufig 'mir geht's wieder gut' — gefährliche Fehleinschätzung",
-        "action": "Trotz Beschwerdefreiheit: Klinikzuweisung wie beim Schlaganfall! Eine TIA ist Vorbote — Risiko für einen 'echten' Schlaganfall in den nächsten 48 h ist hoch. Symptome dokumentieren (was war ausgefallen, wie lange, jetziger Befund), Notruf bzw. mind. dringende ärztliche Vorstellung"
+        "action": "Trotz Beschwerdefreiheit: Klinikzuweisung wie beim Schlaganfall! Eine TIA ist Vorbote — Risiko für einen 'echten' Schlaganfall in den nächsten 48 h ist hoch. Symptome dokumentieren (was war ausgefallen, wie lange, jetziger Befund), Nachforderung bzw. mind. dringende ärztliche Vorstellung"
       },
       {
         "name": "SHT (Schädel-Hirn-Trauma)",

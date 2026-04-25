@@ -28,12 +28,12 @@
     "badgeClass": "step-r",
     "items": [
       {
-        "name": "Notruf 112",
-        "detail": "Bei Bewusstlosigkeit und fehlender / nicht normaler Atmung: sofort 112 alarmieren. Lautsprecher einschalten, damit Hände frei sind. Standort, Auffindesituation und \"Reanimation\" durchgeben — Leitstelle bleibt am Telefon."
+        "name": "Notarzt nachfordern",
+        "detail": "Bei Bewusstlosigkeit und fehlender / nicht normaler Atmung: sofort Notarzt nachfordern. Lautsprecher einschalten, damit Hände frei sind. Standort, Auffindesituation und \"Reanimation\" durchgeben — Leitstelle bleibt am Telefon."
       },
       {
         "name": "AED anfordern",
-        "detail": "AED (automatisierter externer Defibrillator) so früh wie möglich holen lassen — idealerweise durch zweiten Helfer, damit die Reanimation nicht unterbrochen wird. Alleine: erst Notruf + HLW, AED nur holen, wenn in unmittelbarer Nähe."
+        "detail": "AED (automatisierter externer Defibrillator) so früh wie möglich holen lassen — idealerweise durch zweiten Helfer, damit die Reanimation nicht unterbrochen wird. Alleine: erst Nachforderung + HLW, AED nur holen, wenn in unmittelbarer Nähe."
       },
       {
         "name": "Helfer organisieren",
@@ -76,7 +76,7 @@
       {
         "name": "Verhältnis 30:2",
         "detail": "Beim Erwachsenen: 30 Thoraxkompressionen, dann 2 Beatmungen — unabhängig ob Laie oder Profi. Bei Unsicherheit / Ekel / fehlender Ausrüstung: Hands-only-CPR (durchgehend drücken ohne Beatmung) ist besser als gar nichts."
-        },
+      },
       {
         "name": "Beatmungstechnik",
         "detail": "Kopf überstrecken, Kinn anheben, Nase zuhalten. Normal einatmen, Lippen dicht um den Mund des Patienten abschließen, ca. 1 Sekunde lang gleichmäßig beatmen bis sich der Brustkorb sichtbar hebt. Zwei Beatmungen zusammen max. 10 Sekunden."
