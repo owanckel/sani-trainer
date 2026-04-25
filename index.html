@@ -67,7 +67,9 @@
     --shadow-elev: 0 10px 28px -14px rgba(60, 50, 35, 0.24), 0 0 0 1px var(--border);
     --nav-h: 60px;
     --pills-h: 50px;
-    --sticky-offset: calc(var(--nav-h) + var(--pills-h));
+    --sub-pills-h: 44px;
+    --step-pills-h: 44px;
+    --sticky-offset: calc(var(--nav-h) + var(--pills-h) + var(--sub-pills-h));
 }
 
 [data-theme="dark"] {
@@ -264,6 +266,57 @@ body > .container-fluid, main.container-fluid {
     color: var(--accent-1) !important;
     border-color: transparent !important;
     box-shadow: inset 0 0 0 1px var(--border-accent), 0 2px 8px -6px var(--accent-glow);
+}
+
+/* ===== Sub-Pills (sticky 2nd nav level) ===== */
+.sub-pills {
+    list-style: none;
+    margin: 0 auto 1rem !important;
+    padding: 4px !important;
+    display: flex;
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    position: sticky;
+    top: calc(var(--nav-h) + var(--pills-h) + 14px);
+    z-index: 45;
+}
+.sub-pills::-webkit-scrollbar { display: none; }
+.sub-pills li { display: inline-flex; }
+.sub-pills .sub-pill {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.74rem;
+    letter-spacing: 0.005em;
+    padding: 7px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+.sub-pills .sub-pill:hover:not(.active) {
+    background: var(--hover-overlay);
+    color: var(--text);
+}
+.sub-pills .sub-pill.active {
+    background: var(--gradient-accent-soft);
+    color: var(--accent-1);
+    box-shadow: inset 0 0 0 1px var(--border-accent);
+}
+@media (max-width: 576px) {
+    .sub-pills .sub-pill { font-size: 0.68rem; padding: 6px 11px; }
+    .sub-pills { margin-bottom: 0.75rem !important; }
 }
 
 /* ===== Typography ===== */
@@ -987,16 +1040,17 @@ hr {
     to { opacity: 1; transform: translateY(0); }
 }
 .tab-pane.show.active > * > * { animation: fadeUp 0.4s cubic-bezier(.4,0,.2,1) both; }
-#info-content > .mb-4 { animation: fadeUp 0.4s cubic-bezier(.4,0,.2,1) both; }
-#info-content > .mb-4:nth-child(2) { animation-delay: 0.04s; }
-#info-content > .mb-4:nth-child(3) { animation-delay: 0.08s; }
-#info-content > .mb-4:nth-child(4) { animation-delay: 0.12s; }
+#wissen-content > .mb-4 { animation: fadeUp 0.4s cubic-bezier(.4,0,.2,1) both; }
+#wissen-content > .mb-4:nth-child(2) { animation-delay: 0.04s; }
+#wissen-content > .mb-4:nth-child(3) { animation-delay: 0.08s; }
+#wissen-content > .mb-4:nth-child(4) { animation-delay: 0.12s; }
 
 /* ===== Mobile ===== */
 @media (max-width: 576px) {
     :root {
         --nav-h: 52px;
         --pills-h: 44px;
+        --sub-pills-h: 38px;
     }
     body { font-size: 14.5px; }
     .step-badge { width: 32px; height: 32px; font-size: 0.9rem; border-radius: 10px; }
@@ -1020,11 +1074,21 @@ hr {
     display: flex;
     gap: 6px;
     overflow-x: auto;
-    padding: 4px 4px 18px;
-    margin: -4px -4px 6px;
+    padding: 8px 4px 12px;
+    margin: -4px -4px 8px;
     scrollbar-width: none;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+@media (min-width: 768px) {
+    .step-nav {
+        position: sticky;
+        top: calc(var(--nav-h) + var(--pills-h) + var(--sub-pills-h) + 22px);
+        z-index: 40;
+        background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-0) 75%, transparent 100%);
+        margin-left: -8px; margin-right: -8px;
+        padding-left: 12px; padding-right: 12px;
+    }
 }
 .step-nav::-webkit-scrollbar { display: none; }
 .step-pill {
@@ -1360,78 +1424,71 @@ hr {
 
     <main class="container-fluid px-2 px-sm-3 py-3">
         <ul class="nav nav-pills justify-content-center gap-1 mb-3" role="tablist">
-            <li class="nav-item" role="presentation"><button class="nav-link active px-2 px-sm-3" id="tab-info" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true" data-title="Nachschlagen">Nachschlagen</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-values" data-bs-toggle="pill" data-bs-target="#values" type="button" role="tab" aria-controls="values" aria-selected="false" data-title="Vitalwerte">Vitalwerte</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-quiz" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab" aria-controls="quiz" aria-selected="false" data-title="Quiz">Quiz</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-szenario" data-bs-toggle="pill" data-bs-target="#szenario" type="button" role="tab" aria-controls="szenario" aria-selected="false" data-title="Szenario">Szenario</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link active px-2 px-sm-3" id="tab-wissen" data-bs-toggle="pill" data-bs-target="#wissen" type="button" role="tab" aria-controls="wissen" aria-selected="true" data-title="Wissen">Wissen</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-ueben" data-bs-toggle="pill" data-bs-target="#ueben" type="button" role="tab" aria-controls="ueben" aria-selected="false" data-title="Üben">Üben</button></li>
             <li class="nav-item" role="presentation"><button class="nav-link px-2 px-sm-3" id="tab-uebergabe" data-bs-toggle="pill" data-bs-target="#uebergabe" type="button" role="tab" aria-controls="uebergabe" aria-selected="false" data-title="Übergabe">Übergabe</button></li>
         </ul>
 
-        <section class="hero" id="page-hero">
-            <h1 class="hero-title" id="hero-title">Nachschlagen<span class="hero-dot">.</span></h1>
-        </section>
-
         <div class="tab-content">
-            <!-- SZENARIO -->
-            <div class="tab-pane fade" id="szenario" role="tabpanel" aria-labelledby="tab-szenario">
+            <!-- WISSEN -->
+            <div class="tab-pane fade show active" id="wissen" role="tabpanel" aria-labelledby="tab-wissen">
+                <ul class="sub-pills" id="wissen-sub-pills" role="tablist" aria-label="Wissens-Bereiche">
+                    <li role="presentation"><button class="sub-pill active" type="button" data-section="xabcde" onclick="showWissenSection('xabcde', this)">xABCDE</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" data-section="sample" onclick="showWissenSection('sample', this)">SAMPLE</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" data-section="reanimation" onclick="showWissenSection('reanimation', this)">Reanimation</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" data-section="notfaelle" onclick="showWissenSection('notfaelle', this)">Notfallbilder</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" data-section="leitsymptome" onclick="showWissenSection('leitsymptome', this)">Leitsymptome</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" data-section="vitalwerte" onclick="showWissenSection('vitalwerte', this)">Vitalwerte</button></li>
+                </ul>
+                <section class="hero" id="page-hero">
+                    <h1 class="hero-title" id="hero-title">xABCDE<span class="hero-dot">.</span></h1>
+                </section>
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-10">
-                        <div id="szenario-area"></div>
+                        <div id="wissen-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ÜBEN -->
+            <div class="tab-pane fade" id="ueben" role="tabpanel" aria-labelledby="tab-ueben">
+                <ul class="sub-pills" id="ueben-sub-pills" role="tablist" aria-label="Übungs-Bereiche">
+                    <li role="presentation"><button class="sub-pill active" type="button" data-section="quiz" onclick="showUebenSection('quiz', this)">Quiz</button></li>
+                    <li role="presentation"><button class="sub-pill" type="button" data-section="szenario" onclick="showUebenSection('szenario', this)">Szenario</button></li>
+                </ul>
+                <section class="hero">
+                    <h1 class="hero-title" id="ueben-hero-title">Quiz<span class="hero-dot">.</span></h1>
+                </section>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-10">
+                        <div id="ueben-quiz">
+                            <div id="quiz-menu"></div>
+                            <div id="quiz-active" class="d-none">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span id="quiz-label" class="fw-bold small"></span>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="showQuizMenu()">Zurück</button>
+                                </div>
+                                <div class="progress mb-3" style="height:4px;">
+                                    <div id="quiz-progress" class="progress-bar bg-danger" style="width:0%"></div>
+                                </div>
+                                <div id="quiz-area"></div>
+                            </div>
+                        </div>
+                        <div id="ueben-szenario" class="d-none">
+                            <div id="szenario-area"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- ÜBERGABE -->
             <div class="tab-pane fade" id="uebergabe" role="tabpanel" aria-labelledby="tab-uebergabe">
+                <section class="hero">
+                    <h1 class="hero-title">Übergabe<span class="hero-dot">.</span></h1>
+                </section>
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-10">
                         <div id="uebergabe-content"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NORMALWERTE -->
-            <div class="tab-pane fade" id="values" role="tabpanel" aria-labelledby="tab-values">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
-                        <div id="values-content"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- INFO -->
-            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="tab-info">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
-                        <div class="mb-3 text-center">
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Nachschlagen-Bereiche">
-                                <button class="btn btn-outline-danger active" onclick="showInfoSection('xabcde', this)">xABCDE</button>
-                                <button class="btn btn-outline-danger" onclick="showInfoSection('sample', this)">SAMPLE</button>
-                                <button class="btn btn-outline-danger" onclick="showInfoSection('reanimation', this)">Reanimation</button>
-                                <button class="btn btn-outline-danger" onclick="showInfoSection('notfaelle', this)">Notfallbilder</button>
-                                <button class="btn btn-outline-danger" onclick="showInfoSection('leitsymptome', this)">Leitsymptome</button>
-                            </div>
-                        </div>
-                        <div id="info-content"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- QUIZ -->
-            <div class="tab-pane fade" id="quiz" role="tabpanel" aria-labelledby="tab-quiz">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
-                        <div id="quiz-menu"></div>
-                        <div id="quiz-active" class="d-none">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span id="quiz-label" class="fw-bold small"></span>
-                                <button class="btn btn-sm btn-outline-danger" onclick="showQuizMenu()">Zurück</button>
-                            </div>
-                            <div class="progress mb-3" style="height:4px;">
-                                <div id="quiz-progress" class="progress-bar bg-danger" style="width:0%"></div>
-                            </div>
-                            <div id="quiz-area"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1471,14 +1528,15 @@ let openCategories = new Set();
 
 let lsBackPending = false;
 
-async function showInfoSection(section, btn) {
+async function showWissenSection(section, btn) {
     if (section !== 'notfaelle') { lsBackPending = false; setLsBackBtn(false); }
-    document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
-    if (btn) btn.classList.add('active');
-    const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', reanimation: 'Reanimation', notfaelle: 'Notfallbilder', leitsymptome: 'Leitsymptome' };
-    setHeroTitle(titles[section] || 'Nachschlagen');
-    const c = document.getElementById('info-content');
-    const dataMap = { xabcde: 'xabcde', sample: 'sample', reanimation: 'reanimation', notfaelle: 'notfallbilder', leitsymptome: 'leitsymptome' };
+    document.querySelectorAll('#wissen .sub-pill').forEach(b => b.classList.remove('active'));
+    const targetBtn = btn || document.querySelector('#wissen .sub-pill[data-section="' + section + '"]');
+    if (targetBtn) targetBtn.classList.add('active');
+    const titles = { xabcde: 'xABCDE', sample: 'SAMPLE', reanimation: 'Reanimation', notfaelle: 'Notfallbilder', leitsymptome: 'Leitsymptome', vitalwerte: 'Vitalwerte' };
+    setHeroTitle(titles[section] || 'Wissen');
+    const c = document.getElementById('wissen-content');
+    const dataMap = { xabcde: 'xabcde', sample: 'sample', reanimation: 'reanimation', notfaelle: 'notfallbilder', leitsymptome: 'leitsymptome', vitalwerte: 'normalwerte' };
     const dataKey = dataMap[section];
     if (dataKey && !DATA_CACHE[dataKey]) {
         c.innerHTML = '<div class="loading-placeholder"></div><div class="loading-placeholder"></div><div class="loading-placeholder"></div>';
@@ -1504,11 +1562,14 @@ async function showInfoSection(section, btn) {
         renderNotfaelle();
     } else if (section === 'leitsymptome') {
         renderLeitsymptome();
+    } else if (section === 'vitalwerte') {
+        c.innerHTML = '<div id="values-content"></div>';
+        renderValues();
     }
 }
 
 function renderXabcdeStepper() {
-    const c = document.getElementById('info-content');
+    const c = document.getElementById('wissen-content');
     const stepper = xabcdeData.map((g, i) => {
         const titleOnly = g.step.split(' — ')[0];
         return `
@@ -1529,10 +1590,10 @@ function renderXabcdeStepper() {
 
 function selectXabcdeStep(i) {
     currentXabcdeStep = i;
-    document.querySelectorAll('#info-content .step-pill').forEach((el, idx) => {
+    document.querySelectorAll('#wissen-content .step-pill').forEach((el, idx) => {
         el.classList.toggle('active', idx === i);
     });
-    const active = document.querySelector('#info-content .step-pill.active');
+    const active = document.querySelector('#wissen-content .step-pill.active');
     if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     renderXabcdeStep();
 }
@@ -1559,7 +1620,7 @@ function renderXabcdeStep() {
 }
 
 function renderReanimationStepper() {
-    const c = document.getElementById('info-content');
+    const c = document.getElementById('wissen-content');
     const stepper = reanimationData.map((g, i) => {
         const titleOnly = g.step.split(' — ')[1] || g.step;
         return `
@@ -1580,10 +1641,10 @@ function renderReanimationStepper() {
 
 function selectReanimationStep(i) {
     currentReanimationStep = i;
-    document.querySelectorAll('#info-content .step-pill').forEach((el, idx) => {
+    document.querySelectorAll('#wissen-content .step-pill').forEach((el, idx) => {
         el.classList.toggle('active', idx === i);
     });
-    const active = document.querySelector('#info-content .step-pill.active');
+    const active = document.querySelector('#wissen-content .step-pill.active');
     if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     renderReanimationStep();
 }
@@ -1647,9 +1708,8 @@ function nbFormat(text) {
 function backToLeitsymptome() {
     lsBackPending = false;
     setLsBackBtn(false);
-    const lsBtn = Array.from(document.querySelectorAll('#info .btn-group .btn'))
-        .find(b => b.textContent.trim() === 'Leitsymptome');
-    if (lsBtn) showInfoSection('leitsymptome', lsBtn);
+    const lsBtn = document.querySelector('#wissen .sub-pill[data-section="leitsymptome"]');
+    if (lsBtn) showWissenSection('leitsymptome', lsBtn);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1659,7 +1719,7 @@ function setLsBackBtn(visible) {
 }
 
 function renderNotfaelle() {
-    const c = document.getElementById('info-content');
+    const c = document.getElementById('wissen-content');
     setLsBackBtn(lsBackPending);
     c.innerHTML = notfallbilder.map((cat, idx) => `
         <div class="accordion-cat">
@@ -1694,7 +1754,7 @@ function renderNotfaelle() {
 function toggleCat(idx, btn) {
     const wasOpen = openCategories.has(idx);
     openCategories.clear();
-    document.querySelectorAll('#info-content .accordion-head.open, #info-content .accordion-body.open')
+    document.querySelectorAll('#wissen-content .accordion-head.open, #wissen-content .accordion-body.open')
         .forEach(el => el.classList.remove('open'));
     if (!wasOpen) {
         openCategories.add(idx);
@@ -1708,7 +1768,7 @@ function lsEsc(s) {
 }
 
 function renderLeitsymptome() {
-    const c = document.getElementById('info-content');
+    const c = document.getElementById('wissen-content');
     const data = leitsymptomeData || [];
     if (!data.length) { c.innerHTML = '<p class="text-muted small">Keine Leitsymptome verfügbar.</p>'; return; }
     c.innerHTML = data.map(ls => `
@@ -1737,9 +1797,8 @@ function renderLeitsymptome() {
 
 async function openNotfallbild(category, ref) {
     lsBackPending = true;
-    document.querySelectorAll('#info .btn-group .btn').forEach(b => b.classList.remove('active'));
-    const targetBtn = Array.from(document.querySelectorAll('#info .btn-group .btn'))
-        .find(b => b.textContent.trim() === 'Notfallbilder');
+    document.querySelectorAll('#wissen .sub-pill').forEach(b => b.classList.remove('active'));
+    const targetBtn = document.querySelector('#wissen .sub-pill[data-section="notfaelle"]');
     if (targetBtn) targetBtn.classList.add('active');
     if (!DATA_CACHE['notfallbilder']) await loadData('notfallbilder');
     const idx = notfallbilder.findIndex(c => c.category === category);
@@ -1748,7 +1807,7 @@ async function openNotfallbild(category, ref) {
     setHeroTitle('Notfallbilder');
     renderNotfaelle();
     requestAnimationFrame(() => {
-        const cats = document.querySelectorAll('#info-content .accordion-cat');
+        const cats = document.querySelectorAll('#wissen-content .accordion-cat');
         const cat = cats[idx];
         if (!cat) return;
         let target = null;
@@ -2313,13 +2372,31 @@ async function ensureDataAndRender(dataKey, containerId, renderFn) {
     renderFn();
 }
 
-function setHeroTitle(text) {
-    const el = document.getElementById('hero-title');
+function setHeroTitle(text, id) {
+    const el = document.getElementById(id || 'hero-title');
     if (!el) return;
     el.innerHTML = text + '<span class="hero-dot">.</span>';
     el.classList.remove('flash');
     void el.offsetWidth;
     el.classList.add('flash');
+}
+
+async function showUebenSection(section, btn) {
+    document.querySelectorAll('#ueben .sub-pill').forEach(b => b.classList.remove('active'));
+    const targetBtn = btn || document.querySelector('#ueben .sub-pill[data-section="' + section + '"]');
+    if (targetBtn) targetBtn.classList.add('active');
+    const titles = { quiz: 'Quiz', szenario: 'Szenario' };
+    setHeroTitle(titles[section] || 'Üben', 'ueben-hero-title');
+    const qPane = document.getElementById('ueben-quiz');
+    const sPane = document.getElementById('ueben-szenario');
+    if (qPane) qPane.classList.toggle('d-none', section !== 'quiz');
+    if (sPane) sPane.classList.toggle('d-none', section !== 'szenario');
+    if (section === 'quiz') {
+        showQuizMenu();
+    } else if (section === 'szenario') {
+        if (!DATA_CACHE['szenarien']) await loadData('szenarien');
+        startSzenarioMenu();
+    }
 }
 
 function setupThemeToggle() {
@@ -2338,21 +2415,20 @@ function setupThemeToggle() {
 (async () => {
     setupThemeToggle();
     showQuizMenu();
-    await showInfoSection('xabcde', null);
-    const firstSub = document.querySelector('#info .btn-group .btn');
-    if (firstSub) firstSub.classList.add('active');
-    document.querySelector('[data-bs-target="#quiz"]').addEventListener('shown.bs.tab', () => showQuizMenu());
-    document.querySelector('[data-bs-target="#values"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('normalwerte', 'values-content', renderValues));
+    await showWissenSection('xabcde', null);
     document.querySelector('[data-bs-target="#uebergabe"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('uebergabe', 'uebergabe-content', renderUebergabe));
-    document.querySelector('[data-bs-target="#szenario"]').addEventListener('shown.bs.tab', () => ensureDataAndRender('szenarien', 'szenario-area', startSzenarioMenu));
     document.querySelectorAll('[data-bs-toggle="pill"]').forEach(t => {
         t.addEventListener('shown.bs.tab', e => {
             const target = e.target.getAttribute('data-bs-target');
-            if (target === '#info') {
-                const activeSub = document.querySelector('#info .btn-group .btn.active');
-                setHeroTitle(activeSub ? activeSub.textContent.trim() : 'Nachschlagen');
-            } else {
-                setHeroTitle(e.target.dataset.title || 'Sani-Trainer');
+            if (target === '#wissen') {
+                const activeSub = document.querySelector('#wissen .sub-pill.active');
+                const section = activeSub ? activeSub.dataset.section : 'xabcde';
+                showWissenSection(section, activeSub);
+            } else if (target === '#ueben') {
+                const activeSub = document.querySelector('#ueben .sub-pill.active');
+                const section = activeSub ? activeSub.dataset.section : 'quiz';
+                showUebenSection(section, activeSub);
+            } else if (target === '#uebergabe') {
                 setLsBackBtn(false);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
